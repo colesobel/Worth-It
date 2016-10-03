@@ -1,0 +1,33 @@
+
+<div class="form-container">
+    <div class="form-holder" ng-if="!login.signupForm">
+        <div class="login" >
+            <p class="display-1 login-header">Login</p>
+            <form name="loginForm" class="login-form form-group" ng-submit="login.login(loginForm)">
+                <input class="form-control" type="text" name="u" placeholder="Username" required="required" ng-model="login.loginInfo.username"/>
+                <input class="form-control" type="password" name="p" placeholder="Password" required="required" ng-model="login.loginInfo.password"/>
+                <button class="btn btn-success" type="submit" >Login</button>
+                <hr>
+            </form>
+                <button class="btn btn-success form-control" ng-click="login.signupForm = true">Sign Up</button>
+        </div>
+        <div ng-if="login.blockLogin" class="alert alert-danger">Username and Password do not match</div>
+    </div>
+
+    <div class="form-holder" ng-if="login.signupForm">
+        <div class="sign-up">
+            <p class="display-1 login-header">Sign Up</p>
+            <form name="signupForm" class="login-form form-group" ng-submit="login.signUp(signupForm)">
+                <input class="form-control" type="text" name="first-name" placeholder="First Name" required="required" ng-model="login.signupInfo.firstName"/>
+                <input class="form-control" type="text" name="last-name" placeholder="Last Name" required="required" ng-model="login.signupInfo.lastName"/>
+                <input class="form-control" type="text" name="username" placeholder="Username" required="required" ng-model="login.signupInfo.username"/>
+                <input class="form-control" type="password" name="password" placeholder="Password" required="required" ng-model="login.signupInfo.password"/>
+                <input class="form-control" type="password" name="confirm-password" placeholder="Confirm Password" required="required" ng-model="login.signupInfo.passwordConfirmation"/>
+                <button class="btn btn-success" >Sign Up</button>
+                <hr>
+            </form>
+            <button class="btn btn-success form-control" ng-click="login.signupForm = false">Login</button>
+        </div>
+        <div ng-if="login.blockSignup" class="alert-danger alert">This Username has already been taken. Please choose another</div>
+    </div>
+</div>

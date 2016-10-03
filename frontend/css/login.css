@@ -1,0 +1,41 @@
+.form-holder {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login, .sign-up {
+    background: linear-gradient(to bottom right, #00b300, #1aff1a);
+    width: 25%;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-header {
+    font-size: 2em;
+    text-align: center;
+    color: white;
+}
+
+input, button {
+    width: 80%;
+    margin: 2% auto;
+}
+
+.form-container {
+    margin: 10% auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+hr {
+    width: 80%;
+    height: 1px;
+    color: white;
+}

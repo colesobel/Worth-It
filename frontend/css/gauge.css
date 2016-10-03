@@ -1,0 +1,24 @@
+.card-text {
+    width: 100%;
+}
+
+.gauge {
+    margin-top: 0;
+    padding: 0;
+    position: relative;
+    top: -20px;
+}
+
+.card-title {
+    text-align: center;
+    font-size: 1.8em;
+    text-transform: capitalize;
+    border-bottom: 1px solid black;
+    margin-bottom: 0;
+}
+
+.sub-title {
+    font-size: 1.3em;
+    text-align: center;
+    margin-top: 10px;
+}

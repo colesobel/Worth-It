@@ -1,0 +1,23 @@
+.nav-fade {
+    /*background-color: #00cc00 !important;*/
+    background: linear-gradient(to bottom right, #00b300, #1aff1a);
+    color: black;
+    margin-bottom: 0;
+}
+
+a {
+    color: black !important;
+}
+
+a:hover {
+    color: pink !important;
+}
+
+/*.navbar {
+    position: fixed;
+    top: 0;
+}*/
+
+.capitalize {
+    text-transform: capitalize;
+}

@@ -1,0 +1,41 @@
+<div ng-include src="'/partials/navbar.html'"></div>
+<div class="container">
+  <!--<app-heatmap></app-heatmap>-->
+  <!--<div id="myDiv"></div> -->
+  <div class="gauge-container">
+    <div ng-repeat="g in home.gaugeStats;" class="card card-body">
+      <div>
+        <!-- <app-gauge
+          [nodeId]="i"
+          [cardTitle]="g.expense_category"
+          [desiredSpendPercentage]="g.desired_spend_percentage"
+          [spendPercentage]="g.spend_percentage"
+          [gaugeMax]="g.gauge_max"
+        ></app-gauge> -->
+        <p class="card-title">{{g.expense_category}}</p>
+        <p class="sub-title">{{spendPercentage}} of Total Spending</p>
+        <canvas style="height: 100px;" class="gauge" id="foo"></canvas>
+        <div class="shift-up">
+          <hr class="line-break">
+          <p class="sub-title">{{g.percentage_spent}} of Monthly Budget</p>
+          <app-horizontal-bar
+          [daysInMonth]="daysInMonth"
+          [dayOfMonth]="dayOfMonth"
+          [spentPercentage]="g.spent_percentage"
+          [budgetLeftPercentage]="g.budget_left_percentage"></app-horizontal-bar>
+            <div class="card-block">
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item stat">Desired Spend Percentage: {{g.desired_spend_percentage}}%</li>
+                <li class="list-group-item stat">Actual Spend Percentage: {{g.spend_percentage}}%</li>
+                <li class="list-group-item stat">Monthly Target: {{g.allocated_for_budget}}</li>
+                <li class="list-group-item stat">Amount Spent: ${{g.spend_total}}</li>
+                <li class="list-group-item stat">Budget Remaining: {{g.budget_left}}</li>
+            </ul>
+        </div>
+      </div>
+  </div>
+  </div>
+  <hr>
+  <app-daily-bar-chart></app-daily-bar-chart>
+</div>
