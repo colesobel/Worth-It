@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ui.router', 'myApp.loginController', 'myApp.homeController', 'myApp.services'])
+var app = angular.module('myApp', ['ui.router', 'myApp.loginController', 'myApp.homeController', 'myApp.services', 'myApp.gaugeDirective'])
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise('home')

@@ -13,16 +13,22 @@
           [gaugeMax]="g.gauge_max"
         ></app-gauge> -->
         <p class="card-title">{{g.expense_category}}</p>
-        <p class="sub-title">{{spendPercentage}} of Total Spending</p>
-        <canvas style="height: 100px;" class="gauge" id="foo"></canvas>
+        <p class="sub-title">{{g.spend_percentage}} of Total Spending</p>
+        <gauge node-index="$index" gauge-stats="g" ></gauge>
         <div class="shift-up">
           <hr class="line-break">
           <p class="sub-title">{{g.percentage_spent}} of Monthly Budget</p>
-          <app-horizontal-bar
-          [daysInMonth]="daysInMonth"
-          [dayOfMonth]="dayOfMonth"
-          [spentPercentage]="g.spent_percentage"
-          [budgetLeftPercentage]="g.budget_left_percentage"></app-horizontal-bar>
+            <div class="labels"><span class="red">Budget Spent</span></div>
+            <div class="bar-container">
+              <div ng-style="{'width': g.spent_percentage +'%'}" class="spent"></div>
+              <div ng-style="{'width': g.budget_left_percentage + '%'}" class="budget-left"></div>
+            </div>
+
+              <div class="labels month"> <span class="days-passed-text">Days Passed</span></div>
+            <div class="bar-container">
+              <div ng-style="{'width': home.daysPassedPercentage +'%'}" class=" spent days-passed"></div>
+              <div ng-style="{'width': home.daysLeftPercentage + '%'}" class=" budget-left days-left"></div>
+            </div>
             <div class="card-block">
             </div>
             <ul class="list-group list-group-flush">

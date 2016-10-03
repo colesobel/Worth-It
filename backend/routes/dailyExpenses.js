@@ -7,7 +7,10 @@ router.post('/addExpense', function(req, res, next) {
 });
 
 router.post('/getGaugeStats', function(req, res, next) {
-    dailyExpenses.getGaugeStats(req.body.user_id).then(gaugeStats => res.json(gaugeStats))
+    dailyExpenses.getGaugeStats(req.body.user_id).then(gaugeStats => {
+      console.log(gaugeStats);
+      res.json(gaugeStats)
+    })
 });
 
 router.post('/getDailyAverages', function(req, res, next) {
