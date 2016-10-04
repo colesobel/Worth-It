@@ -1,7 +1,7 @@
 angular.module('myApp.addExpenseController', [])
 
 
-.controller('addExpenseController', ['$http', '$state', '$rootScope', function($http, $state, $rootScope) {
+.controller('addExpenseController', ['$http', '$state', '$rootScope', 'getDate', function($http, $state, $rootScope, getDate) {
   let user_id = Number(localStorage.getItem('user_id'))
   let addExpense = this
   addExpense.dateString = new Date().toISOString().substring(0, 10)
@@ -13,10 +13,30 @@ angular.module('myApp.addExpenseController', [])
   }
 
   getExpenseCategories = () => {
-  $http.post('http://localhost:3000/accountSettings/getExpenseCategories', {user_id}).then(categories => {
-    addExpense.expenseCategories = categories.data
-  })
-}
-getExpenseCategories()
+    $http.post('http://localhost:3000/accountSettings/getExpenseCategories', {user_id}).then(categories => {
+      addExpense.expenseCategories = categories.data
+    })
+  }
+  getExpenseCategories()
+  addExpense.onSubmit = () =>{
+    let expenseItems = document.getElementsByClassName('expense-container')
+    let expenseObj = {}
+    for(let i = 0; i < expenseItems.length; i++) {
+      expenseObj[i] = {}
+      expenseObj[i].expenseCategory = expenseItems[i]['children'][1]['value']
+      let amount = expenseItems[i]['children'][2]['value']
+      expenseObj[i].amount = Number(amount).toFixed()
+      let date = expenseItems[i]['children'][3]['value']
+      expenseObj[i].fullDate = date
+      expenseObj[i].unixTimestamp = new Date(date).getTime()
+      expenseObj[i].day = getDate.getDayName(new Date(date).getDay())
+      expenseObj[i].month = getDate.getMonthName(new Date(date).getMonth())
+      expenseObj[i].year = new Date(date).getFullYear()
+    }
+    $http.post('http://localhost:3000/dailyExpenses/addExpense', {user_id, expenseObj}).then(data => {
+      console.log(data)
+      addExpense.expenses = [1]
+    })
+  }
 
 }])

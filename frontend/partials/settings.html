@@ -1,1 +1,24 @@
 <div ng-include src="'/partials/navbar.html'"></div>
+
+
+<div class="container">
+  <p class="display-1 page-header">Configure Your Settings</p>
+
+    <ul class="tabrow">
+      <li class="selected" id="firstLi" ng-click="settings.selectTab('firstLi', 'expenseCategories')"><span>Expense Categories</span></li>
+        <li id="secondLi" ng-click="settings.selectTab('secondLi', 'fixedExpenses')"><span>Fixed Expenses</span></li>
+        <li id="thirdLi" ng-click="settings.selectTab('thirdLi', 'income')"><span>Income</span></li>
+    </ul>
+
+  <!-- <form class="form-group" *ngIf="selectedTab === 'expenseCategories'">
+    <app-expense-categories></app-expense-categories>
+  </form>
+
+  <div *ngIf="selectedTab === 'fixedExpenses'">
+    <app-fixed-expenses></app-fixed-expenses>
+  </div>
+
+  <div *ngIf="selectedTab === 'income'">
+    <app-monthly-income></app-monthly-income>
+  </div> -->
+</div>

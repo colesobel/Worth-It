@@ -6,7 +6,7 @@
 
   <p class="display-1 page-header">Add an Expense</p>
 
-  <form class="form-group" ng-submit="onSubmit()">
+  <form class="form-group" ng-submit="addExpense.onSubmit()">
     <div class="expense-container" ng-repeat="num in addExpense.expenses">
       <h3>Expense {{$index + 1}}</h3>
       <select class="form-control input">
