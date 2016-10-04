@@ -113,3 +113,35 @@
 .tabrow li.selected SPAN:after{
   background: white;
 }
+
+
+
+
+.expense-categories-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.expense-parent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.expense-list-item {
+  width: 40%;
+  margin: 1% 2% 1% 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.submit-expenses {
+    background: linear-gradient(to bottom right, #00b300, #1aff1a);
+}
