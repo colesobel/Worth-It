@@ -11,12 +11,12 @@ angular.module('myApp.gaugeDirective', [])
     controller: function($scope) {
       console.log($scope.gaugeStats);
       $scope.gaugeStats.gauge_max = Number($scope.gaugeStats.gauge_max)
-      if ($scope.gaugeStats.spent_percentage > Number($scope.gaugeStats.gauge_max)) {
-        $scope.gaugeStats.gauge_max = $scope.gaugeStats.spent_percentage
+      if ($scope.gaugeStats.spend_percentage > Number($scope.gaugeStats.max_gauge)) {
+        $scope.gaugeStats.max_gauge = $scope.gaugeStats.spend_percentage
       }
 
-      if ($scope.gaugeStats.spent_percentage == 0) {
-        $scope.gaugeStats.spent_percentage = 0.01
+      if ($scope.gaugeStats.spend_percentage == 0) {
+        $scope.gaugeStats.spend_percentage = 0.01
       }
 
       let color = getColor.getColor($scope.gaugeStats.spend_percentage / Number($scope.gaugeStats.max_gauge))

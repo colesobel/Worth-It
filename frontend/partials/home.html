@@ -5,19 +5,12 @@
   <div class="gauge-container">
     <div ng-repeat="g in home.gaugeStats;" class="card card-body">
       <div>
-        <!-- <app-gauge
-          [nodeId]="i"
-          [cardTitle]="g.expense_category"
-          [desiredSpendPercentage]="g.desired_spend_percentage"
-          [spendPercentage]="g.spend_percentage"
-          [gaugeMax]="g.gauge_max"
-        ></app-gauge> -->
         <p class="card-title">{{g.expense_category}}</p>
-        <p class="sub-title">{{g.spend_percentage}} of Total Spending</p>
+        <p class="sub-title">{{g.spend_percentage | percentage}} of Total Spending</p>
         <gauge node-index="$index" gauge-stats="g" ></gauge>
         <div class="shift-up">
           <hr class="line-break">
-          <p class="sub-title">{{g.percentage_spent}} of Monthly Budget</p>
+          <p class="sub-title">{{g.percentage_spent | percentage}} of Monthly Budget</p>
             <div class="labels"><span class="red">Budget Spent</span></div>
             <div class="bar-container">
               <div ng-style="{'width': g.spent_percentage +'%'}" class="spent"></div>
@@ -32,11 +25,11 @@
             <div class="card-block">
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item stat">Desired Spend Percentage: {{g.desired_spend_percentage}}%</li>
-                <li class="list-group-item stat">Actual Spend Percentage: {{g.spend_percentage}}%</li>
-                <li class="list-group-item stat">Monthly Target: {{g.allocated_for_budget}}</li>
-                <li class="list-group-item stat">Amount Spent: ${{g.spend_total}}</li>
-                <li class="list-group-item stat">Budget Remaining: {{g.budget_left}}</li>
+                <li class="list-group-item stat">Desired Spend Percentage: {{g.desired_spend_percentage | percentage}}</li>
+                <li class="list-group-item stat">Actual Spend Percentage: {{g.spend_percentage | percentage}}</li>
+                <li class="list-group-item stat">Monthly Target: {{g.allocated_for_budget | dollar}}</li>
+                <li class="list-group-item stat">Amount Spent: {{g.spend_total | dollar}}</li>
+                <li class="list-group-item stat">Budget Remaining: {{g.budget_left | dollar}}</li>
             </ul>
         </div>
       </div>
