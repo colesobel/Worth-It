@@ -5,7 +5,7 @@
   <div class="gauge-container">
     <div ng-repeat="g in home.gaugeStats;" class="card card-body">
       <div>
-        <p class="card-title">{{g.expense_category}}</p>
+        <a ui-sref="categoryDetail({categoryName: g.expense_category})"><p class="card-title">{{g.expense_category}}</p></a>
         <p class="sub-title">{{g.spend_percentage | percentage}} of Total Spending</p>
         <gauge node-index="$index" gauge-stats="g" ></gauge>
         <div class="shift-up">

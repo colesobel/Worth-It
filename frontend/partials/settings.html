@@ -41,7 +41,7 @@
     <div class="list-group expense-parent">
       <div class="list-group-item expense-list-item" ng-repeat="exp in settings.fixedExpenses">
         <h4 class="h4 capitalize">{{exp.expense_category}}</h4>
-        <h5>{{exp.expense_amount}}</h5>
+        <h5>{{exp.expense_amount | dollar}}</h5>
         <button class="btn btn-danger btn-small" ng-click="settings.deleteFixedCategory(cat.id)">Delete</button>
       </div>
     </div>

@@ -1,0 +1,8 @@
+<div ng-include src="'/partials/navbar.html'"></div>
+
+<div class="container">
+    <div class="category-detail-header">
+        <p class="detail-page-header">{{cd.categoryName | capitalize}}</p>
+        <p class="current-month"><i class="fa fa-arrow-left arrow-button" aria-hidden="true" ng-click="cd.changeCurrentMonth(-1)"></i> {{cd.currentMonth}} <i class="fa fa-arrow-right arrow-button" aria-hidden="true" ng-click="cd.changeCurrentMonth(1)"></i></p>
+    </div>
+</div>

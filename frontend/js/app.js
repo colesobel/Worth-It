@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ui.router', 'myApp.loginController', 'myApp.homeController', 'myApp.services', 'myApp.gaugeDirective', 'myApp.filters', 'myApp.addExpenseController', 'myApp.settingsController'])
+var app = angular.module('myApp', ['ui.router', 'myApp.loginController', 'myApp.homeController', 'myApp.services', 'myApp.gaugeDirective', 'myApp.filters', 'myApp.addExpenseController', 'myApp.settingsController', 'myApp.categoryDetailController'])
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise('home')
@@ -26,6 +26,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
       templateUrl: '/partials/settings.html',
       controller: 'settingsController',
       controllerAs: 'settings'
+    })
+    .state('categoryDetail', {
+      url: '/categoryDetail/:categoryName',
+      templateUrl: '/partials/categoryDetail.html',
+      controller: 'categoryDetailController',
+      controllerAs: 'cd'
     })
     // $locationProvider.html5Mode(true);
 }])

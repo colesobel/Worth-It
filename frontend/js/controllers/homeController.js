@@ -16,7 +16,6 @@ angular.module('myApp.homeController', ['myApp.services'])
   getDaysInMonth = () => {
     let year = new Date().getFullYear()
     let month = new Date().getMonth()
-    console.log(month);
     home.dayOfMonth = new Date().getDate()
     home.daysInMonth = Date.getDaysInMonth(year, month)
     home.daysPassedPercentage = home.dayOfMonth / home.daysInMonth * 100
@@ -37,6 +36,7 @@ getGaugeStats = () => {
       cat.budget_left_percentage = (cat.budget_left / cat.allocated_for_budget * 100).toFixed(2)
       cat.percentage_spent = Number((cat.spend_total / cat.allocated_for_budget * 100).toFixed())
       cat.max_gauge = cat.gauge_max
+      console.log(cat);
       return cat
     })
   })

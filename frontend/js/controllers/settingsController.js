@@ -137,6 +137,7 @@ angular.module('myApp.settingsController', [])
     }
     $http.post('http://localhost:3000/accountSettings/addFixedExpenses', {user_id, fixed_expenses: expenseObj}).then(data => {
       getFixedExpenses()
+      settings.fixedExpenseInputs = [1]
     })
   }
 
