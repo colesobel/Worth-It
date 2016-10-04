@@ -6,6 +6,8 @@ angular.module('myApp.settingsController', [])
   settings.expenseCategories = []
   settings.selectedTab = 'expenseCategories'
   settings.percentageTotal
+  settings.noIncomeData = false
+  settings.editingIncome = false
 
   settings.selectTab = (li, name) => {
     let tabs = document.getElementsByTagName('li')
@@ -79,6 +81,20 @@ angular.module('myApp.settingsController', [])
       console.log('you suck at math')
     }
   }
+
+  getMonthlyIncome = () => {
+    $http.post('http://localhost:3000/accountSettings/getIncome', {user_id}).then(income => {
+      console.log(income.data);
+      if (income.data) {
+        settings.userIncome = income.data
+        settings.noIncomeData = false
+      } else {
+        settings.noIncomeData = true
+      }
+      console.log(this.noIncomeData);
+    })
+  }
+  getMonthlyIncome()
 
 
 }])

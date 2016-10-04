@@ -145,3 +145,20 @@
 .submit-expenses {
     background: linear-gradient(to bottom right, #00b300, #1aff1a);
 }
+
+
+
+
+
+.sub-title {
+    font-size: 2em;
+}
+
+.submit-income {
+    background: linear-gradient(to bottom right, #00b300, #1aff1a);
+}
+
+.income-input {
+    width: 40%;
+    margin-bottom: 1%;
+}
