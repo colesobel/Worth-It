@@ -1,1 +1,20 @@
 <div ng-include src="'/partials/navbar.html'"></div>
+
+
+<div class="container">
+  <button class="btn btn-success add-expense" ng-click="addExpense.addAnExpense()">Add an Expense</button>
+
+  <p class="display-1 page-header">Add an Expense</p>
+
+  <form class="form-group" ng-submit="onSubmit()">
+    <div class="expense-container" ng-repeat="num in addExpense.expenses">
+      <h3>Expense {{$index + 1}}</h3>
+      <select class="form-control input">
+        <option class="expense-dropdown" ng-repeat="cat in addExpense.expenseCategories">{{cat.expense_category | capitalize}}</option>
+      </select>
+      <input type="number" class="form-control input" placeholder="Amount">
+      <input type="date" class="form-control input" value="{{addExpense.dateString}}">
+    </div>
+    <button class="btn btn-success submit-expenses" type="submit">Submit Expenses</button>
+  </form>
+</div>

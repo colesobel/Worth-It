@@ -1,0 +1,26 @@
+.expense-container {
+    display: flex;
+    flex-direction: column;
+    margin: 2%;
+    border-bottom: 1px solid limegreen;
+    padding-bottom: 2%;
+}
+
+.input {
+    width: 80%;
+    margin: 0 auto;
+    margin: 1%;
+}
+
+.add-expense {
+    float: right !important;
+    background: linear-gradient(to bottom right, #00b300, #1aff1a);
+}
+
+.submit-expenses {
+    background: linear-gradient(to bottom right, #00b300, #1aff1a);
+}
+
+.expense-dropdown {
+    text-transform: capitalize;
+}
