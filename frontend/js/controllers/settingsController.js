@@ -8,6 +8,8 @@ angular.module('myApp.settingsController', [])
   settings.percentageTotal
   settings.noIncomeData = false
   settings.editingIncome = false
+  settings.fixedExpenses = []
+  settings.fixedExpenseInputs = [1]
 
   settings.selectTab = (li, name) => {
     let tabs = document.getElementsByTagName('li')
@@ -95,6 +97,48 @@ angular.module('myApp.settingsController', [])
     })
   }
   getMonthlyIncome()
+
+  settings.editIncome = (updatedIncome) => {
+    let income = document.getElementById('updatedIncome')['value']
+    $http.post('http://localhost:3000/accountSettings/updateIncome', {user_id, income}).then(income => {
+      settings.userIncome = income.data
+      settings.editingIncome = false
+    })
+  }
+
+  settings.submitIncome = (income) => {
+    income = document.getElementById(income).value
+    $http.post('http://localhost:3000/accountSettings/enterIncome', {user_id, income}).then(data => {
+      getMonthlyIncome()
+    })
+  }
+
+  getFixedExpenses = () => {
+    $http.post('http://localhost:3000/accountSettings/getFixedExpenses', {user_id}).then(data => {
+      settings.fixedExpenses = data.data
+      console.log(settings.fixedExpenses);
+
+    })
+  }
+  getFixedExpenses()
+
+  settings.addFixedExpense = () => {
+    let num = settings.fixedExpenseInputs[settings.fixedExpenseInputs.length - 1] + 1
+    settings.fixedExpenseInputs.push(num)
+  }
+
+  settings.submitFixedExpnses = () => {
+    let expenseItems = document.getElementsByClassName('fixed-expense-container')
+    let expenseObj = {}
+    for(let i = 0; i < expenseItems.length; i++) {
+      expenseObj[i] = {}
+      expenseObj[i].expenseCategory = expenseItems[i]['children'][1]['value']
+      expenseObj[i].amount = expenseItems[i]['children'][2]['value']
+    }
+    $http.post('http://localhost:3000/accountSettings/addFixedExpenses', {user_id, fixed_expenses: expenseObj}).then(data => {
+      getFixedExpenses()
+    })
+  }
 
 
 }])

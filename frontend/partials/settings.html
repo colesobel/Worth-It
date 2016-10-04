@@ -33,13 +33,36 @@
     </div>
     <h1>Coverage: {{settings.percentageTotal | percentage}}</h1>
     <button class="btn btn-success submit-expenses" ng-click="settings.submitExpensesToDatabase()">Save Changes</button>
-
   </form>
 
+
   <div ng-if="settings.selectedTab === 'fixedExpenses'">
-    <!-- <app-fixed-expenses></app-fixed-expenses> -->
-    <h1>fixed expenses</h1>
+    <p class="display-1 sub-title">Fixed Expenses</p>
+    <div class="list-group expense-parent">
+      <div class="list-group-item expense-list-item" ng-repeat="exp in settings.fixedExpenses">
+        <h4 class="h4 capitalize">{{exp.expense_category}}</h4>
+        <h5>{{exp.expense_amount}}</h5>
+        <button class="btn btn-danger btn-small" ng-click="settings.deleteFixedCategory(cat.id)">Delete</button>
+      </div>
+    </div>
+
+
+      <button class="btn btn-success add-expense" ng-click="settings.addFixedExpense()">Add Fixed Expense</button>
+
+      <form class="form-group" ng-submit="settings.submitFixedExpnses()">
+        <div class="fixed-expense-container" ng-repeat="num in settings.fixedExpenseInputs">
+          <h3>Fixed Expense {{$index+ 1}}</h3>
+          <select class="form-control input">
+            <option ng-repeat="cat in settings.expenseCategories">{{cat.expense_category | capitalize}}</option>
+          </select>
+          <input type="number" class="form-control input" placeholder="Amount">
+        </div>
+        <button class="btn btn-success submit-expenses" type="submit">Submit Fixed Expenses</button>
+      </form>
   </div>
+
+
+
   <div ng-if="settings.selectedTab === 'income'">
       <p class="display-1 sub-title">Monthly Net Income</p>
       <div class="list-group-item expense-list-item" ng-if="!settings.noIncomeData">
@@ -47,14 +70,14 @@
           <h4 ng-switch-when="false" class="h4 capitalize">{{settings.userIncome}}</h4>
           <input ng-switch-when="true" class="form-control" type="number" value="{{settings.userIncome}}" id="updatedIncome">
         </div>
-        <div ng-switch="editingIncome">
+        <div ng-switch="settings.editingIncome">
           <button class="btn btn-danger btn-small" ng-click="settings.editingIncome = true" ng-switch-when="false">Edit</button>
           <button class="btn btn-danger btn-small" ng-click="settings.editIncome(updatedIncome)" ng-switch-when="true">Submit</button>
         </div>
       </div>
-      <form class="form-group" ng-submit="onSubmit(income)" ng-if="settings.noIncomeData">
+      <form class="form-group" ng-submit="settings.submitIncome('submit_income')" ng-if="settings.noIncomeData">
         <label for="monthly-income"></label>
-        <input class="form-control income-input" type="number" name="monthly-income" placeholder="Enter Your Monthly Takehome Income" #income>
+        <input class="form-control income-input" type="number" name="monthly-income" placeholder="Enter Your Monthly Takehome Income" id="submit_income">
         <button type="submit" class="btn btn-success submit-income">Submit Income</button>
       </form>
   </div>
