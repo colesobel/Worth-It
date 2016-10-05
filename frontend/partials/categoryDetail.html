@@ -106,21 +106,43 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="item in cd.purchaseHistory">
-                        <td>
-                            {{item.memo}}
-                        </td>
-                        <td>
-                            {{item.expense_amount | dollar}}
-                        </td>
-                        <td>
-                            {{item.full_date}}
-                        </td>
-                        <td>
-                            <button class="btn btn-warning" type="button" name="button" ng-click="cd.editPurchase(item.id)">Edit</button>
-                        </td>
-                        <td>
-                            <button class="btn btn-danger btn-small" type="button" name="button" ng-click="cd.deletePurchase(item.id)">Delete</button>
-                        </td>
+                        <!-- <div ng-switch="item.isEditing"> -->
+                                <td>
+                                    {{item.memo}}
+                                </td>
+                                <!-- <td ng-switch-default>
+                                    <input type="text" name="name" value="{{item.memo}}">
+                                </td> -->
+                                <td>
+                                    {{item.expense_amount | dollar}}
+                                </td>
+                                <td>
+                                    {{item.full_date}}
+                                </td>
+                                <td>
+                                    <button class="btn btn-warning" type="button" name="button" ng-click="cd.editPurchase(item.idEditing = true)">Edit</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger btn-small" type="button" name="button" ng-click="cd.deletePurchase(item.id)">Delete</button>
+                                </td>
+
+
+                                <!-- <td>
+                                    <input type="text" name="name" value="{{item.memo}}">
+                                </td>
+                                <td>
+                                    <input type="number" name="name" value="{{item.expense_amount}}">
+                                </td>
+                                <td>
+                                    <input type="date" name="name" value="{{item.full_date}}">
+                                </td>
+                                <td>
+                                    <button class="btn btn-warning" type="button" name="button" ng-click="cd.editPurchase(item.idEditing = true)">Submit</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger btn-small" type="button" name="button" ng-click="cd.deletePurchase(item.id)">Delete</button>
+                                </td> -->
+                        <!-- </div> -->
                     </tr>
                 </tbody>
             </table>

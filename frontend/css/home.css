@@ -48,3 +48,11 @@
 .line-break {
   /*margin: 0;*/
 }
+
+#savings-percentage {
+  background-color: #14ED14;
+}
+
+#savings-percentage-title {
+  color: #14ED14;
+}

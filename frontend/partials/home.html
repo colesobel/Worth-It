@@ -3,6 +3,45 @@
   <!--<app-heatmap></app-heatmap>-->
   <!--<div id="myDiv"></div> -->
   <div class="gauge-container">
+
+     <div class="card card-body">
+        <div>
+          <a ui-sref="categoryDetail({categoryName: g.expense_category})"><p class="card-title">Savings</p></a>
+          <p class="sub-title">{{home.savingsData.current_saving_percentage | percentage}} of Total Net Income</p>
+          <!-- <gauge node-index="$index" gauge-stats="g" ></gauge> -->
+          <div class="shift-up">
+            <hr class="line-break">
+            <p class="sub-title">Percent of Monthly savings Goal</p>
+              <div class="labels"><span class="red" id="savings-percentage-title">Budget Saved</span></div>
+              <div class="bar-container">
+                <div id="savings-percentage" ng-style="{'width': home.savingsData.monthly_saving_percentage_of_budget +'%'}" class="spent"></div>
+                <div ng-style="{'width': home.savingsData.savings_to_go_percentage + '%'}" class="budget-left"></div>
+              </div>
+
+              <div class="labels month"> <span class="days-passed-text">Days Passed</span></div>
+              <div class="bar-container">
+                <div ng-style="{'width': home.daysPassedPercentage +'%'}" class=" spent days-passed"></div>
+                <div ng-style="{'width': home.daysLeftPercentage + '%'}" class=" budget-left days-left"></div>
+              </div>
+              <div class="card-block">
+              </div>
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item stat">Desired Save Percentage: {{home.savings.desired_spend_percentage | percentage}}</li>
+                  <li class="list-group-item stat">Monthly Target: {{home.savings.allocated_for_budget | dollar}}</li>
+                  <li class="list-group-item stat">Amount Saved: {{home.savingsData.current_saving | dollar}}</li>
+                  <li class="list-group-item stat">Current Daily Saving: {{home.savingsData.current_daily_saving | dollar}} </li>
+              </ul>
+          </div>
+        </div>
+     </div>
+
+
+
+
+
+
+
+
     <div ng-repeat="g in home.gaugeStats;" class="card card-body">
       <div>
         <a ui-sref="categoryDetail({categoryName: g.expense_category})"><p class="card-title">{{g.expense_category}}</p></a>

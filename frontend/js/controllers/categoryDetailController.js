@@ -67,8 +67,11 @@ angular.module('myApp.categoryDetailController', [])
 
   function getPurchaseHistory() {
     $http.post('http://localhost:3000/categoryDetail/getPurchaseHistory', {user_id, currentMonth: cd.currentMonth, category: cd.categoryName}).then(purchaseHistory => {
-      console.log(purchaseHistory.data);
-      cd.purchaseHistory = purchaseHistory.data
+      cd.purchaseHistory = purchaseHistory.data.map(his => {
+        his.isEditing = false
+        return his
+      })
+      console.log(cd.purchaseHistory);
     })
   }
   getPurchaseHistory()

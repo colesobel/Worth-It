@@ -14,9 +14,12 @@ angular.module('myApp.addExpenseController', [])
 
   getExpenseCategories = () => {
     $http.post('http://localhost:3000/accountSettings/getExpenseCategories', {user_id}).then(categories => {
-      addExpense.expenseCategories = categories.data
+      addExpense.expenseCategories = categories.data.filter(cat => {
+        return cat.expense_category != 'savings'
+      })
     })
   }
+
   getExpenseCategories()
   addExpense.onSubmit = () =>{
     let expenseItems = document.getElementsByClassName('expense-container')
@@ -34,7 +37,6 @@ angular.module('myApp.addExpenseController', [])
       expenseObj[i].year = new Date(date).getFullYear()
       expenseObj[i].memo = expenseItems[i]['children'][4]['value']
     }
-    console.log();
     $http.post('http://localhost:3000/dailyExpenses/addExpense', {user_id, expenseObj}).then(data => {
       console.log(data)
       addExpense.expenses = [1]
