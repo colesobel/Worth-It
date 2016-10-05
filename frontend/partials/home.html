@@ -4,11 +4,11 @@
   <!--<div id="myDiv"></div> -->
   <div class="gauge-container">
 
-     <div class="card card-body">
+     <div ng-if="home.savingsDataReady" class="card card-body">
         <div>
           <a ui-sref="categoryDetail({categoryName: g.expense_category})"><p class="card-title">Savings</p></a>
           <p class="sub-title">{{home.savingsData.current_saving_percentage | percentage}} of Total Net Income</p>
-          <!-- <gauge node-index="$index" gauge-stats="g" ></gauge> -->
+          <gauge node-index="0" gauge-stats="home.savingsData" ></gauge>
           <div class="shift-up">
             <hr class="line-break">
             <p class="sub-title">Percent of Monthly savings Goal</p>
@@ -46,7 +46,7 @@
       <div>
         <a ui-sref="categoryDetail({categoryName: g.expense_category})"><p class="card-title">{{g.expense_category}}</p></a>
         <p class="sub-title">{{g.spend_percentage | percentage}} of Total Spending</p>
-        <gauge node-index="$index" gauge-stats="g" ></gauge>
+        <gauge node-index="$index + 1" gauge-stats="g" ></gauge>
         <div class="shift-up">
           <hr class="line-break">
           <p class="sub-title">{{g.percentage_spent | percentage}} of Monthly Budget</p>
