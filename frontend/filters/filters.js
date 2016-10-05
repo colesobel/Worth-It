@@ -1,7 +1,9 @@
 angular.module('myApp.filters', [])
 
 .filter('percentage', function () {
-  return input => input + '%'
+  return input => {
+    return input < 1 ? 0 + '%' : input + '%'
+  }
 })
 
 .filter('dollar', function() {

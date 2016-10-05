@@ -5,4 +5,53 @@
         <p class="detail-page-header">{{cd.categoryName | capitalize}}</p>
         <p class="current-month"><i class="fa fa-arrow-left arrow-button" aria-hidden="true" ng-click="cd.changeCurrentMonth(-1)"></i> {{cd.currentMonth}} <i class="fa fa-arrow-right arrow-button" aria-hidden="true" ng-click="cd.changeCurrentMonth(1)"></i></p>
     </div>
+
+    <ul class="tabrow">
+      <li class="selected cd-tab" id="firstLi-detail" ng-click="cd.selectTab('firstLi-detail', 'spendingDetail')"><span>Spending Detail</span></li>
+        <li class="cd-tab" id="secondLi-detail" ng-click="cd.selectTab('secondLi-detail', 'purchaseHistory')"><span>Purchase History</span></li>
+    </ul>
+
+    <div class="" ng-if="cd.selectedTab='spendingDetail'">
+
+    </div>
+    <div class="" ng-if="cd.selectedTab='purchaseHistory'">
+        <table class="table table-striped">
+            <thead>
+                <th>
+                    Memo
+                </th>
+                <th>
+                    Amount
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Edit
+                </th>
+                <th>
+                    Delete
+                </th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in cd.purchaseHistory">
+                    <td>
+                        test
+                    </td>
+                    <td>
+                        {{item.expense_amount | dollar}}
+                    </td>
+                    <td>
+                        {{item.full_date}}
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" type="button" name="button" ng-click="cd.editPurchase(item.id)">Edit</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-small" type="button" name="button" ng-click="cd.deletePurchase(item.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

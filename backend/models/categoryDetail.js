@@ -18,6 +18,14 @@ let categoryDetail = {
             where ec.user_id = ${user_id}
             and ec.expense_category = '${category}'
             group by ec.user_id, ec.expense_category, ec.id, ec.percentage, ui.monthly_income, fixed_expense_amount`)
+  },
+
+  purchaseHistory: (user_id, month, category) => {
+    return knex.raw(`select * from daily_expenses where user_id = ${user_id} and month = '${month}' and expense_category = '${category}' order by unix_timestamp desc`)
+  },
+
+  deletePurchase: id => {
+    return knex.raw(`delete from daily_expenses where id = ${id}`)
   }
 }
 

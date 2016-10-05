@@ -38,6 +38,38 @@ angular.module('myApp.categoryDetailController', [])
   }
   getCategoryStats()
 
+  cd.selectTab = (li, name) => {
+    let tabs = document.getElementsByClassName('cd-tab')
+    console.log(tabs);
+    for(let i = 0; i < tabs.length; i++) {
+      tabs[i].className = 'cd-tab'
+    }
+    li = document.getElementById(li)
+    li.className += ' selected'
+    cd.selectedTab = name
+  }
+
+  function getPurchaseHistory() {
+    $http.post('http://localhost:3000/categoryDetail/getPurchaseHistory', {user_id, currentMonth: cd.currentMonth, category: cd.categoryName}).then(purchaseHistory => {
+      console.log(purchaseHistory.data);
+      cd.purchaseHistory = purchaseHistory.data
+    })
+  }
+  getPurchaseHistory()
+
+  cd.deletePurchase = (id) => {
+    $http.get(`http://localhost:3000/categoryDetail/purchaseHistory/${id}`).then(() => getPurchaseHistory())
+  }
+
+  cd.editPurchase = (id) => {
+    console.log('editing purchase');
+    console.log(id);
+  }
+
+  cd.submitEdit = (id) => {
+
+  }
+
 
 
 }])
