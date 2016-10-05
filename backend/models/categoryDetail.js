@@ -21,7 +21,7 @@ let categoryDetail = {
   },
 
   purchaseHistory: (user_id, month, category) => {
-    return knex.raw(`select * from daily_expenses where user_id = ${user_id} and month = '${month}' and expense_category = '${category}' order by unix_timestamp desc`)
+    return knex.raw(`select * from daily_expenses where user_id = ${user_id} and month = '${month}' and expense_category = '${category}' order by unix_timestamp desc, id desc`)
   },
 
   deletePurchase: id => {

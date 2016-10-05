@@ -18,3 +18,13 @@
 .arrow-button {
   cursor: pointer;
 }
+
+.time-travel {
+  background-color: rgba(18,203,30, .8);
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 2em;
+  border-radius: 15px;
+  margin-top: 20%;
+}

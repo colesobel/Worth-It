@@ -3,7 +3,7 @@
 <div class="container">
     <div class="category-detail-header">
         <p class="detail-page-header">{{cd.categoryName | capitalize}}</p>
-        <p class="current-month"><i class="fa fa-arrow-left arrow-button" aria-hidden="true" ng-click="cd.changeCurrentMonth(-1)"></i> {{cd.currentMonth}} <i class="fa fa-arrow-right arrow-button" aria-hidden="true" ng-click="cd.changeCurrentMonth(1)"></i></p>
+        <p class="current-month"><i class="fa fa-arrow-left arrow-button" aria-hidden="true" ng-click="cd.changeCurrentMonth(-1)"></i> {{cd.currentMonth}}, {{cd.year}} <i class="fa fa-arrow-right arrow-button" aria-hidden="true" ng-click="cd.changeCurrentMonth(1)"></i></p>
     </div>
 
     <ul class="tabrow">
@@ -11,47 +11,111 @@
         <li class="cd-tab" id="secondLi-detail" ng-click="cd.selectTab('secondLi-detail', 'purchaseHistory')"><span>Purchase History</span></li>
     </ul>
 
-    <div class="" ng-if="cd.selectedTab='spendingDetail'">
+    <div class="" ng-if="cd.selectedTab==='spendingDetail'">
+        <div ng-switch="cd.futureRequest">
+            <div ng-switch-default>
+                <table class="table table-striped">
+                    <thead>
+                        <th>
+                            Statistic
+                        </th>
+                        <th>
+                            Value
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Monthly Allocated Budget
+                            </td>
+                            <td>
+                                {{cd.statDetail.allocated_for_budget | dollar}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Current Spend total
+                            </td>
+                            <td>
+                                {{cd.statDetail.spend_total | dollar}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Budget Left
+                            </td>
+                            <td>
+                                {{cd.statDetail.budget_left | dollar}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Daily Spending
+                            </td>
+                            <td>
+                                {{(cd.statDetail.spend_total / cd.dayOfMonth) | dollar}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Desired Daily Spending
+                            </td>
+                            <td>
+                                {{(cd.statDetail.allocated_for_budget / cd.daysInMonth) | dollar}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="time-travel" ng-switch-when="true">
+                Sorry! No time travel available... yet.
+            </div>
+        </div>
 
     </div>
-    <div class="" ng-if="cd.selectedTab='purchaseHistory'">
-        <table class="table table-striped">
-            <thead>
-                <th>
-                    Memo
-                </th>
-                <th>
-                    Amount
-                </th>
-                <th>
-                    Date
-                </th>
-                <th>
-                    Edit
-                </th>
-                <th>
-                    Delete
-                </th>
-            </thead>
-            <tbody>
-                <tr ng-repeat="item in cd.purchaseHistory">
-                    <td>
-                        test
-                    </td>
-                    <td>
-                        {{item.expense_amount | dollar}}
-                    </td>
-                    <td>
-                        {{item.full_date}}
-                    </td>
-                    <td>
-                        <button class="btn btn-warning" type="button" name="button" ng-click="cd.editPurchase(item.id)">Edit</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-danger btn-small" type="button" name="button" ng-click="cd.deletePurchase(item.id)">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="" ng-if="cd.selectedTab==='purchaseHistory'">
+        <div ng-switch="cd.futureRequest">
+            <table ng-switch-default class="table table-striped">
+                <thead>
+                    <th>
+                        Memo
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in cd.purchaseHistory">
+                        <td>
+                            test
+                        </td>
+                        <td>
+                            {{item.expense_amount | dollar}}
+                        </td>
+                        <td>
+                            {{item.full_date}}
+                        </td>
+                        <td>
+                            <button class="btn btn-warning" type="button" name="button" ng-click="cd.editPurchase(item.id)">Edit</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-small" type="button" name="button" ng-click="cd.deletePurchase(item.id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="time-travel" ng-switch-when="true">
+                Sorry! No time travel available... yet.
+            </div>
+        </div>
     </div>
 </div>

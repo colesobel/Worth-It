@@ -9,7 +9,6 @@ angular.module('myApp.gaugeDirective', [])
       gaugeStats: '='
     },
     controller: function($scope) {
-      console.log($scope.gaugeStats);
       $scope.gaugeStats.gauge_max = Number($scope.gaugeStats.gauge_max)
       if ($scope.gaugeStats.spend_percentage > Number($scope.gaugeStats.max_gauge)) {
         $scope.gaugeStats.max_gauge = $scope.gaugeStats.spend_percentage

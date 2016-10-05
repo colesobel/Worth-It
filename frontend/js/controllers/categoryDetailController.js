@@ -4,28 +4,40 @@ angular.module('myApp.categoryDetailController', [])
 .controller('categoryDetailController', ['$http', '$state', '$stateParams', '$scope', 'getDate', function($http, $state, $stateParams, $scope, getDate) {
   let user_id = Number(localStorage.getItem('user_id'))
   let cd = this
+  cd.selectedTab='spendingDetail'
   cd.categoryName = $stateParams.categoryName
-  let year = new Date().getFullYear()
+  cd.year = new Date().getFullYear()
+  let staticYear = new Date().getFullYear()
   let month = new Date().getMonth()
+  let staticMonth = new Date().getMonth()
   cd.dayOfMonth = new Date().getDate()
-  cd.daysInMonth = Date.getDaysInMonth(year, month)
+  cd.daysInMonth = Date.getDaysInMonth(cd.year, month)
   cd.currentMonth = getDate.getMonthName(month)
   cd.changeCurrentMonth = inc => {
     if (month === 11 && inc > 0) {
       month = 0
+      cd.year += 1
     } else if (month === 0 && inc < 0){
       month = 11
+      cd.year -= 1
     } else {
       month += inc
     }
     cd.currentMonth = getDate.getMonthName(month)
+    if (month > staticMonth && cd.year >= staticYear) {
+      cd.futureRequest = true
+      cd.purchaseHistory = []
+      return
+    }
+    getPurchaseHistory()
     getCategoryStats()
+    cd.futureRequest = false
   }
 
   function getCategoryStats() {
     $http.post('http://localhost:3000/categoryDetail/getCategoryStats', {user_id, currentMonth: cd.currentMonth, category: cd.categoryName}).then((data) => {
       data.data = data.data[0]
-      data.data.allocated_for_budget = (Number(data.data.desired_spend_percentage) / 100) //* Number(data.data.monthly_income)
+      data.data.allocated_for_budget = (Number(data.data.desired_spend_percentage) / 100) * Number(data.data.monthly_income)
       data.data.daily_fixed_expense = data.data.fixed_expense_amount / cd.daysInMonth
       data.data.current_fixed_expense_amortized = data.data.daily_fixed_expense * cd.dayOfMonth
       data.data.spend_total = Number(data.data.spend_total) + data.data.current_fixed_expense_amortized
@@ -34,13 +46,13 @@ angular.module('myApp.categoryDetailController', [])
       data.data.budget_left_percentage = (data.data.budget_left / data.data.allocated_for_budget * 100).toFixed(2)
       data.data.percentage_spent = Number((data.data.spend_total / data.data.allocated_for_budget * 100).toFixed())
       console.log(data.data);
+      cd.statDetail = data.data
     })
   }
   getCategoryStats()
 
   cd.selectTab = (li, name) => {
     let tabs = document.getElementsByClassName('cd-tab')
-    console.log(tabs);
     for(let i = 0; i < tabs.length; i++) {
       tabs[i].className = 'cd-tab'
     }
@@ -56,6 +68,7 @@ angular.module('myApp.categoryDetailController', [])
     })
   }
   getPurchaseHistory()
+
 
   cd.deletePurchase = (id) => {
     $http.get(`http://localhost:3000/categoryDetail/purchaseHistory/${id}`).then(() => getPurchaseHistory())

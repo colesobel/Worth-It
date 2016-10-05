@@ -39,6 +39,7 @@ getGaugeStats = () => {
       cat.max_gauge = cat.gauge_max
       return cat
     })
+    console.log(home.gaugeStats);
   })
 }
 
