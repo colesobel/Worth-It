@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     table.integer('user_id');
     table.string('expense_category');
     table.integer('expense_amount');
+    table.string('memo');
     table.string('day');
     table.string('month');
     table.integer('year');

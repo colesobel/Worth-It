@@ -53,7 +53,7 @@
                                 Daily Spending
                             </td>
                             <td>
-                                {{(cd.statDetail.spend_total / cd.dayOfMonth) | dollar}}
+                                {{cd.statDetail.daily_spending | dollar}}
                             </td>
                         </tr>
                         <tr>
@@ -61,7 +61,18 @@
                                 Desired Daily Spending
                             </td>
                             <td>
-                                {{(cd.statDetail.allocated_for_budget / cd.daysInMonth) | dollar}}
+                                {{cd.statDetail.desired_daily_spending | dollar}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td ng-if="cd.statDetail.surplus_deficit <= 0">
+                                Daily Spending Deficit
+                            </td>
+                            <td ng-if="cd.statDetail.surplus_deficit > 0">
+                                Daily Spending Surplus
+                            </td>
+                            <td>
+                                {{cd.statDetail.surplus_deficit | dollar}}
                             </td>
                         </tr>
                     </tbody>
@@ -96,7 +107,7 @@
                 <tbody>
                     <tr ng-repeat="item in cd.purchaseHistory">
                         <td>
-                            test
+                            {{item.memo}}
                         </td>
                         <td>
                             {{item.expense_amount | dollar}}

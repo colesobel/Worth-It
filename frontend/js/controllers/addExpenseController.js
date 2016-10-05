@@ -32,7 +32,9 @@ angular.module('myApp.addExpenseController', [])
       expenseObj[i].day = getDate.getDayName(new Date(date).getDay())
       expenseObj[i].month = getDate.getMonthName(new Date(date).getMonth())
       expenseObj[i].year = new Date(date).getFullYear()
+      expenseObj[i].memo = expenseItems[i]['children'][4]['value']
     }
+    console.log();
     $http.post('http://localhost:3000/dailyExpenses/addExpense', {user_id, expenseObj}).then(data => {
       console.log(data)
       addExpense.expenses = [1]

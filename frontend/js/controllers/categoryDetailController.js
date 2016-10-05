@@ -45,8 +45,12 @@ angular.module('myApp.categoryDetailController', [])
       data.data.spent_percentage = (Number(data.data.spend_total) / data.data.allocated_for_budget * 100).toFixed(2)
       data.data.budget_left_percentage = (data.data.budget_left / data.data.allocated_for_budget * 100).toFixed(2)
       data.data.percentage_spent = Number((data.data.spend_total / data.data.allocated_for_budget * 100).toFixed())
+      data.data.daily_spending = data.data.spend_total / cd.dayOfMonth
+      data.data.desired_daily_spending = data.data.allocated_for_budget / cd.daysInMonth
+      data.data.surplus_deficit = data.data.daily_spending - data.data.desired_daily_spending
       console.log(data.data);
       cd.statDetail = data.data
+      console.log(cd.statDetail.surplus_deficit >= 0);
     })
   }
   getCategoryStats()
