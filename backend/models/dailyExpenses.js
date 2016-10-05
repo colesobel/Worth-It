@@ -5,14 +5,14 @@ let dailyExpenses = {
     addExpense: userInfo => {
         return new Promise((resolve, reject) => {
             let uploadArray = DailyExpensesService.createUploadExpensesArray(userInfo)
-            console.log(uploadArray)
             Promise.all(uploadArray).then(() => resolve()).catch(e => console.log(e))
         })
     },
 
-    getGaugeStats: user_id => {
+    getGaugeStats: (user_id, monthName) => {
+      console.log(monthName);
         return new Promise((resolve, reject) => {
-            DailyExpensesService.gaugeQuery(user_id).then(gaugeStats => {
+            DailyExpensesService.gaugeQuery(user_id, monthName).then(gaugeStats => {
                 console.log(gaugeStats)
                 resolve(gaugeStats)
             })

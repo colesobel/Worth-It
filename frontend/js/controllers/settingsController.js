@@ -56,10 +56,11 @@ angular.module('myApp.settingsController', [])
     cat = document.getElementById(cat)
     settings.expenseCategories.push({
       id: cat,
-      expense_category: cat.value,
+      expense_category: cat.value.toLowerCase(),
       percentage: 0,
       isEditing: false
     })
+    console.log(settings.expenseCategories);
   }
 
   settings.deleteCategory = (catId) => {
@@ -132,7 +133,7 @@ angular.module('myApp.settingsController', [])
     let expenseObj = {}
     for(let i = 0; i < expenseItems.length; i++) {
       expenseObj[i] = {}
-      expenseObj[i].expenseCategory = expenseItems[i]['children'][1]['value']
+      expenseObj[i].expenseCategory = expenseItems[i]['children'][1]['value'].toLowerCase()
       expenseObj[i].amount = expenseItems[i]['children'][2]['value']
     }
     $http.post('http://localhost:3000/accountSettings/addFixedExpenses', {user_id, fixed_expenses: expenseObj}).then(data => {

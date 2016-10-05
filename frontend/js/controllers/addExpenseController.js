@@ -23,7 +23,7 @@ angular.module('myApp.addExpenseController', [])
     let expenseObj = {}
     for(let i = 0; i < expenseItems.length; i++) {
       expenseObj[i] = {}
-      expenseObj[i].expenseCategory = expenseItems[i]['children'][1]['value']
+      expenseObj[i].expenseCategory = expenseItems[i]['children'][1]['value'].toLowerCase()
       let amount = expenseItems[i]['children'][2]['value']
       expenseObj[i].amount = Number(amount).toFixed()
       let date = expenseItems[i]['children'][3]['value']
