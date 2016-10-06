@@ -11,8 +11,8 @@
           <gauge node-index="0" gauge-stats="home.savingsData" ></gauge>
           <div class="shift-up">
             <hr class="line-break">
-            <p class="sub-title">Percent of Monthly savings Goal</p>
-              <div class="labels"><span class="red" id="savings-percentage-title">Budget Saved</span></div>
+            <p class="sub-title">{{home.savingsData.monthly_saving_percentage_of_budget | percentage}} of Savings Target</p>
+              <div class="labels"><span class="red" id="savings-percentage-title">Savings Target</span></div>
               <div class="bar-container">
                 <div id="savings-percentage" ng-style="{'width': home.savingsData.monthly_saving_percentage_of_budget +'%'}" class="spent"></div>
                 <div ng-style="{'width': home.savingsData.savings_to_go_percentage + '%'}" class="budget-left"></div>
@@ -30,13 +30,11 @@
                   <li class="list-group-item stat">Monthly Target: {{home.savings.allocated_for_budget | dollar}}</li>
                   <li class="list-group-item stat">Amount Saved: {{home.savingsData.current_saving | dollar}}</li>
                   <li class="list-group-item stat">Current Daily Saving: {{home.savingsData.current_daily_saving | dollar}} </li>
+                  <li class="list-group-item stat">Current Daily Spending: {{home.savingsData.current_daily_spending | dollar}} </li>
               </ul>
           </div>
         </div>
      </div>
-
-
-
 
 
 

@@ -11,7 +11,7 @@
         <li class="cd-tab" id="secondLi-detail" ng-click="cd.selectTab('secondLi-detail', 'purchaseHistory')"><span>Purchase History</span></li>
     </ul>
 
-    <div class="" ng-if="cd.selectedTab==='spendingDetail'">
+    <div class="" ng-if="cd.selectedTab==='spendingDetail' && cd.savingsDataReady">
         <div ng-switch="cd.futureRequest">
             <div ng-switch-default>
                 <table class="table table-striped">
@@ -29,7 +29,7 @@
                                 Monthly Allocated Budget
                             </td>
                             <td>
-                                {{cd.statDetail.allocated_for_budget | dollar}}
+                                {{cd.featuredCategory.allocated_for_budget | dollar}}
                             </td>
                         </tr>
                         <tr>
@@ -37,7 +37,7 @@
                                 Current Spend total
                             </td>
                             <td>
-                                {{cd.statDetail.spend_total | dollar}}
+                                {{cd.featuredCategory.spend_total | dollar}}
                             </td>
                         </tr>
                         <tr>
@@ -45,7 +45,7 @@
                                 Budget Left
                             </td>
                             <td>
-                                {{cd.statDetail.budget_left | dollar}}
+                                {{cd.featuredCategory.budget_left | dollar}}
                             </td>
                         </tr>
                         <tr>
@@ -53,7 +53,7 @@
                                 Daily Spending
                             </td>
                             <td>
-                                {{cd.statDetail.daily_spending | dollar}}
+                                {{cd.featuredCategory.daily_spending | dollar}}
                             </td>
                         </tr>
                         <tr>
@@ -61,18 +61,18 @@
                                 Desired Daily Spending
                             </td>
                             <td>
-                                {{cd.statDetail.desired_daily_spending | dollar}}
+                                {{cd.featuredCategory.desired_daily_spending | dollar}}
                             </td>
                         </tr>
                         <tr>
-                            <td ng-if="cd.statDetail.surplus_deficit <= 0">
+                            <td ng-if="cd.featuredCategory.daily_surplus_deficit <= 0">
                                 Daily Spending Deficit
                             </td>
-                            <td ng-if="cd.statDetail.surplus_deficit > 0">
+                            <td ng-if="cd.featuredCategory.daily_surplus_deficit > 0">
                                 Daily Spending Surplus
                             </td>
                             <td>
-                                {{cd.statDetail.surplus_deficit | dollar}}
+                                {{cd.featuredCategory.daily_surplus_deficit | dollar}}
                             </td>
                         </tr>
                     </tbody>
