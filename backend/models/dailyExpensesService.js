@@ -12,8 +12,6 @@ let dailyExpensesService = {
     },
 
     gaugeQuery: (user_id, monthName) => {
-      console.log('**************');
-      console.log(monthName);
         return new Promise((resolve, reject) => {
             knex.raw(`select distinct ec.user_id,
             ec.expense_category,

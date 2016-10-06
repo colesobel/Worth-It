@@ -13,7 +13,7 @@ router.post('/getGaugeStats', function(req, res, next) {
 });
 
 router.post('/getDailyAverages', function(req, res, next) {
-    dailyExpenses.getDailyAverages(req.body.user_id).then(dailyAverages => res.json(dailyAverages.rows))
+    dailyExpenses.getDailyAverages(req.body.user_id, req.body.currentMonth).then(dailyAverages => res.json(dailyAverages.rows))
 });
 
 
