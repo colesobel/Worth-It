@@ -41,10 +41,16 @@ getGaugeStats = () => {
     })
     home.savings = home.gaugeStats.find((cat) => cat.expense_category == 'savings')
     home.gaugeStats = home.gaugeStats.filter(cat => cat.expense_category !== 'savings')
-    home.savingsData = home.gaugeStats.reduce((obj, elem) => {
-      obj.current_spending = obj.current_spending + elem.spend_total || 0
-      return obj
-    }, {})
+    let currentSpending = home.gaugeStats.reduce((total, elem) => {
+      return total += elem.spend_total
+    }, 0)
+    home.savingsData = {}
+    home.savingsData.current_spending = currentSpending
+    home.gaugeStats = home.gaugeStats.map(cat => {
+      cat.spend_percentage = Number((cat.spend_total / home.savingsData.current_spending * 100).toFixed())
+      return cat
+    })
+    console.log('CURRENT TOTAL SPENDING', home.savingsData.current_spending);
     home.savingsData.expense_category = 'savings'
     home.savingsData.desired_daily_saving = home.savings.allocated_for_budget / home.daysInMonth
     home.savingsData.desired_daily_spending = (home.savings.monthly_income - home.savings.allocated_for_budget) / home.daysInMonth
@@ -57,9 +63,9 @@ getGaugeStats = () => {
     if (home.savingsData.monthly_saving_percentage_of_budget > 100) {home.savingsData.monthly_saving_percentage_of_budget = 100}
     home.savingsData.savings_to_go_percentage = 100 - home.savingsData.monthly_saving_percentage_of_budget
     home.savingsData.desired_spend_percentage = home.savings.desired_spend_percentage
-    console.log(home.savingsData);
-    console.log(home.gaugeStats);
-    console.log(home.savings);
+    // console.log(home.savingsData);
+    // console.log(home.gaugeStats);
+    // console.log(home.savings);
     home.savingsDataReady = true
   })
 }

@@ -42,7 +42,7 @@
 
 
 
-    <div ng-repeat="g in home.gaugeStats;" class="card card-body">
+    <div ng-if="home.savingsDataReady" ng-repeat="g in home.gaugeStats;" class="card card-body">
       <div>
         <a ui-sref="categoryDetail({categoryName: g.expense_category})"><p class="card-title">{{g.expense_category}}</p></a>
         <p class="sub-title">{{g.spend_percentage | percentage}} of Total Spending</p>
