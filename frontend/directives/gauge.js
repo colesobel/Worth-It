@@ -12,7 +12,6 @@ angular.module('myApp.gaugeDirective', [])
       if ($scope.gaugeStats.expense_category === 'savings') {
         $scope.gaugeStats.max_gauge = Number($scope.gaugeStats.desired_spend_percentage * 2)
         $scope.gaugeStats.spend_percentage = Number($scope.gaugeStats.current_saving_percentage)
-        console.log($scope.gaugeStats);
       }
 
       $scope.gaugeStats.gauge_max = Number($scope.gaugeStats.gauge_max)
@@ -21,12 +20,6 @@ angular.module('myApp.gaugeDirective', [])
       }
 
       if ($scope.gaugeStats.spend_percentage <= 0) {$scope.gaugeStats.spend_percentage = 0.01}
-
-
-      console.log($scope.gaugeStats);
-
-
-
 
 
       let color = getColor.getColor($scope.gaugeStats.spend_percentage / Number($scope.gaugeStats.max_gauge))

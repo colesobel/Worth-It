@@ -3,9 +3,11 @@ angular.module('myApp.barChartDirective', [])
 .directive('barChart',['getColor', function(getColor) {
   return {
     restrict: 'E',
-    template: `<div id="daily-avg-bar"></div>`,
+    template: `<div class="bar-chart" id="daily-avg-bar"></div>`,
     scope: {
       data: '=',
+      nodeIndex: '=',
+      chartTitle: '='
     },
     controller: function($scope) {
     google.charts.load("current", {packages:['corechart']});
@@ -22,13 +24,16 @@ angular.module('myApp.barChartDirective', [])
                        2]);
 
       var options = {
-        title: "Spending By Expense Category",
-        width: 600,
-        height: 400,
+        title: $scope.chartTitle,
+        // width: '100%',
+        height: 700,
         bar: {groupWidth: "95%"},
         legend: { position: "none" },
+        gridlines: {
+          count: 2
+        }
       };
-      var chart = new google.visualization.ColumnChart(document.getElementById("daily-avg-bar"));
+      var chart = new google.visualization.ColumnChart(document.getElementsByClassName('bar-chart')[$scope.nodeIndex]);
       chart.draw(view, options);
     }
     }

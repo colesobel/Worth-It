@@ -64,6 +64,7 @@ angular.module('myApp.homeController', ['myApp.services'])
       home.savingsData.desired_spend_percentage = home.savings.desired_spend_percentage
       home.savingsDataReady = true
       createSpendCategoryBar()
+      createDailySpendingBar()
     })
   }
 
@@ -96,19 +97,28 @@ angular.module('myApp.homeController', ['myApp.services'])
       return obj
     }, {})
     for (let exp in categoryBarObj) {
-      home.finalCategoryBarData.push([exp, Number(categoryBarObj[exp].toFixed()), 'green'])
+      home.finalCategoryBarData.push([exp, Number(categoryBarObj[exp].toFixed()), '#14ED14'])
     }
-    home.finalCategoryBarData.push(['savings', home.savingsData.current_saving, 'green'])
+    function Comparator(a, b) {
+      if (a[1] < b[1]) return -1;
+      if (a[1] > b[1]) return 1;
+      return 0;
+    }
+    home.finalCategoryBarData.sort(Comparator).reverse()
+    home.finalCategoryBarData.push(['savings', home.savingsData.current_saving, '#14ED14'])
     home.finalCategoryBarData.unshift(['Expense Category', '$', {role: 'style'}])
     home.barChartReady = true
-    console.log(home.finalCategoryBarData);
-    // home.finalCategoryBarData = [
-    //   ["Element", "Density", { role: "style" } ],
-    //   ["Copper", 8.94, "#b87333"],
-    //   ["Silver", 10.49, "silver"],
-    //   ["Gold", 19.30, "gold"],
-    //   ["Platinum", 21.45, "color: #e5e4e2"]
-    // ]
+  }
+
+  function createDailySpendingBar() {
+    console.log(home.savingsData);
+    home.dailySpendingBarData = []
+
+    home.dailySpendingBarData.push(['Daily Net Income', Number(home.savingsData.daily_income.toFixed()), '#14ED14'])
+    home.dailySpendingBarData.push(['Daily Spending', Number(home.savingsData.current_daily_spending.toFixed()), '#14ED14'])
+    home.dailySpendingBarData.push(['Daily Savings', Number(home.savingsData.current_daily_saving.toFixed()), '#14ED14'])
+    home.dailySpendingBarData.unshift(['Savings/Spending', '$', {role: 'style'}])
+    home.dailySpendingBarReady = true
   }
 
 

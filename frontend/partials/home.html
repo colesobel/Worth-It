@@ -73,5 +73,8 @@
   </div>
   </div>
   <hr>
-  <bar-chart ng-if="home.barChartReady" data="home.finalCategoryBarData"></bar-chart>
+  <bar-chart ng-if="home.barChartReady" data="home.finalCategoryBarData" node-index="0" chart-title="'Total Spending By Expense Category'"></bar-chart>
+
+  <hr>
+  <bar-chart ng-if="home.dailySpendingBarReady" data="home.dailySpendingBarData" node-index="1" chart-title="'Daily Saving, Spending'"></bar-chart>
 </div>

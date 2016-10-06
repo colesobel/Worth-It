@@ -56,3 +56,7 @@
 #savings-percentage-title {
   color: #14ED14;
 }
+
+gauge {
+  width: 100%;
+}
