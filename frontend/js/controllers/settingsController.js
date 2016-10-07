@@ -85,9 +85,11 @@ angular.module('myApp.settingsController', [])
     if (total === 100) {
       $http.post('http://localhost:3000/accountSettings/updateExpenseCategories', {user_id, expenseCategories: settings.expenseCategories}).then(data => {
         console.log(data.data)
+        settings.badMath = false
       })
     } else {
       console.log('you suck at math')
+      settings.badMath = true
     }
   }
 

@@ -32,6 +32,9 @@
       </div>
     </div>
     <h1>Coverage: {{settings.percentageTotal | percentage}}</h1>
+    <div class="bad-math" ng-if="settings.badMath">
+        Please make sure that your total expense allocation percentage equates to 100%!
+    </div>
     <button class="btn btn-success submit-expenses" ng-click="settings.submitExpensesToDatabase()">Save Changes</button>
   </form>
 
