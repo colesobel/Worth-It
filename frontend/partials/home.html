@@ -1,4 +1,6 @@
-<div ng-include src="'/partials/navbar.html'"></div>
+<navbar user-id="home.userId"></navbar>
+
+
 <div class="container">
   <!--<app-heatmap></app-heatmap>-->
   <!--<div id="myDiv"></div> -->
@@ -37,12 +39,10 @@
      </div>
 
 
-
-
-
     <div ng-if="home.savingsDataReady" ng-repeat="g in home.gaugeStats" class="card card-body">
       <div>
-        <a ui-sref="categoryDetail({categoryName: g.expense_category})"><p class="card-title">{{g.expense_category}}</p></a>
+        <a class="card-title-a" ui-sref="categoryDetail({categoryName: g.expense_category})"><p class="card-title">{{g.expense_category}}</p></a>
+        <!-- <a ui-sref="categoryDetail({categoryName: g.expense_category})" class="card-title">{{g.expense_category}}</a> -->
         <p class="sub-title">{{g.spend_percentage | percentage}} of Total Spending</p>
         <gauge node-index="$index + 1" gauge-stats="g" ></gauge>
         <div class="shift-up">

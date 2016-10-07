@@ -4,6 +4,7 @@ angular.module('myApp.homeController', ['myApp.services'])
   let user_id = Number(localStorage.getItem('user_id'))
   if (!user_id) $state.go('login')
   let home = this
+  home.userId = user_id
   getUserInfo()
 
   function getUserInfo() {

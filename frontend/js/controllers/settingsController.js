@@ -4,6 +4,7 @@ angular.module('myApp.settingsController', [])
   let user_id = Number(localStorage.getItem('user_id'))
   if (!user_id) $state.go('login')
   let settings = this
+  settings.userId = user_id
   settings.expenseCategories = []
   settings.selectedTab = 'expenseCategories'
   settings.percentageTotal

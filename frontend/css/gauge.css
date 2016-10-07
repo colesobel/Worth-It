@@ -17,6 +17,10 @@
     margin-bottom: 0;
 }
 
+.card-title-a:hover {
+  color: #16F216 !important;
+}
+
 .sub-title {
     font-size: 1.3em;
     text-align: center;

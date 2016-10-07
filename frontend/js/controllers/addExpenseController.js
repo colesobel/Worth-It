@@ -5,6 +5,7 @@ angular.module('myApp.addExpenseController', [])
   let user_id = Number(localStorage.getItem('user_id'))
   if (!user_id) $state.go('login')
   let addExpense = this
+  addExpense.userId = user_id
   addExpense.dateString = new Date().toISOString().substring(0, 10)
   addExpense.expenses = [1]
 

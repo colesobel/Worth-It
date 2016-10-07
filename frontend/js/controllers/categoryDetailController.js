@@ -5,6 +5,7 @@ angular.module('myApp.categoryDetailController', [])
   let user_id = Number(localStorage.getItem('user_id'))
   if (!user_id) $state.go('login')
   let cd = this
+  cd.userId = user_id
   cd.selectedTab='spendingDetail'
   cd.categoryName = $stateParams.categoryName
   cd.year = new Date().getFullYear()
