@@ -29,6 +29,7 @@ angular.module('myApp.homeController', ['myApp.services'])
 
   getGaugeStats = () => {
     $http.post('http://localhost:3000/dailyExpenses/getGaugeStats', {user_id, currentMonth: home.monthName, year: home.year}).then(gaugeStats => {
+      console.log(gaugeStats.data[0]);
       if (gaugeStats.data[0].monthly_income === null) {
         home.noIncomeData = true
         return
