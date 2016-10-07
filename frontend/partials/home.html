@@ -40,7 +40,7 @@
 
 
 
-    <div ng-if="home.savingsDataReady" ng-repeat="g in home.gaugeStats;" class="card card-body">
+    <div ng-if="home.savingsDataReady" ng-repeat="g in home.gaugeStats" class="card card-body">
       <div>
         <a ui-sref="categoryDetail({categoryName: g.expense_category})"><p class="card-title">{{g.expense_category}}</p></a>
         <p class="sub-title">{{g.spend_percentage | percentage}} of Total Spending</p>
@@ -70,11 +70,10 @@
             </ul>
         </div>
       </div>
+    </div>
   </div>
-  </div>
-  <hr>
+  <hr class="line-break">
   <bar-chart ng-if="home.barChartReady" data="home.finalCategoryBarData" node-index="0" chart-title="'Total Spending By Expense Category'"></bar-chart>
-
-  <hr>
+  <hr class="line-break">
   <bar-chart ng-if="home.dailySpendingBarReady" data="home.dailySpendingBarData" node-index="1" chart-title="'Daily Saving, Spending'"></bar-chart>
 </div>

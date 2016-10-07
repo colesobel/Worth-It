@@ -40,6 +40,7 @@ angular.module('myApp.addExpenseController', [])
     $http.post('http://localhost:3000/dailyExpenses/addExpense', {user_id, expenseObj}).then(data => {
       console.log(data)
       addExpense.expenses = [1]
+      $state.go('home')
     })
   }
 

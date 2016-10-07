@@ -25,7 +25,11 @@ angular.module('myApp.barChartDirective', [])
 
       var options = {
         title: $scope.chartTitle,
-        // width: '100%',
+        // titleTextStyle: { color: 'black',
+        //   fontName: "Helvetica Neue",
+        //   fontSize: '20px',
+        //   bold: false,
+        //   italic: false },
         height: 700,
         bar: {groupWidth: "95%"},
         legend: { position: "none" },

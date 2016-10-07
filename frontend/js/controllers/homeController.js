@@ -63,6 +63,12 @@ angular.module('myApp.homeController', ['myApp.services'])
       home.savingsData.savings_to_go_percentage = 100 - home.savingsData.monthly_saving_percentage_of_budget
       home.savingsData.desired_spend_percentage = home.savings.desired_spend_percentage
       home.savingsDataReady = true
+      function sorter(a, b) {
+        if (a.desired_spend_percentage < b.desired_spend_percentage) return -1;
+        if (a.desired_spend_percentage > b.desired_spend_percentage) return 1;
+        return 0;
+      }
+      home.gaugeStats.sort(sorter).reverse()
       createSpendCategoryBar()
       createDailySpendingBar()
     })
@@ -97,6 +103,7 @@ angular.module('myApp.homeController', ['myApp.services'])
       return obj
     }, {})
     for (let exp in categoryBarObj) {
+
       home.finalCategoryBarData.push([exp, Number(categoryBarObj[exp].toFixed()), '#14ED14'])
     }
     function Comparator(a, b) {
