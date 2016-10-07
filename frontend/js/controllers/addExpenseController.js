@@ -3,6 +3,7 @@ angular.module('myApp.addExpenseController', [])
 
 .controller('addExpenseController', ['$http', '$state', '$rootScope', 'getDate', function($http, $state, $rootScope, getDate) {
   let user_id = Number(localStorage.getItem('user_id'))
+  if (!user_id) $state.go('login')
   let addExpense = this
   addExpense.dateString = new Date().toISOString().substring(0, 10)
   addExpense.expenses = [1]

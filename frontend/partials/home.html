@@ -72,6 +72,9 @@
       </div>
     </div>
   </div>
+  <div ng-if="home.noIncomeData" class="in-income-data">
+      Please Enter an Income to Calculate Spending Data
+  </div>
   <hr class="line-break">
   <bar-chart ng-if="home.barChartReady" data="home.finalCategoryBarData" node-index="0" chart-title="'Total Spending By Expense Category'"></bar-chart>
   <hr class="line-break">

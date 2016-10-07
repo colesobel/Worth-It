@@ -17,7 +17,7 @@ let dailyExpensesService = {
             ec.expense_category,
             ec.percentage as desired_spend_percentage,
             coalesce(round(sum(de.expense_amount) / (select sum(expense_amount) from daily_expenses where user_id = ${user_id} and month = '${monthName}')::float * 100), 0) as spend_percentage,
-            round(ec.percentage / 100::float * (select sum(expense_amount) from daily_expenses where user_id = ${user_id} and month = '${monthName}')) as desired_spend_total,
+            coalesce(round(ec.percentage / 100::float * (select sum(expense_amount) from daily_expenses where user_id = ${user_id} and month = '${monthName}')), 0) as desired_spend_total,
             coalesce(sum(de.expense_amount), 0) as spend_total,
             ec.percentage * 2 as gauge_max,
             ui.monthly_income,

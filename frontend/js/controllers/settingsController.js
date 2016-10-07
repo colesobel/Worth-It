@@ -2,6 +2,7 @@ angular.module('myApp.settingsController', [])
 
 .controller('settingsController', ['$http', '$state', '$rootScope', function($http, $state, $rootScope) {
   let user_id = Number(localStorage.getItem('user_id'))
+  if (!user_id) $state.go('login')
   let settings = this
   settings.expenseCategories = []
   settings.selectedTab = 'expenseCategories'

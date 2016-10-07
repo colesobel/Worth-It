@@ -28,7 +28,7 @@ angular.module('myApp.loginController', [])
       if (data.data) {
         console.log(data.data);
         localStorage.setItem('user_id', data.data)
-        $state.go('home')
+        $state.go('settings')
       } else {
         login.blockSignup = true
       }

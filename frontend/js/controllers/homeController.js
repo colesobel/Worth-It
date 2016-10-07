@@ -2,6 +2,7 @@ angular.module('myApp.homeController', ['myApp.services'])
 
 .controller('homeController', ['$http', '$state', '$rootScope', 'getColor', 'getDate', function($http, $state, $rootScope, getColor, getDate) {
   let user_id = Number(localStorage.getItem('user_id'))
+  if (!user_id) $state.go('login')
   let home = this
   getUserInfo()
 
@@ -27,6 +28,11 @@ angular.module('myApp.homeController', ['myApp.services'])
 
   getGaugeStats = () => {
     $http.post('http://localhost:3000/dailyExpenses/getGaugeStats', {user_id, currentMonth: home.monthName}).then(gaugeStats => {
+      if (gaugeStats.data[0].monthly_income === null) {
+        home.noIncomeData = true
+        return
+      }
+      console.log(gaugeStats.data);
       home.gaugeStats = gaugeStats.data.map(cat => {
         cat.allocated_for_budget = (Number(cat.desired_spend_percentage) / 100) * Number(cat.monthly_income)
         cat.daily_fixed_expense = cat.fixed_expense_amount / home.daysInMonth
@@ -48,6 +54,7 @@ angular.module('myApp.homeController', ['myApp.services'])
       home.savingsData.current_spending = currentSpending
       home.gaugeStats = home.gaugeStats.map(cat => {
         cat.spend_percentage = Number((cat.spend_total / home.savingsData.current_spending * 100).toFixed())
+        if (isNaN(cat.spend_percentage)) cat.spend_percentage = 0
         return cat
       })
       home.savingsData.expense_category = 'savings'
@@ -118,7 +125,6 @@ angular.module('myApp.homeController', ['myApp.services'])
   }
 
   function createDailySpendingBar() {
-    console.log(home.savingsData);
     home.dailySpendingBarData = []
 
     home.dailySpendingBarData.push(['Daily Net Income', Number(home.savingsData.daily_income.toFixed()), '#14ED14'])

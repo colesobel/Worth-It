@@ -3,6 +3,7 @@ angular.module('myApp.categoryDetailController', [])
 
 .controller('categoryDetailController', ['$http', '$state', '$stateParams', '$scope', 'getDate', function($http, $state, $stateParams, $scope, getDate) {
   let user_id = Number(localStorage.getItem('user_id'))
+  if (!user_id) $state.go('login')
   let cd = this
   cd.selectedTab='spendingDetail'
   cd.categoryName = $stateParams.categoryName
