@@ -1,7 +1,8 @@
 angular.module('myApp.settingsController', [])
 
-.controller('settingsController', ['$http', '$state', '$rootScope', function($http, $state, $rootScope) {
+.controller('settingsController', ['$http', '$state', '$rootScope', 'getDate', function($http, $state, $rootScope, getDate) {
   let user_id = Number(localStorage.getItem('user_id'))
+  console.log(user_id);
   if (!user_id) $state.go('login')
   let settings = this
   settings.userId = user_id
@@ -12,6 +13,9 @@ angular.module('myApp.settingsController', [])
   settings.editingIncome = false
   settings.fixedExpenses = []
   settings.fixedExpenseInputs = [1]
+  settings.incomeYear = new Date().getFullYear()
+  let month = new Date().getMonth()
+  settings.incomeMonth = getDate.getMonthName(month)
 
   settings.selectTab = (li, name) => {
     let tabs = document.getElementsByTagName('li')
@@ -143,6 +147,14 @@ angular.module('myApp.settingsController', [])
       settings.fixedExpenseInputs = [1]
     })
   }
+
+  settings.addIncome = () => {
+    $http.post('http://localhost:3000/accountSettings/addExtraIncome', {user_id, amount: settings.extraIncomeAmount, memo: settings.incomeMemo, month: settings.incomeMonth, year: settings.incomeYear}).then(() => {
+      console.log('success');
+    })
+  }
+
+  settings.months = ['January','February','March','Arpil','May','June','July','August','September','October','November','December']
 
 
 }])

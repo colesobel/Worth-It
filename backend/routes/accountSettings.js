@@ -33,7 +33,7 @@ router.post('/enterIncome', function(req, res, next) {
 
 router.post('/getIncome', function(req, res, next) {
     AccountSettings.getIncome(req.body.user_id).then(income => {
-        income.rows[0] ?  res.json(income.rows[0].monthly_income) : res.json(false)        
+        income.rows[0] ?  res.json(income.rows[0].monthly_income) : res.json(false)
     })
 })
 
@@ -48,6 +48,16 @@ router.post('/updateExpenseCategories', function(req, res, next) {
     console.log(req.body)
     AccountSettings.updateExpenseCategories(req.body).then(() => res.json('success'))
 })
+
+
+router.post('/addExtraIncome', function(req, res, next) {
+  console.log(req.body)
+  AccountSettings.addExtraIncome(req.body).then(() => res.sendStatus(200))
+})
+
+
+
+
 
 
 

@@ -7,7 +7,7 @@ router.post('/addExpense', function(req, res, next) {
 });
 
 router.post('/getGaugeStats', function(req, res, next) {
-    dailyExpenses.getGaugeStats(req.body.user_id, req.body.currentMonth).then(gaugeStats => {
+    dailyExpenses.getGaugeStats(req.body.user_id, req.body.currentMonth, req.body.year).then(gaugeStats => {
       res.json(gaugeStats)
     })
 });

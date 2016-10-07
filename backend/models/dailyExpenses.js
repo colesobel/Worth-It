@@ -9,10 +9,10 @@ let dailyExpenses = {
         })
     },
 
-    getGaugeStats: (user_id, monthName) => {
+    getGaugeStats: (user_id, monthName, year) => {
       console.log(monthName);
         return new Promise((resolve, reject) => {
-            DailyExpensesService.gaugeQuery(user_id, monthName).then(gaugeStats => {
+            DailyExpensesService.gaugeQuery(user_id, monthName, year).then(gaugeStats => {
                 console.log(gaugeStats)
                 resolve(gaugeStats)
             })

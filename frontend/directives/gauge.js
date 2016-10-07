@@ -1,6 +1,6 @@
 angular.module('myApp.gaugeDirective', [])
 
-.directive('gauge',['getColor', function(getColor) {
+.directive('gauge',['getColor', 'getSavingsColor', function(getColor, getSavingsColor) {
   return {
     restrict: 'E',
     template: '<canvas class="gauge" id="foo"></canvas>',
@@ -22,7 +22,7 @@ angular.module('myApp.gaugeDirective', [])
       if ($scope.gaugeStats.spend_percentage <= 0) {$scope.gaugeStats.spend_percentage = 0.01}
 
 
-      let color = getColor.getColor($scope.gaugeStats.spend_percentage / Number($scope.gaugeStats.max_gauge))
+      let color = $scope.gaugeStats.expense_category === 'savings' ? getSavingsColor.getColor($scope.gaugeStats.spend_percentage / Number($scope.gaugeStats.max_gauge)) : getColor.getColor($scope.gaugeStats.spend_percentage / Number($scope.gaugeStats.max_gauge))
 
 
       var opts = {

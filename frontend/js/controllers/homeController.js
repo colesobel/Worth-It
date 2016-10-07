@@ -16,10 +16,10 @@ angular.module('myApp.homeController', ['myApp.services'])
 
 
   getDaysInMonth = () => {
-    let year = new Date().getFullYear()
+    home.year = new Date().getFullYear()
     let month = new Date().getMonth()
     home.dayOfMonth = new Date().getDate()
-    home.daysInMonth = Date.getDaysInMonth(year, month)
+    home.daysInMonth = Date.getDaysInMonth(home.year, month)
     home.daysPassedPercentage = home.dayOfMonth / home.daysInMonth * 100
     home.daysLeftPercentage =100 - home.daysPassedPercentage
     home.monthName = getDate.getMonthName(month)
@@ -28,7 +28,7 @@ angular.module('myApp.homeController', ['myApp.services'])
 
 
   getGaugeStats = () => {
-    $http.post('http://localhost:3000/dailyExpenses/getGaugeStats', {user_id, currentMonth: home.monthName}).then(gaugeStats => {
+    $http.post('http://localhost:3000/dailyExpenses/getGaugeStats', {user_id, currentMonth: home.monthName, year: home.year}).then(gaugeStats => {
       if (gaugeStats.data[0].monthly_income === null) {
         home.noIncomeData = true
         return
@@ -134,8 +134,4 @@ angular.module('myApp.homeController', ['myApp.services'])
     home.dailySpendingBarData.unshift(['Savings/Spending', '$', {role: 'style'}])
     home.dailySpendingBarReady = true
   }
-
-
-
-
 }])

@@ -5,7 +5,7 @@ let accountSettings = {
     getExpenseCategories: user_id => {
         return knex.raw(`select id, expense_category, percentage from expense_categories where user_id = ${user_id}`)
     },
-    
+
     addExpenseCategory: (user_id, category) => {
         return knex.raw(`insert into expense_categories values (default, ${user_id}, '${category}')`)
     },
@@ -44,6 +44,10 @@ let accountSettings = {
 
     updateIncome: userInfo => {
         return knex.raw(`update user_income set monthly_income = ${userInfo.income} where user_id = ${userInfo.user_id}`)
+    },
+
+    addExtraIncome: userInfo => {
+      return knex.raw(`insert into extra_income values (default, ${userInfo.user_id}, '${userInfo.memo}', ${userInfo.amount}, '${userInfo.month}', ${userInfo.year})`)
     }
 
 }

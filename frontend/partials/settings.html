@@ -80,5 +80,17 @@
         <input class="form-control income-input" type="number" name="monthly-income" placeholder="Enter Your Monthly Takehome Income" id="submit_income">
         <button type="submit" class="btn btn-success submit-income">Submit Income</button>
       </form>
+      <br>
+      <p class="display-1 sub-title">Add One-Time Monthly Additional Income (or Loss!)</p>
+      <form class="form-group" ng-submit="settings.addIncome()">
+          <input class="form-control" type="number" ng-model="settings.extraIncomeAmount" placeholder="Amount">
+          <input class="form-control" type="text" placeholder="Memo" ng-model="settings.incomeMemo">
+          <select ng-model="settings.incomeMonth">
+              <option ng-repeat="month in settings.months">{{month}}</option>
+          </select>
+          <input class="form-control" type="number" ng-model="settings.incomeYear">
+          <input class="btn btn-success" type="submit" value="Submit">
+      </form>
+
   </div>
 </div>

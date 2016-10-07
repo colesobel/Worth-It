@@ -13,10 +13,9 @@ a:hover {
     color: pink !important;
 }
 
-/*.navbar {
-    position: fixed;
-    top: 0;
-}*/
+.nav-tab-a {
+  color: #d7fad1 !important;
+}
 
 .capitalize {
     text-transform: capitalize;
