@@ -230,3 +230,40 @@
   color: white;
   margin: 5% auto;
 }
+
+
+.expense-input {
+  width: 50%;
+  margin-left: 0;
+}
+
+
+.add-category-button {
+  color: #0000D9;
+  background-color: transparent;
+  border-style: none;
+  outline-style: none;
+  border-radius: 5px;
+  height: 30px;
+  border: 2px solid #0000D9;
+}
+
+
+
+.add-category-button:hover {
+  background-color: #4d4dff;
+  color: white;
+}
+
+.close-category {
+  background-color: transparent;
+  border: 2px solid #FD0006;
+  border-radius: 5px;
+  height: 30px;
+  color: #FD0006;
+}
+
+.close-category:hover {
+  background-color: #ff4d4f;
+  color: white;
+}

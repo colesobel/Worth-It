@@ -66,7 +66,10 @@ angular.module('myApp.settingsController', [])
       percentage: 0,
       isEditing: false
     })
-    console.log(settings.expenseCategories);
+    cat.value = ''
+  }
+  settings.wipeCatValue = (cat) => {
+    document.getElementById(cat).value = ''
   }
 
   settings.deleteCategory = (catId) => {

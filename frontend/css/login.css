@@ -22,10 +22,10 @@
     color: white;
 }
 
-input, button {
+/*input, button {
     width: 80%;
     margin: 2% auto;
-}
+}*/
 
 .form-container {
     margin: 10% auto;
@@ -34,8 +34,8 @@ input, button {
     align-items: center;
 }
 
-hr {
+/*hr {
     width: 80%;
     height: 1px;
     color: white;
-}
+}*/

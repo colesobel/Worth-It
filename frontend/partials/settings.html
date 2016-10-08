@@ -14,8 +14,34 @@
 
     <p class="display-1 sub-title">Expense Categories</p>
     <p>We've added a few generic categories, but if you want to track expenses that don't fall into one of these categories, add them to your choices here!</p>
-    <input type="text" id="newCat">
-    <button class="btn btn-primary" ng-click="settings.addCategory('newCat')">Add Category</button>
+
+    <button type="button" class="add-category-button" data-toggle="modal" data-target="#myModal">Add an Expense Category</button>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Add an Expense Category</h4>
+          </div>
+          <div class="modal-body">
+            <input class="form-control expense-input" type="text" id="newCat" placeholder="Add an Expense Category">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="close-category" ng-click="settings.wipeCatValue('newCat')" data-dismiss="modal">Close</button>
+            <button class="add-category-button" ng-click="settings.addCategory('newCat')" data-dismiss="modal">Add Category</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
     <div class="expense-categories-container">
       <div class="list-group expense-parent">
         <div class="list-group-item expense-list-item" ng-repeat="cat in settings.expenseCategories">
