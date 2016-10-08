@@ -2,12 +2,12 @@ angular.module('myApp.filters', [])
 
 .filter('percentage', function () {
   return input => {
-    return input < 1 ? 0 + '%' : input + '%'
+    return input < 1 || isNaN(input) ? 0 + '%' : input + '%'
   }
 })
 
 .filter('dollar', function() {
-  return input => '$' + Number(input.toFixed())
+  return input => '$' + Number(Number(input).toFixed())
 })
 
 

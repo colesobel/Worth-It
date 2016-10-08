@@ -55,7 +55,9 @@ angular.module('myApp.homeController', ['myApp.services'])
       home.savingsData = {}
       home.savingsData.current_spending = currentSpending
       home.gaugeStats = home.gaugeStats.map(cat => {
-        cat.spend_percentage = Number((cat.spend_total / home.savingsData.current_spending * 100).toFixed())
+        console.log((Number(gaugeStats.data[0].monthly_income) / home.dayOfMonth));
+        cat.spend_percentage = ((cat.spend_total / ((Number(gaugeStats.data[0].monthly_income) / home.daysInMonth) * home.dayOfMonth )) * 100).toFixed()
+        // console.log(cat.spend_percentage);
         if (isNaN(cat.spend_percentage)) cat.spend_percentage = 0
         return cat
       })

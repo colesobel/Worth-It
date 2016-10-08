@@ -121,15 +121,15 @@
 
 
   <div ng-if="settings.selectedTab === 'income'">
-      <p class="display-1 sub-title">Monthly Net Income</p>
-      <div class="list-group-item expense-list-item" ng-if="!settings.noIncomeData">
+      <!-- <p class="display-1 sub-title">Monthly Net Income</p> -->
+      <div class="" ng-if="!settings.noIncomeData">
         <div ng-switch="settings.editingIncome">
-          <h4 ng-switch-when="false" class="h4 capitalize">{{settings.userIncome}}</h4>
+          <p ng-switch-when="false" class="exp-cat-header">Montly Income | {{settings.userIncome | dollar}}</p>
           <input ng-switch-when="true" class="form-control" type="number" value="{{settings.userIncome}}" id="updatedIncome">
         </div>
         <div ng-switch="settings.editingIncome">
-          <button class="btn btn-danger btn-small" ng-click="settings.editingIncome = true" ng-switch-when="false">Edit</button>
-          <button class="btn btn-danger btn-small" ng-click="settings.editIncome(updatedIncome)" ng-switch-when="true">Submit</button>
+          <button class="warning-button" ng-click="settings.editingIncome = true" ng-switch-when="false">Edit</button>
+          <button class="warning-button" ng-click="settings.editIncome(updatedIncome)" ng-switch-when="true">Submit</button>
         </div>
       </div>
       <form class="form-group" ng-submit="settings.submitIncome('submit_income')" ng-if="settings.noIncomeData">
