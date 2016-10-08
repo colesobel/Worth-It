@@ -15,9 +15,15 @@
     <p class="display-1 sub-title">Expense Categories</p>
     <p>We've added a few generic categories, but if you want to track expenses that don't fall into one of these categories, add them to your choices here!</p>
 
-    <button type="button" class="add-category-button" data-toggle="modal" data-target="#myModal">Add an Expense Category</button>
+    <div class="bad-math" ng-if="settings.badMath">
+        Please make sure that your total expense allocation equates to 100%!
+    </div>
+    <h1>Coverage | {{settings.percentageTotal | percentage}}</h1>
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <button type="button" class="add-category-button" data-toggle="modal" data-target="#expCat">Add an Expense Category</button>
+    <button class="submit-expenses-button" ng-click="settings.submitExpensesToDatabase()">Save Changes</button>
+
+    <div class="modal fade" id="expCat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -52,28 +58,55 @@
         </div>
       </div>
     </div>
-    <h1>Coverage: {{settings.percentageTotal | percentage}}</h1>
-    <div class="bad-math" ng-if="settings.badMath">
-        Please make sure that your total expense allocation percentage equates to 100%!
-    </div>
-    <button class="btn btn-success submit-expenses" ng-click="settings.submitExpensesToDatabase()">Save Changes</button>
   </form>
 
 
   <div ng-if="settings.selectedTab === 'fixedExpenses'">
     <p class="display-1 sub-title">Fixed Expenses</p>
-    <div class="list-group expense-parent">
-      <div class="list-group-item expense-list-item" ng-repeat="exp in settings.fixedExpenses">
-        <h4 class="h4 capitalize">{{exp.expense_category}}</h4>
-        <h5>{{exp.expense_amount | dollar}}</h5>
-        <button class="btn btn-danger btn-small" ng-click="settings.deleteFixedCategory(cat.id)">Delete</button>
+    <button type="button" class="add-category-button" data-toggle="modal" data-target="#fixedExpense">Add an Expense Category</button>
+
+
+    <div class="modal fade" id="fixedExpense" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Add a Monthly Fixed Expense</h4>
+          </div>
+          <div class="modal-body">
+              <select class="form-control input" ng-model="settings.fixedExpenseCategory">
+                <option ng-repeat="cat in settings.expenseCategories">{{cat.expense_category | capitalize}}</option>
+              </select>
+              <input type="number" class="form-control input" placeholder="Amount" ng-model="settings.fixedExpenseAmount">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="close-category" ng-click="settings.wipeCatValue('newCat')" data-dismiss="modal">Close</button>
+            <button class="add-category-button" ng-click="settings.submitFixedExpenses()" data-dismiss="modal">Add Fixed Expense</button>
+          </div>
+        </div>
       </div>
     </div>
 
 
-      <button class="btn btn-success add-expense" ng-click="settings.addFixedExpense()">Add Fixed Expense</button>
+    <div class="list-group expense-parent">
+      <div class="list-group-item expense-list-item" ng-repeat="exp in settings.fixedExpenses">
+        <p class="exp-cat-header capitalize">{{exp.expense_category}} | {{exp.expense_amount | dollar}}</p>
+        <button class="close-category" ng-click="settings.deleteFixedCategory(cat.id)">Delete</button>
+      </div>
+    </div>
 
-      <form class="form-group" ng-submit="settings.submitFixedExpnses()">
+
+
+
+
+
+
+
+      <!-- <button class="btn btn-success add-expense" ng-click="settings.addFixedExpense()">Add Fixed Expense</button> -->
+
+      <!-- <form class="form-group" ng-submit="settings.submitFixedExpnses()">
         <div class="fixed-expense-container" ng-repeat="num in settings.fixedExpenseInputs">
           <h3>Fixed Expense {{$index+ 1}}</h3>
           <select class="form-control input">
@@ -82,8 +115,8 @@
           <input type="number" class="form-control input" placeholder="Amount">
         </div>
         <button class="btn btn-success submit-expenses" type="submit">Submit Fixed Expenses</button>
-      </form>
-  </div>
+      </form> -->
+ </div>
 
 
 

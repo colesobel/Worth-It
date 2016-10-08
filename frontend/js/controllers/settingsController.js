@@ -42,6 +42,8 @@ angular.module('myApp.settingsController', [])
           isEditing: false
         }
       })
+      settings.fixedExpenseCategory = settings.expenseCategories[0].expense_category
+      console.log(settings.fixedExpenseCategory);
       getPercentageTotal()
     })
   }
@@ -128,8 +130,6 @@ angular.module('myApp.settingsController', [])
   getFixedExpenses = () => {
     $http.post('http://localhost:3000/accountSettings/getFixedExpenses', {user_id}).then(data => {
       settings.fixedExpenses = data.data
-      console.log(settings.fixedExpenses);
-
     })
   }
   getFixedExpenses()
@@ -139,14 +139,17 @@ angular.module('myApp.settingsController', [])
     settings.fixedExpenseInputs.push(num)
   }
 
-  settings.submitFixedExpnses = () => {
-    let expenseItems = document.getElementsByClassName('fixed-expense-container')
+  settings.submitFixedExpenses = () => {
+    // let expenseItems = document.getElementsByClassName('fixed-expense-container')
     let expenseObj = {}
-    for(let i = 0; i < expenseItems.length; i++) {
-      expenseObj[i] = {}
-      expenseObj[i].expenseCategory = expenseItems[i]['children'][1]['value'].toLowerCase()
-      expenseObj[i].amount = expenseItems[i]['children'][2]['value']
-    }
+    // for(let i = 0; i < expenseItems.length; i++) {
+    //   expenseObj[i] = {}
+    //   expenseObj[i].expenseCategory = expenseItems[i]['children'][1]['value'].toLowerCase()
+    //   expenseObj[i].amount = expenseItems[i]['children'][2]['value']
+    // }
+    expenseObj['1'] = {}
+    expenseObj['1'].expenseCategory = settings.fixedExpenseCategory.toLowerCase()
+    expenseObj['1'].amount = settings.fixedExpenseAmount
     $http.post('http://localhost:3000/accountSettings/addFixedExpenses', {user_id, fixed_expenses: expenseObj}).then(data => {
       getFixedExpenses()
       settings.fixedExpenseInputs = [1]

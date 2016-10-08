@@ -128,31 +128,21 @@
 }
 
 .expense-parent {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  width: 100%;
 }
 
 .expense-list-item {
   width: 40%;
   margin: 1% 2% 1% 0;
-  /*display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;*/
+}
+
+.expense-list-item:hover {
+  background-color: #f2f2f2;
 }
 
 .capitalize {
   text-transform: capitalize;
 }
-
-.submit-expenses {
-    background: linear-gradient(to bottom right, #00b300, #1aff1a);
-}
-
-
-
-
 
 .sub-title {
     font-size: 2em;
@@ -166,11 +156,6 @@
     width: 40%;
     margin-bottom: 1%;
 }
-
-
-
-
-
 
 
 .sub-title {
@@ -196,9 +181,6 @@
     background: linear-gradient(to bottom right, #00b300, #1aff1a);
 }
 
-.submit-expenses {
-    background: linear-gradient(to bottom right, #00b300, #1aff1a);
-}
 
 .expense-categories-container {
   width: 100%;
@@ -206,11 +188,6 @@
   justify-content: center;
 }
 
-.expense-parent {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
 
 .capitalize {
   text-transform: capitalize;
@@ -280,4 +257,17 @@
 .warning-button:hover {
   background-color: #ffad66;
   color: white
+}
+
+.submit-expenses-button {
+  background-color: transparent;
+  border: 1px solid #11E511;
+  border-radius: 5px;
+  height: 30px;
+  color: #11E511;
+}
+
+.submit-expenses-button:hover {
+  background-color: #59f359;
+  color: white;
 }
