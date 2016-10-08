@@ -1,3 +1,7 @@
+* {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
 .sub-title {
     font-size: 2em;
 }
@@ -132,10 +136,10 @@
 .expense-list-item {
   width: 40%;
   margin: 1% 2% 1% 0;
-  display: flex;
+  /*display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-between;*/
 }
 
 .capitalize {
@@ -208,15 +212,6 @@
   flex-wrap: wrap;
 }
 
-.expense-list-item {
-  width: 40%;
-  margin: 1% 2% 1% 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
 .capitalize {
   text-transform: capitalize;
 }
@@ -245,7 +240,7 @@
   outline-style: none;
   border-radius: 5px;
   height: 30px;
-  border: 2px solid #0000D9;
+  border: 1px solid #0000D9;
 }
 
 
@@ -257,7 +252,7 @@
 
 .close-category {
   background-color: transparent;
-  border: 2px solid #FD0006;
+  border: 1px solid #FD0006;
   border-radius: 5px;
   height: 30px;
   color: #FD0006;
@@ -266,4 +261,23 @@
 .close-category:hover {
   background-color: #ff4d4f;
   color: white;
+}
+
+.exp-cat-header {
+    font-size: 1.5em;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    text-align: left;
+}
+
+.warning-button {
+  background-color: transparent;
+  border: 1px solid #FF7600;
+  border-radius: 5px;
+  height: 30px;
+  color: #FF7600;
+}
+
+.warning-button:hover {
+  background-color: #ffad66;
+  color: white
 }

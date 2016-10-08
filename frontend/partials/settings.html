@@ -38,22 +38,17 @@
     </div>
 
 
-
-
-
-
     <div class="expense-categories-container">
       <div class="list-group expense-parent">
         <div class="list-group-item expense-list-item" ng-repeat="cat in settings.expenseCategories">
           <div ng-switch="cat.isEditing">
-            <h4 ng-switch-when="false" class="h4 capitalize">{{cat.expense_category}}</h4>
-            <h4 ng-switch-when="false" class="h4">{{cat.percentage}}%</h4>
-            <input ng-switch-when="true" type="text" value="{{cat.expense_category}}" id="{{$index + 'expCat'}}">
-            <input ng-switch-when="true" type="number" value="{{cat.percentage}}" id="{{$index + 'percentage'}}">
-            <button ng-switch-when="false" class="btn btn-warning" ng-click="cat.isEditing = !cat.isEditing">Edit</button>
-            <button ng-switch-when="true" class="btn btn-warning" ng-click="cat.isEditing = !cat.isEditing; settings.submitTempExpenses($index, cat.catId)">Submit</button>
+            <p ng-switch-when="false" class="exp-cat-header capitalize">{{cat.expense_category}} | {{cat.percentage | percentage}}</p>
+            <input class="form-control" ng-switch-when="true" type="text" value="{{cat.expense_category}}" id="{{$index + 'expCat'}}">
+            <input class="form-control" ng-switch-when="true" type="number" value="{{cat.percentage}}" id="{{$index + 'percentage'}}">
+            <button ng-switch-when="false" class="warning-button" ng-click="cat.isEditing = !cat.isEditing">Edit</button>
+            <button ng-switch-when="true" class="warning-button" ng-click="cat.isEditing = !cat.isEditing; settings.submitTempExpenses($index, cat.catId)">Submit</button>
+            <button class="close-category" ng-click="settings.deleteCategory(cat.catId)">Delete</button>
           </div>
-          <button class="btn btn-danger btn-small" ng-click="settings.deleteCategory(cat.catId)">Delete</button>
         </div>
       </div>
     </div>
