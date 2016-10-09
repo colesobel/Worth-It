@@ -76,6 +76,22 @@
                                 {{cd.featuredCategory.daily_surplus_deficit | dollar}}
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                Daily Fixed Expense Amount
+                            </td>
+                            <td>
+                                {{cd.featuredCategory.daily_fixed_expense | dollar}} | {{cd.featuredCategory.fixed_expense_percentage | percentage}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Daily Incremental Spending
+                            </td>
+                            <td>
+                                {{cd.featuredCategory.daily_incremental_spending | dollar}} | {{cd.featuredCategory.incremental_spending_percentage | percentage}}
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

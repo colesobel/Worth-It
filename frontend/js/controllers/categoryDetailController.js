@@ -32,7 +32,7 @@ angular.module('myApp.categoryDetailController', [])
       return
     }
     getPurchaseHistory()
-    getCategoryStats()
+    getGaugeStats()
     cd.futureRequest = false
   }
 
@@ -59,8 +59,6 @@ angular.module('myApp.categoryDetailController', [])
 
   getGaugeStats = () => {
     $http.post('http://localhost:3000/dailyExpenses/getGaugeStats', {user_id, currentMonth: cd.currentMonth, year: cd.year}).then(gaugeStats => {
-      console.log('*****************');
-      console.log(gaugeStats.data);
       cd.gaugeStats = gaugeStats.data.map(cat => {
         cat.allocated_for_budget = (Number(cat.desired_spend_percentage) / 100) * Number(cat.monthly_income)
         cat.daily_fixed_expense = cat.fixed_expense_amount / cd.daysInMonth
@@ -73,6 +71,10 @@ angular.module('myApp.categoryDetailController', [])
         cat.daily_spending = cat.spend_total / cd.dayOfMonth
         cat.desired_daily_spending = cat.allocated_for_budget / cd.daysInMonth
         cat.daily_surplus_deficit = cat.daily_spending - cat.desired_daily_spending
+        cat.daily_incremental_spending = cat.daily_spending - cat.daily_fixed_expense
+        cat.incremental_spending_percentage = Number(((cat.daily_incremental_spending / cat.daily_spending) * 100).toFixed())
+        if (isNaN(cat.incremental_spending_percentage)) cat.incremental_spending_percentage = 0
+        cat.fixed_expense_percentage = Number((100 - cat.incremental_spending_percentage).toFixed())
         return cat
       })
       cd.savings = cd.gaugeStats.find((cat) => cat.expense_category == 'savings')
@@ -101,6 +103,7 @@ angular.module('myApp.categoryDetailController', [])
       // console.log(cd.gaugeStats);
       // console.log(cd.savingsData);
       cd.featuredCategory = cd.gaugeStats.find(cat => cat.expense_category == cd.categoryName)
+      console.log('FEATURED CATEGORY');
       console.log(cd.featuredCategory);
       cd.savingsDataReady = true
     })
