@@ -124,7 +124,8 @@
       <!-- <p class="display-1 sub-title">Monthly Net Income</p> -->
       <div class="" ng-if="!settings.noIncomeData">
         <div ng-switch="settings.editingIncome">
-          <p ng-switch-when="false" class="exp-cat-header">Montly Income | {{settings.userIncome | dollar}}</p>
+          <p ng-switch-when="false" class="exp-cat-header no-bottom-margin">Montly Income | {{settings.userIncome | dollar}}</p>
+          <div ng-switch-when="false" class="underline margin-bottom"></div>
           <input ng-switch-when="true" class="form-control" type="number" value="{{settings.userIncome}}" id="updatedIncome">
         </div>
         <div ng-switch="settings.editingIncome">
@@ -139,19 +140,42 @@
       </form>
       <br>
 
+      <button type="button" class="add-category-button" data-toggle="modal" data-target="#extra-income">Add One-Time Monthly Additional Income (or Loss!)</button>
+      <br>
       <div ng-if="settings.extraIncome">
-
+          <p class="extra-income-header">
+              Gains
+          </p>
+          <div class="underline"></div>
           <div class="expense-categories-container">
             <div class="list-group expense-parent">
-              <div class="list-group-item expense-list-item" ng-repeat="income in settings.extraIncome">
-                <div ng-switch="income.isEditing">
-                  <p ng-switch-when="false" class="exp-cat-header capitalize">{{income.memo}} | {{income.amount | dollar}}</p>
-                  <input class="form-control" ng-switch-when="true" type="text" value="{{income.memo}}" id="{{$index + 'ei-memo'}}">
-                  <input class="form-control" ng-switch-when="true" type="number" value="{{income.amount}}" id="{{$index + 'ei-amount'}}">
-                  <button ng-switch-when="false" class="warning-button" ng-click="income.isEditing = !income.isEditing">Edit</button>
-                  <button ng-switch-when="true" class="warning-button" ng-click="income.isEditing = !income.isEditing; settings.updateExtraIncome(income.id, $index)">Submit</button>
-                  <button class="close-category" ng-click="settings.deleteExtraIncome(income.id)">Delete</button>
-                </div>
+              <div class="list-group-item expense-list-item" ng-repeat="income in settings.extraIncome" ng-if="income.amount > 0">
+                  <div>
+                      <div ng-switch="income.isEditing">
+                          <p ng-switch-when="false" class="exp-cat-header capitalize">{{income.memo}} | {{income.amount | dollar}}</p>
+                          <input class="form-control" ng-switch-when="true" type="text" value="{{income.memo}}" id="{{$index + 'ei-memo'}}">
+                          <input class="form-control" ng-switch-when="true" type="number" value="{{income.amount}}" id="{{$index + 'ei-amount'}}">
+                          <button ng-switch-when="false" class="warning-button" ng-click="income.isEditing = !income.isEditing">Edit</button>
+                          <button ng-switch-when="true" class="warning-button" ng-click="income.isEditing = !income.isEditing; settings.updateExtraIncome(income.id, $index)">Submit</button>
+                          <button class="close-category" ng-click="settings.deleteExtraIncome(income.id)">Delete</button>
+                      </div>
+                  </div>
+              </div>
+              <p class="extra-income-header">
+                  Losses
+              </p>
+              <div class="underline"></div>
+              <div class="list-group-item expense-list-item" ng-repeat="income in settings.extraIncome" ng-if="income.amount < 0">
+                  <div>
+                      <div ng-switch="income.isEditing">
+                          <p ng-switch-when="false" class="exp-cat-header capitalize">{{income.memo}} | {{income.amount | dollar}}</p>
+                          <input class="form-control" ng-switch-when="true" type="text" value="{{income.memo}}" id="{{$index + 'ei-memo'}}">
+                          <input class="form-control" ng-switch-when="true" type="number" value="{{income.amount}}" id="{{$index + 'ei-amount'}}">
+                          <button ng-switch-when="false" class="warning-button" ng-click="income.isEditing = !income.isEditing">Edit</button>
+                          <button ng-switch-when="true" class="warning-button" ng-click="income.isEditing = !income.isEditing; settings.updateExtraIncome(income.id, $index)">Submit</button>
+                          <button class="close-category" ng-click="settings.deleteExtraIncome(income.id)">Delete</button>
+                      </div>
+                  </div>
               </div>
             </div>
           </div>
@@ -161,8 +185,6 @@
 
       </div>
 
-
-      <button type="button" class="add-category-button" data-toggle="modal" data-target="#extra-income">Add One-Time Monthly Additional Income (or Loss!)</button>
 
 
       <div class="modal fade" id="extra-income" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

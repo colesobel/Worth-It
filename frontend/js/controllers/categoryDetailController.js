@@ -58,7 +58,9 @@ angular.module('myApp.categoryDetailController', [])
   // getCategoryStats()
 
   getGaugeStats = () => {
-    $http.post('http://localhost:3000/dailyExpenses/getGaugeStats', {user_id, currentMonth: cd.currentMonth}).then(gaugeStats => {
+    $http.post('http://localhost:3000/dailyExpenses/getGaugeStats', {user_id, currentMonth: cd.currentMonth, year: cd.year}).then(gaugeStats => {
+      console.log('*****************');
+      console.log(gaugeStats.data);
       cd.gaugeStats = gaugeStats.data.map(cat => {
         cat.allocated_for_budget = (Number(cat.desired_spend_percentage) / 100) * Number(cat.monthly_income)
         cat.daily_fixed_expense = cat.fixed_expense_amount / cd.daysInMonth
