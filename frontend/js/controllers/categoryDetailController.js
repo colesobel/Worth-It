@@ -14,6 +14,7 @@ angular.module('myApp.categoryDetailController', [])
   let staticMonth = new Date().getMonth()
   cd.dayOfMonth = new Date().getDate()
   cd.daysInMonth = Date.getDaysInMonth(cd.year, month)
+  cd.monthCompletion = ((cd.dayOfMonth / cd.daysInMonth) * 100).toFixed()
   cd.currentMonth = getDate.getMonthName(month)
   cd.changeCurrentMonth = inc => {
     if (month === 11 && inc > 0) {

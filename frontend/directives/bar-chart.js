@@ -3,7 +3,7 @@ angular.module('myApp.barChartDirective', [])
 .directive('barChart',['getColor', function(getColor) {
   return {
     restrict: 'E',
-    template: `<div class="bar-chart" id="daily-avg-bar"></div>`,
+    template: `<div class="bar-chart"></div>`,
     scope: {
       data: '=',
       nodeIndex: '=',

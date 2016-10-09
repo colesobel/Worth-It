@@ -88,7 +88,18 @@ angular.module('myApp.homeController', ['myApp.services'])
 
   getDailyAverages = () => {
     $http.post('http://localhost:3000/dailyExpenses/getDailyAverages', {user_id, currentMonth: home.monthName}).then(avgs => {
-      console.log(avgs);
+      avgs.data.forEach(day => {
+        dayObj[day.day] = Number(day.sum)
+      })
+      console.log(avgs.data);
+      console.log(dayObj);
+      home.finalDayAvgArray = []
+      for (day in dayObj) {
+        home.finalDayAvgArray.push([day, Number(dayObj[day]), '#14ED14'])
+      }
+      home.finalDayAvgArray.unshift(['Day', '$', {role: 'style'}])
+      console.log(home.finalDayAvgArray);
+      home.dayAvgBarReady = true
     })
   }
 
@@ -135,4 +146,5 @@ angular.module('myApp.homeController', ['myApp.services'])
     home.dailySpendingBarData.unshift(['Savings/Spending', '$', {role: 'style'}])
     home.dailySpendingBarReady = true
   }
+
 }])

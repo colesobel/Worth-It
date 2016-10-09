@@ -20,7 +20,7 @@ let dailyExpenses = {
     },
 
     getDailyAverages: (user_id, month) => {
-            return knex.raw(`select user_id, day, avg(expense_amount)from daily_expenses where user_id = ${user_id} and month = '${month}' and year = 2016 group by user_id, day`)
+            return knex.raw(`select user_id, day, sum(expense_amount) as sum from daily_expenses where user_id = ${user_id} and month = '${month}' and year = 2016 group by user_id, day`)
     }
 }
 
