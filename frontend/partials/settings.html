@@ -162,16 +162,48 @@
       </div>
 
 
-      <p class="display-1 sub-title">Add One-Time Monthly Additional Income (or Loss!)</p>
-      <form class="form-group" ng-submit="settings.addIncome()">
-          <input class="form-control" type="number" ng-model="settings.extraIncomeAmount" placeholder="Amount">
-          <input class="form-control" type="text" placeholder="Memo" ng-model="settings.incomeMemo">
-          <select ng-model="settings.incomeMonth">
-              <option ng-repeat="month in settings.months">{{month}}</option>
-          </select>
-          <input class="form-control" type="number" ng-model="settings.incomeYear">
-          <input class="btn btn-success" type="submit" value="Submit">
-      </form>
+      <button type="button" class="add-category-button" data-toggle="modal" data-target="#extra-income">Add One-Time Monthly Additional Income (or Loss!)</button>
+
+
+      <div class="modal fade" id="extra-income" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">Add One-Time Monthly Additional Income (or Loss!)</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-group">
+                    <input class="form-control add-income-input" type="number" ng-model="settings.extraIncomeAmount" placeholder="Amount">
+                    <input class="form-control add-income-input" type="text" placeholder="Memo" ng-model="settings.incomeMemo">
+                    <select class="form-control add-income-input" ng-model="settings.incomeMonth">
+                        <option ng-repeat="month in settings.months">{{month}}</option>
+                    </select>
+                    <input class="form-control add-income-input" type="number" ng-model="settings.incomeYear">
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="close-category" data-dismiss="modal">Close</button>
+              <button class="add-category-button" ng-click="settings.addIncome()" data-dismiss="modal">Add Income / Loss</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+      <!-- <p class="display-1 sub-title">Add One-Time Monthly Additional Income (or Loss!)</p> -->
+
+
+
 
   </div>
 </div>

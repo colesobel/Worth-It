@@ -157,9 +157,7 @@ angular.module('myApp.settingsController', [])
   }
 
   settings.addIncome = () => {
-    $http.post('http://localhost:3000/accountSettings/addExtraIncome', {user_id, amount: settings.extraIncomeAmount, memo: settings.incomeMemo, month: settings.incomeMonth, year: settings.incomeYear}).then(() => {
-      console.log('success');
-    })
+    $http.post('http://localhost:3000/accountSettings/addExtraIncome', {user_id, amount: settings.extraIncomeAmount, memo: settings.incomeMemo, month: settings.incomeMonth, year: settings.incomeYear}).then(() => getExtraIncome())
   }
 
   settings.months = ['January','February','March','Arpil','May','June','July','August','September','October','November','December']
@@ -170,7 +168,6 @@ angular.module('myApp.settingsController', [])
         income.isEditing = false
         return income
       })
-      console.log(settings.extraIncome);
     })
   }
   getExtraIncome()
@@ -184,7 +181,6 @@ angular.module('myApp.settingsController', [])
 
   settings.deleteExtraIncome = function (id) {
     $http.post('http://localhost:3000/accountSettings/deleteExtraIncome', {id}).then(() => getExtraIncome())
-    console.log(id);
   }
 
 
