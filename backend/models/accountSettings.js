@@ -48,6 +48,14 @@ let accountSettings = {
 
     addExtraIncome: userInfo => {
       return knex.raw(`insert into extra_income values (default, ${userInfo.user_id}, '${userInfo.memo}', ${userInfo.amount}, '${userInfo.month}', ${userInfo.year})`)
+    },
+
+    getExtraIncome: userInfo => {
+      return knex.raw(`select * from extra_income where user_id = ${userInfo.user_id} and month = '${userInfo.month}' and year = ${userInfo.year}`)
+    },
+
+    deleteExtraIncome: id => {
+      return knex.raw(`delete from extra_income where id = ${id}`)
     }
 
 }

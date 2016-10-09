@@ -39,31 +39,28 @@ router.post('/getIncome', function(req, res, next) {
 
 
 router.post('/updateIncome', function(req, res, next) {
-    console.log(req.body)
     AccountSettings.updateIncome(req.body).then(income => res.json(req.body.income))
 })
 
 
 router.post('/updateExpenseCategories', function(req, res, next) {
-    console.log(req.body)
     AccountSettings.updateExpenseCategories(req.body).then(() => res.json('success'))
 })
 
 
 router.post('/addExtraIncome', function(req, res, next) {
-  console.log(req.body)
   AccountSettings.addExtraIncome(req.body).then(() => res.sendStatus(200))
 })
 
 
+router.post('/getExtraIncome', function(req, res, next) {
+  AccountSettings.getExtraIncome(req.body).then(extraIncome => res.json(extraIncome.rows))
+})
 
 
-
-
-
-
-
-
+router.post('/deleteExtraIncome', function(req, res, next) {
+  AccountSettings.deleteExtraIncome(req.body.id).then(() => res.sendStatus(200))
+})
 
 
 

@@ -164,5 +164,27 @@ angular.module('myApp.settingsController', [])
 
   settings.months = ['January','February','March','Arpil','May','June','July','August','September','October','November','December']
 
+  function getExtraIncome() {
+    $http.post('http://localhost:3000/accountSettings/getExtraIncome', {user_id, month: settings.incomeMonth, year: settings.incomeYear}).then(data => {
+      settings.extraIncome = data.data.map(income => {
+        income.isEditing = false
+        return income
+      })
+      console.log(settings.extraIncome);
+    })
+  }
+  getExtraIncome()
+
+
+  settings.updateExtraIncome = function (id) {
+    console.log(id);
+  }
+
+  settings.deleteExtraIncome = function (id) {
+    $http.post('http://localhost:3000/accountSettings/deleteExtraIncome', {id}).then(() => getExtraIncome())
+    console.log(id);
+  }
+
+
 
 }])
