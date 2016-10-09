@@ -146,10 +146,10 @@
               <div class="list-group-item expense-list-item" ng-repeat="income in settings.extraIncome">
                 <div ng-switch="income.isEditing">
                   <p ng-switch-when="false" class="exp-cat-header capitalize">{{income.memo}} | {{income.amount | dollar}}</p>
-                  <input class="form-control" ng-switch-when="true" type="text" value="{{income.memo}}" id="{{$index + 'expCat'}}">
-                  <input class="form-control" ng-switch-when="true" type="number" value="{{income.amount}}" id="{{$index + 'percentage'}}">
+                  <input class="form-control" ng-switch-when="true" type="text" value="{{income.memo}}" id="{{$index + 'ei-memo'}}">
+                  <input class="form-control" ng-switch-when="true" type="number" value="{{income.amount}}" id="{{$index + 'ei-amount'}}">
                   <button ng-switch-when="false" class="warning-button" ng-click="income.isEditing = !income.isEditing">Edit</button>
-                  <button ng-switch-when="true" class="warning-button" ng-click="income.isEditing = !income.isEditing; settings.updateExtraIncome(income.id)">Submit</button>
+                  <button ng-switch-when="true" class="warning-button" ng-click="income.isEditing = !income.isEditing; settings.updateExtraIncome(income.id, $index)">Submit</button>
                   <button class="close-category" ng-click="settings.deleteExtraIncome(income.id)">Delete</button>
                 </div>
               </div>

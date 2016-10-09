@@ -176,8 +176,10 @@ angular.module('myApp.settingsController', [])
   getExtraIncome()
 
 
-  settings.updateExtraIncome = function (id) {
-    console.log(id);
+  settings.updateExtraIncome = function (id, index) {
+    let memo = document.getElementById(index + 'ei-memo').value
+    let amount = document.getElementById(index + 'ei-amount').value
+    $http.post('http://localhost:3000/accountSettings/updateExtraIncome', {id, memo, amount}).then(() => getExtraIncome())
   }
 
   settings.deleteExtraIncome = function (id) {

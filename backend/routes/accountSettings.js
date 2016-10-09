@@ -63,6 +63,11 @@ router.post('/deleteExtraIncome', function(req, res, next) {
 })
 
 
+router.post('/updateExtraIncome', function(req, res, next) {
+  AccountSettings.updateExtraIncome(req.body).then(() => res.sendStatus(200))
+})
+
+
 
 
 

@@ -56,6 +56,10 @@ let accountSettings = {
 
     deleteExtraIncome: id => {
       return knex.raw(`delete from extra_income where id = ${id}`)
+    },
+
+    updateExtraIncome: userInfo => {
+      return knex.raw(`update extra_income set memo = '${userInfo.memo}', amount = ${userInfo.amount} where id = ${userInfo.id}`)
     }
 
 }
