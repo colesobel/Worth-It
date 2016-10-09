@@ -38,7 +38,7 @@
                                 Current Spend total
                             </td>
                             <td>
-                                {{cd.featuredCategory.spend_total | dollar}}
+                                {{cd.featuredCategory.spend_total | dollar}} &nbsp | &nbsp {{cd.featuredCategory.spent_percentage | percentage}}
                             </td>
                         </tr>
                         <tr>
@@ -46,7 +46,7 @@
                                 Budget Left
                             </td>
                             <td>
-                                {{cd.featuredCategory.budget_left | dollar}}
+                                {{cd.featuredCategory.budget_left | dollar}} &nbsp | &nbsp {{cd.featuredCategory.budget_left_percentage | percentage}}
                             </td>
                         </tr>
                         <tr>
@@ -81,7 +81,7 @@
                                 Daily Fixed Expense Amount
                             </td>
                             <td>
-                                {{cd.featuredCategory.daily_fixed_expense | dollar}} | {{cd.featuredCategory.fixed_expense_percentage | percentage}}
+                                {{cd.featuredCategory.daily_fixed_expense | dollar}} &nbsp | &nbsp {{cd.featuredCategory.fixed_expense_percentage | percentage}}
                             </td>
                         </tr>
                         <tr>
@@ -89,7 +89,7 @@
                                 Daily Incremental Spending
                             </td>
                             <td>
-                                {{cd.featuredCategory.daily_incremental_spending | dollar}} | {{cd.featuredCategory.incremental_spending_percentage | percentage}}
+                                {{cd.featuredCategory.daily_incremental_spending | dollar}} &nbsp | &nbsp {{cd.featuredCategory.incremental_spending_percentage | percentage}}
                             </td>
                         </tr>
                     </tbody>

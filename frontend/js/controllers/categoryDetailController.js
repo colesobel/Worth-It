@@ -65,8 +65,8 @@ angular.module('myApp.categoryDetailController', [])
         cat.current_fixed_expense_amortized = cat.daily_fixed_expense * cd.dayOfMonth
         cat.spend_total = Number(cat.spend_total) + cat.current_fixed_expense_amortized
         cat.budget_left = cat.allocated_for_budget - Number(cat.spend_total)
-        cat.spent_percentage = (Number(cat.spend_total) / cat.allocated_for_budget * 100).toFixed(2)
-        cat.budget_left_percentage = (cat.budget_left / cat.allocated_for_budget * 100).toFixed(2)
+        cat.spent_percentage = (Number(cat.spend_total) / cat.allocated_for_budget * 100).toFixed()
+        cat.budget_left_percentage = (cat.budget_left / cat.allocated_for_budget * 100).toFixed()
         cat.percentage_spent = Number((cat.spend_total / cat.allocated_for_budget * 100).toFixed())
         cat.daily_spending = cat.spend_total / cd.dayOfMonth
         cat.desired_daily_spending = cat.allocated_for_budget / cd.daysInMonth
@@ -75,6 +75,7 @@ angular.module('myApp.categoryDetailController', [])
         cat.incremental_spending_percentage = Number(((cat.daily_incremental_spending / cat.daily_spending) * 100).toFixed())
         if (isNaN(cat.incremental_spending_percentage)) cat.incremental_spending_percentage = 0
         cat.fixed_expense_percentage = Number((100 - cat.incremental_spending_percentage).toFixed())
+        if (cat.daily_fixed_expense === 0) cat.fixed_expense_percentage = 0
         return cat
       })
       cd.savings = cd.gaugeStats.find((cat) => cat.expense_category == 'savings')
