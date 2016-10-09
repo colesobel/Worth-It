@@ -80,6 +80,7 @@ angular.module('myApp.homeController', ['myApp.services'])
       home.gaugeStats.sort(sorter).reverse()
       createSpendCategoryBar()
       createDailySpendingBar()
+      getDailyAverages()
     })
   }
 
@@ -102,8 +103,6 @@ angular.module('myApp.homeController', ['myApp.services'])
       home.dayAvgBarReady = true
     })
   }
-
-  getDailyAverages()
 
   let dayObj = {
     'Monday': 0,
