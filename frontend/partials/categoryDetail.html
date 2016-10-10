@@ -13,7 +13,7 @@
     </ul>
 
     <div class="" ng-if="cd.selectedTab==='spendingDetail' && cd.savingsDataReady">
-        <div ng-switch="cd.futureRequest">
+        <div ng-switch="cd.futureRequest" ng-if="!cd.savingsShowing">
             <div ng-switch-default>
                 <table class="table table-striped">
                     <thead>
@@ -107,6 +107,88 @@
                 Sorry! No time travel available... yet.
             </div>
         </div>
+
+        <div ng-if="cd.savingsShowing">
+            <table class="table table-striped">
+                <thead>
+                    <th>
+                        Statistic
+                    </th>
+                    <th>
+                        Value
+                    </th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            Desired Daily Savings
+                        </td>
+                        <td>
+                            {{cd.savingsData.desired_daily_saving | dollar}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Desired Daily Spending
+                        </td>
+                        <td>
+                            {{cd.savingsData.desired_daily_spending | dollar}} | {{cd.savingsData.desired_spend_percentage | percentage}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Current Daily Spending
+                        </td>
+                        <td>
+                            {{cd.savingsData.current_daily_spending | dollar}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Daily Income
+                        </td>
+                        <td>
+                            {{cd.savingsData.daily_income | dollar}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Current Daily Savings
+                        </td>
+                        <td>
+                            {{cd.savingsData.current_daily_saving | dollar}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Current Monthly Savings
+                        </td>
+                        <td>
+                            {{cd.savingsData.current_saving | dollar}} | {{cd.savingsData.current_saving_percentage | percentage}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Savings Percentage of Monthly Target
+                        </td>
+                        <td>
+                            {{cd.savingsData.monthly_saving_percentage_of_budget | percentage}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Additional Savings Needed to Meet Monthly Goal
+                        </td>
+                        <td>
+                            {{cd.savingsData.savings_to_go_percentage | percentage}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
 
     </div>
     <div class="" ng-if="cd.selectedTab==='purchaseHistory'">
