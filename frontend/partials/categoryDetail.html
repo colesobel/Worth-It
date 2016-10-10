@@ -110,77 +110,81 @@
 
     </div>
     <div class="" ng-if="cd.selectedTab==='purchaseHistory'">
-        <div ng-switch="cd.futureRequest">
-            <input ng-switch-default class="form-control filter-input" placeholder="Filter by Day" ng-model="cd.dayFilter">
-            <table ng-switch-default class="table table-striped">
-                <thead>
-                    <th>
-                        Memo
-                    </th>
-                    <th>
-                        Amount
-                    </th>
-                    <th>
-                        Day
-                    </th>
-                    <th>
-                        Full Date
-                    </th>
-                    <th>
-                        Edit
-                    </th>
-                    <th>
-                        Delete
-                    </th>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in cd.purchaseHistory | filter: cd.dayFilterFun">
-                        <!-- <div ng-switch="item.isEditing"> -->
-                                <td>
-                                    {{item.memo}}
-                                </td>
-                                <!-- <td ng-switch-default>
-                                    <input type="text" name="name" value="{{item.memo}}">
-                                </td> -->
-                                <td>
-                                    {{item.expense_amount | dollar}}
-                                </td>
-                                <td>
-                                    {{item.day}}
-                                </td>
-                                <td>
-                                    {{item.full_date}}
-                                </td>
-                                <td>
-                                    <button class="warning-button" type="button" name="button" ng-click="cd.editPurchase(item.idEditing = true)">Edit</button>
-                                </td>
-                                <td>
-                                    <button class="close-category" type="button" name="button" ng-click="cd.deletePurchase(item.id)">Delete</button>
-                                </td>
+        <div ng-if="!cd.savingsShowing">
+            <div ng-switch="cd.futureRequest">
+                <input ng-switch-default class="form-control filter-input" placeholder="Filter by Day" ng-model="cd.dayFilter">
+                <table ng-switch-default class="table table-striped">
+                    <thead>
+                        <th>
+                            Memo
+                        </th>
+                        <th>
+                            Amount
+                        </th>
+                        <th>
+                            Day
+                        </th>
+                        <th>
+                            Full Date
+                        </th>
+                        <th>
+                            Edit
+                        </th>
+                        <th>
+                            Delete
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in cd.purchaseHistory | filter: cd.dayFilterFun">
+                            <!-- <div ng-switch="item.isEditing"> -->
+                                    <td>
+                                        {{item.memo}}
+                                    </td>
+                                    <!-- <td ng-switch-default>
+                                        <input type="text" name="name" value="{{item.memo}}">
+                                    </td> -->
+                                    <td>
+                                        {{item.expense_amount | dollar}}
+                                    </td>
+                                    <td>
+                                        {{item.day}}
+                                    </td>
+                                    <td>
+                                        {{item.full_date}}
+                                    </td>
+                                    <td>
+                                        <button class="warning-button" type="button" name="button" ng-click="cd.editPurchase(item.idEditing = true)">Edit</button>
+                                    </td>
+                                    <td>
+                                        <button class="close-category" type="button" name="button" ng-click="cd.deletePurchase(item.id)">Delete</button>
+                                    </td>
 
 
-                                <!-- <td>
-                                    <input type="text" name="name" value="{{item.memo}}">
-                                </td>
-                                <td>
-                                    <input type="number" name="name" value="{{item.expense_amount}}">
-                                </td>
-                                <td>
-                                    <input type="date" name="name" value="{{item.full_date}}">
-                                </td>
-                                <td>
-                                    <button class="btn btn-warning" type="button" name="button" ng-click="cd.editPurchase(item.idEditing = true)">Submit</button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger btn-small" type="button" name="button" ng-click="cd.deletePurchase(item.id)">Delete</button>
-                                </td> -->
-                        <!-- </div> -->
-                    </tr>
-                </tbody>
-            </table>
-            <div class="time-travel" ng-switch-when="true">
-                Sorry! No time travel available... yet.
-            </div>
+                                    <!-- <td>
+                                        <input type="text" name="name" value="{{item.memo}}">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="name" value="{{item.expense_amount}}">
+                                    </td>
+                                    <td>
+                                        <input type="date" name="name" value="{{item.full_date}}">
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-warning" type="button" name="button" ng-click="cd.editPurchase(item.idEditing = true)">Submit</button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger btn-small" type="button" name="button" ng-click="cd.deletePurchase(item.id)">Delete</button>
+                                    </td> -->
+                            <!-- </div> -->
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="time-travel" ng-switch-when="true">
+                    Sorry! No time travel available... yet.
+                </div>
         </div>
+    </div>
+    <div class="time-travel" ng-if="cd.savingsShowing">
+        This is a Savings Account. There Are No Purchases!
     </div>
 </div>

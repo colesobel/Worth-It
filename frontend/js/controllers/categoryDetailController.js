@@ -8,6 +8,7 @@ angular.module('myApp.categoryDetailController', [])
   cd.userId = user_id
   cd.selectedTab='spendingDetail'
   cd.categoryName = $stateParams.categoryName
+  if (cd.categoryName === 'savings') cd.savingsShowing = true
   cd.year = new Date().getFullYear()
   let staticYear = new Date().getFullYear()
   let month = new Date().getMonth()

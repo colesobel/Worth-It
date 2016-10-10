@@ -193,14 +193,8 @@
   text-transform: capitalize;
 }
 
-.bad-math {
-  font-size: 2em;
-  width: 80%;
-  text-align: center;
-  background-color: rgba(255, 7, 7, .8);
-  border-radius: 10px;
-  color: white;
-  margin: 5% auto;
+#bad-math {
+  margin-top: 10px;
 }
 
 
@@ -309,4 +303,8 @@
 
 .settings-header {
   font-size: 2em;
+}
+
+#expenses-saved {
+  margin-top: 0;
 }

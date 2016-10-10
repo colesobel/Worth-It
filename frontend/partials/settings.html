@@ -15,9 +15,12 @@
     <p class="display-1 sub-title">Expense Categories</p>
     <p>We've added a few generic categories, but if you want to track expenses that don't fall into one of these categories, add them to your choices here!</p>
 
-    <div class="bad-math" ng-if="settings.badMath">
+    <div class="no-income-data" id="bad-math" ng-if="settings.badMath">
         Please make sure that your total expense allocation equates to 100%!
     </div>
+    <p ng-if="settings.expensesSavedMessage" id="expenses-saved" class="time-travel">
+        Expenses Saved
+    </p>
     <h1>Coverage | {{settings.percentageTotal | percentage}}</h1>
 
     <button type="button" class="add-category-button" data-toggle="modal" data-target="#expCat">Add an Expense Category</button>

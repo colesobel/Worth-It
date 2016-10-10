@@ -1,6 +1,6 @@
 angular.module('myApp.settingsController', [])
 
-.controller('settingsController', ['$http', '$state', '$rootScope', 'getDate', function($http, $state, $rootScope, getDate) {
+.controller('settingsController', ['$http', '$state', '$rootScope', 'getDate', '$timeout', function($http, $state, $rootScope, getDate, $timeout) {
   let user_id = Number(localStorage.getItem('user_id'))
   console.log(user_id);
   if (!user_id) $state.go('login')
@@ -43,7 +43,6 @@ angular.module('myApp.settingsController', [])
         }
       })
       settings.fixedExpenseCategory = settings.expenseCategories[0].expense_category
-      console.log(settings.fixedExpenseCategory);
       getPercentageTotal()
     })
   }
@@ -91,6 +90,11 @@ angular.module('myApp.settingsController', [])
       $http.post('http://localhost:3000/accountSettings/updateExpenseCategories', {user_id, expenseCategories: settings.expenseCategories}).then(data => {
         console.log(data.data)
         settings.badMath = false
+        settings.expensesSavedMessage = true
+        $timeout(function() {
+          settings.expensesSavedMessage = false
+          console.log(settings.expensesSavedMessage);
+        }, 2000)
       })
     } else {
       console.log('you suck at math')

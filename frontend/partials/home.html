@@ -8,7 +8,7 @@
 
      <div ng-if="home.savingsDataReady" class="card card-body">
         <div>
-          <a class="card-title-a" ui-sref="categoryDetail({categoryName: g.expense_category})"><p class="card-title">Savings</p></a>
+          <a class="card-title-a" ui-sref="categoryDetail({categoryName: 'savings'})"><p class="card-title">Savings</p></a>
           <p class="sub-title">{{home.savingsData.current_saving_percentage | percentage}} of Total Net Income</p>
           <gauge node-index="0" gauge-stats="home.savingsData" ></gauge>
           <div class="shift-up">
