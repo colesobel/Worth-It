@@ -44,7 +44,7 @@ angular.module('myApp.addExpenseController', [])
       addExpense.expenses = [1]
       setTimeout(() => {
         $state.go('home')
-      }, 200)
+      }, 250)
     })
   }
 

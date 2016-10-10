@@ -8,7 +8,7 @@
 
      <div ng-if="home.savingsDataReady" class="card card-body">
         <div>
-          <a ui-sref="categoryDetail({categoryName: g.expense_category})"><p class="card-title">Savings</p></a>
+          <a class="card-title-a" ui-sref="categoryDetail({categoryName: g.expense_category})"><p class="card-title">Savings</p></a>
           <p class="sub-title">{{home.savingsData.current_saving_percentage | percentage}} of Total Net Income</p>
           <gauge node-index="0" gauge-stats="home.savingsData" ></gauge>
           <div class="shift-up">
@@ -75,16 +75,18 @@
   <div ng-if="home.noIncomeData" class="no-income-data">
       Please Enter an Income to Calculate Spending Data
   </div>
-  <hr class="line-break">
-  <br>
-  <h1 class="center">Total Spending by Expense Category</h1>
-  <bar-chart ng-if="home.barChartReady" data="home.finalCategoryBarData" node-index="0" chart-title="'Total Spending By Expense Category'"></bar-chart>
-  <hr class="line-break">
-  <h1 class="center">Daily Saving, Spending</h1>
-  <bar-chart ng-if="home.dailySpendingBarReady" data="home.dailySpendingBarData" node-index="1" chart-title="'Daily Saving, Spending'"></bar-chart>
-  <hr class="line-break">
-  <h1 class="center">Incremental Spending by Day</h1>
-  <bar-chart ng-if="home.dayAvgBarReady" data="home.finalDayAvgArray" node-index="2" chart-title="'Incremental Spending by Day'"></bar-chart>
+  <div ng-if="!home.noIncomeData">
+      <hr class="line-break">
+      <br>
+      <h1 ng-if="home.barChartReady" class="center">Total Spending by Expense Category</h1>
+      <bar-chart ng-if="home.barChartReady" data="home.finalCategoryBarData" node-index="0" chart-title="'Total Spending By Expense Category'"></bar-chart>
+      <hr class="line-break">
+      <h1 ng-if="home.dailySpendingBarReady" class="center">Daily Saving, Spending</h1>
+      <bar-chart ng-if="home.dailySpendingBarReady" data="home.dailySpendingBarData" node-index="1" chart-title="'Daily Saving, Spending'"></bar-chart>
+      <hr class="line-break">
+      <h1 ng-if="home.dayAvgBarReady" class="center">Incremental Spending by Day</h1>
+      <bar-chart ng-if="home.dayAvgBarReady" data="home.finalDayAvgArray" node-index="2" chart-title="'Incremental Spending by Day'"></bar-chart>
+  </div>
 
 
 

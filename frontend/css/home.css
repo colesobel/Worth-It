@@ -72,9 +72,7 @@ gauge {
   font-size: 2em;
   width: 80%;
   text-align: center;
-  background-color: rgba(255, 7, 7, .8);
-  border-radius: 10px;
-  color: white;
+  color: #FF0000;
   margin: 0 auto;
   margin-top: 10%;
 }

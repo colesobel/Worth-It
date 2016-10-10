@@ -2,7 +2,7 @@
 
 
 <div class="container">
-  <p class="display-1 page-header">Configure Your Settings</p>
+  <p class="page-header settings-header display-one">Configure Your Settings</p>
 
     <ul class="tabrow">
       <li class="selected" id="firstLi" ng-click="settings.selectTab('firstLi', 'expenseCategories')"><span>Expense Categories</span></li>
@@ -121,7 +121,7 @@
 
 
   <div ng-if="settings.selectedTab === 'income'">
-      <!-- <p class="display-1 sub-title">Monthly Net Income</p> -->
+      <p class="display-1 sub-title">Monthly Net Income</p>
       <div class="" ng-if="!settings.noIncomeData">
         <div ng-switch="settings.editingIncome">
           <p ng-switch-when="false" class="exp-cat-header no-bottom-margin">Montly Income | {{settings.userIncome | dollar}}</p>
@@ -136,7 +136,7 @@
       <form class="form-group" ng-submit="settings.submitIncome('submit_income')" ng-if="settings.noIncomeData">
         <label for="monthly-income"></label>
         <input class="form-control income-input" type="number" name="monthly-income" placeholder="Enter Your Monthly Takehome Income" id="submit_income">
-        <button type="submit" class="btn btn-success submit-income">Submit Income</button>
+        <button type="submit" class="submit-expenses-button">Submit Income</button>
       </form>
       <br>
 
