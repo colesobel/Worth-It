@@ -7,7 +7,6 @@
 }
 
 .login, .sign-up {
-    background: linear-gradient(to bottom right, #00b300, #1aff1a);
     width: 25%;
 }
 
@@ -27,15 +26,54 @@
     margin: 2% auto;
 }*/
 
-.form-container {
+/*.form-container {
     margin: 10% auto;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+}*/
 
 /*hr {
     width: 80%;
     height: 1px;
     color: white;
 }*/
+
+.login-whole-page {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('/imgs/Laptop-and-watch.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.opacity {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.app-title {
+  position: absolute;
+  left: 4%;
+  color: white;
+}
+
+.login-input {
+  margin: 1%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.login-button {
+  position: absolute;
+  right: 4%;
+  top: 2%;
+}
+
+.form-container {
+  margin: 10% auto;
+}

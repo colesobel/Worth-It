@@ -2,6 +2,7 @@ angular.module('myApp.loginController', [])
 
 .controller('loginController', ['$http', '$state', '$rootScope', function($http, $state, $rootScope) {
 	let login = this
+	login.signupForm = true
   login.blockLogin = false
   login.blockSignup = false
 
