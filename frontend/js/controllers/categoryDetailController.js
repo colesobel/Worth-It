@@ -99,10 +99,18 @@ angular.module('myApp.categoryDetailController', [])
       cd.savingsData.current_daily_saving = cd.savingsData.daily_income - cd.savingsData.current_daily_spending
       cd.savingsData.current_saving = cd.savingsData.current_daily_saving * cd.dayOfMonth
       cd.savingsData.current_saving_percentage = (Number(cd.savingsData.current_daily_saving / cd.savingsData.daily_income * 100).toFixed())
+      cd.savingsData.current_spending_percentage = 100 - cd.savingsData.current_saving_percentage
+      if (cd.savingsData.current_daily_spending === 0) cd.savingsData.current_spending_percentage = 0
       cd.savingsData.monthly_saving_percentage_of_budget = Number((cd.savingsData.current_saving / cd.savings.allocated_for_budget * 100).toFixed())
       if (cd.savingsData.monthly_saving_percentage_of_budget > 100) {cd.savingsData.monthly_saving_percentage_of_budget = 100}
       cd.savingsData.savings_to_go_percentage = 100 - cd.savingsData.monthly_saving_percentage_of_budget
-      cd.savingsData.desired_spend_percentage = cd.savings.desired_spend_percentage
+      cd.savingsData.desired_monthly_percentage = cd.savings.desired_spend_percentage
+      cd.savingsData.desired_month_spend_percentage = 100 - cd.savingsData.desired_monthly_percentage
+      cd.savingsData.additional_savings_to_meet_target = cd.savings.allocated_for_budget - cd.savingsData.current_saving
+      // if (cd.savingsData.additional_savings_to_meet_target < 0) cd.savingsData.additional_savings_to_meet_target = 0
+      cd.savingsData.current_monthly_spending = cd.savingsData.current_daily_spending * cd.dayOfMonth
+      cd.savingsData.current_monthly_income = cd.savingsData.daily_income * cd.dayOfMonth
+      cd.savingsData.desired_monthly_spending = cd.savingsData.desired_daily_spending * cd.daysInMonth
       // console.log(cd.gaugeStats);
       // console.log(cd.savingsData);
       cd.featuredCategory = cd.gaugeStats.find(cat => cat.expense_category == cd.categoryName)

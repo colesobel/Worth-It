@@ -115,34 +115,13 @@
                         Statistic
                     </th>
                     <th>
-                        Value
+                        Current
+                    </th>
+                    <th>
+                        Desired
                     </th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            Desired Daily Savings
-                        </td>
-                        <td>
-                            {{cd.savingsData.desired_daily_saving | dollar}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Desired Daily Spending
-                        </td>
-                        <td>
-                            {{cd.savingsData.desired_daily_spending | dollar}} | {{cd.savingsData.desired_spend_percentage | percentage}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Current Daily Spending
-                        </td>
-                        <td>
-                            {{cd.savingsData.current_daily_spending | dollar}}
-                        </td>
-                    </tr>
                     <tr>
                         <td>
                             Daily Income
@@ -150,37 +129,74 @@
                         <td>
                             {{cd.savingsData.daily_income | dollar}}
                         </td>
-                    </tr>
-                    <tr>
                         <td>
-                            Current Daily Savings
-                        </td>
-                        <td>
-                            {{cd.savingsData.current_daily_saving | dollar}}
+                            N/A
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Current Monthly Savings
+                            Daily Spending
                         </td>
                         <td>
-                            {{cd.savingsData.current_saving | dollar}} | {{cd.savingsData.current_saving_percentage | percentage}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Savings Percentage of Monthly Target
+                            {{cd.savingsData.current_daily_spending | dollar}} &nbsp | &nbsp {{cd.savingsData.current_spending_percentage | percentage}}
                         </td>
                         <td>
-                            {{cd.savingsData.monthly_saving_percentage_of_budget | percentage}}
+                            {{cd.savingsData.desired_daily_spending | dollar}} &nbsp | &nbsp {{cd.savingsData.desired_month_spend_percentage | percentage}}
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Additional Savings Needed to Meet Monthly Goal
+                            Daily Savings
                         </td>
                         <td>
-                            {{cd.savingsData.savings_to_go_percentage | percentage}}
+                            {{cd.savingsData.current_daily_saving | dollar}} &nbsp | &nbsp {{cd.savingsData.current_saving_percentage | percentage}}
+                        </td>
+                        <td>
+                            {{cd.savingsData.desired_daily_saving | dollar}} &nbsp | &nbsp {{cd.savingsData.desired_monthly_percentage | percentage}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Monthly Income
+                        </td>
+                        <td>
+                            {{cd.savingsData.current_monthly_income | dollar}}
+                        </td>
+                        <td>
+                            N/A
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Monthly Spending
+                        </td>
+                        <td>
+                            {{cd.savingsData.current_monthly_spending | dollar}}
+                        </td>
+                        <td>
+                            {{cd.savingsData.desired_monthly_spending | dollar}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Monthly Savings
+                        </td>
+                        <td>
+                            {{cd.savingsData.current_saving | dollar}} &nbsp | &nbsp {{cd.savingsData.monthly_saving_percentage_of_budget | percentage}}
+                        </td>
+                        <td>
+                            {{cd.savings.allocated_for_budget | dollar}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Additional Savings Needed to Meet Target
+                        </td>
+                        <td>
+                            {{cd.savingsData.additional_savings_to_meet_target | dollar}} &nbsp | &nbsp {{cd.savingsData.savings_to_go_percentage | percentage}}
+                        </td>
+                        <td>
+                            N/A
                         </td>
                     </tr>
                 </tbody>
