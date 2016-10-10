@@ -2,26 +2,26 @@
     <div class="opacity">
         <h1 class="app-title">Worth It</h1>
         <div ng-switch="login.signupForm">
-            <button ng-switch-when="true" class="submit-expenses-button login-button" ng-click="login.signupForm = false">Login</button>
-            <button ng-switch-when="false" class="submit-expenses-button login-button" ng-click="login.signupForm = true">Sign Up</button>
+            <button ng-switch-when="true" class="submit-expenses-button login-button login-page-button" ng-click="login.signupForm = false">Login</button>
+            <button ng-switch-when="false" class="submit-expenses-button login-button login-page-button" ng-click="login.signupForm = true">Sign Up</button>
         </div>
         <div class="form-container">
+            <p ng-if="!login.signupForm" class="display-1 login-header full-page-width">Login</p>
             <div class="form-holder" ng-if="!login.signupForm">
                 <div class="login" >
-                    <p class="display-1 login-header">Login</p>
                     <form name="loginForm" class="login-form form-group" ng-submit="login.login(loginForm)">
                         <input class="form-control login-input" type="text" name="u" placeholder="Email" required="required" ng-model="login.loginInfo.username"/>
                         <input class="form-control login-input" type="password" name="p" placeholder="Password" required="required" ng-model="login.loginInfo.password"/>
                         <br>
-                        <button class="submit-expenses-button full-width" type="submit" >Login</button>
+                        <button class="submit-expenses-button full-width login-page-button" type="submit" >Login</button>
                     </form>
                 </div>
                 <div ng-if="login.blockLogin" class="alert alert-danger">Username and Password do not match</div>
             </div>
 
+            <p ng-if="login.signupForm" class="display-1 login-header full-page-width">Welcome! Take The First Step Towards Securing Your Future Today</p>
             <div class="form-holder" ng-if="login.signupForm">
                 <div class="sign-up">
-                    <p class="display-1 login-header">Welcome!</p>
                     <form name="signupForm" class="login-form form-group" ng-submit="login.signUp(signupForm)">
                         <input class="form-control login-input" type="text" name="first-name" placeholder="First Name" required="required" ng-model="login.signupInfo.firstName"/>
                         <input class="form-control login-input" type="text" name="last-name" placeholder="Last Name" required="required" ng-model="login.signupInfo.lastName"/>
@@ -29,7 +29,7 @@
                         <input class="form-control login-input" type="password" name="password" placeholder="Password" required="required" ng-model="login.signupInfo.password"/>
                         <input class="form-control login-input" type="password" name="confirm-password" placeholder="Confirm Password" required="required" ng-model="login.signupInfo.passwordConfirmation"/>
                         <br>
-                        <button class="submit-expenses-button" >Sign Up</button>
+                        <button class="submit-expenses-button full-width login-page-button">Sign Up</button>
                     </form>
                 </div>
                 <div ng-if="login.blockSignup" class="alert-danger alert">This Username has already been taken. Please choose another</div>

@@ -1,18 +1,16 @@
 .form-holder {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+  margin: 0 auto;
 }
 
 .login, .sign-up {
     width: 25%;
+    margin: 0 auto;
 }
 
 .login-form {
-    display: flex;
-    flex-direction: column;
+    /*display: flex;
+    flex-direction: column;*/
+    margin: 0 auto;
 }
 
 .login-header {
@@ -76,4 +74,14 @@
 
 .form-container {
   margin: 10% auto;
+}
+
+.login-page-button {
+  background-color: #59f359 !important;
+  color: white !important;
+}
+
+.full-page-width {
+  width: 100vw !important;
+  text-align: center;
 }
