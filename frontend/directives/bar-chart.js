@@ -31,6 +31,12 @@ angular.module('myApp.barChartDirective', [])
         //   bold: false,
         //   italic: false },
         height: 700,
+        chartArea: {left: '10%', width:'80%',height:'75%'},
+        vAxis: {
+          gridlines: {
+            count: 0
+          }
+        },
         bar: {groupWidth: "95%"},
         legend: { position: "none" },
         gridlines: {

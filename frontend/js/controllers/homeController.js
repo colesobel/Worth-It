@@ -131,7 +131,7 @@ angular.module('myApp.homeController', ['myApp.services'])
       return 0;
     }
     home.finalCategoryBarData.sort(Comparator).reverse()
-    home.finalCategoryBarData.push(['savings', home.savingsData.current_saving, '#14ED14'])
+    home.finalCategoryBarData.push(['savings', Number(home.savingsData.current_saving.toFixed()), '#14ED14'])
     home.finalCategoryBarData.unshift(['Expense Category', '$', {role: 'style'}])
     home.barChartReady = true
   }
