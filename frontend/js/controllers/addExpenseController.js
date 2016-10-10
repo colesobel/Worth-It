@@ -23,6 +23,7 @@ angular.module('myApp.addExpenseController', [])
   }
 
   getExpenseCategories()
+
   addExpense.onSubmit = () =>{
     let expenseItems = document.getElementsByClassName('expense-container')
     let expenseObj = {}
@@ -40,10 +41,15 @@ angular.module('myApp.addExpenseController', [])
       expenseObj[i].memo = expenseItems[i]['children'][4]['value']
     }
     $http.post('http://localhost:3000/dailyExpenses/addExpense', {user_id, expenseObj}).then(data => {
-      console.log(data)
       addExpense.expenses = [1]
-      $state.go('home')
+      setTimeout(() => {
+        $state.go('home')
+      }, 200)
     })
+  }
+
+  addExpense.closeModal = function () {
+    addExpense.expenses = [1]
   }
 
 }])

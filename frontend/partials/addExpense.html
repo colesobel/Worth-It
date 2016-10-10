@@ -1,11 +1,11 @@
+
 <navbar user-id="addExpense.userId"></navbar>
 
 <div class="container">
-  <button class="btn btn-success add-expense" ng-click="addExpense.addAnExpense()">Add an Expense</button>
 
   <p class="display-1 page-header">Add an Expense</p>
 
-  <form class="form-group" ng-submit="addExpense.onSubmit()">
+  <!-- <form class="form-group" ng-submit="addExpense.onSubmit()">
     <div class="expense-container" ng-repeat="num in addExpense.expenses">
       <h3>Expense {{$index + 1}}</h3>
       <select class="form-control input">
@@ -13,8 +13,44 @@
       </select>
       <input type="number" class="form-control input" placeholder="Amount">
       <input type="date" class="form-control input" value="{{addExpense.dateString}}">
-      <input type="text" class="form-control input" placeholder="Memo"">
+      <input type="text" class="form-control input" placeholder="Memo">
     </div>
     <button class="btn btn-success submit-expenses" type="submit">Submit Expenses</button>
-  </form>
+  </form> -->
+
+
+  <button type="button" class="add-category-button" data-toggle="modal" data-target="#add-expense">Add an Expense</button>
+
+
+
+  <div class="modal fade" id="add-expense" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" ng-click="addExpense.closeModal()" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title" >Add an Expense</h4>
+              </div>
+              <div class="modal-body">
+                  <button class="btn btn-success add-expense" ng-click="addExpense.addAnExpense()">Add an Expense</button>
+                  <form class="form-group">
+                      <div class="expense-container" ng-repeat="num in addExpense.expenses">
+                          <h3>Expense {{$index + 1}}</h3>
+                          <select class="form-control input">
+                              <option class="expense-dropdown" ng-repeat="cat in addExpense.expenseCategories">{{cat.expense_category | capitalize}}</option>
+                          </select>
+                          <input type="number" class="form-control input" placeholder="Amount">
+                          <input type="date" class="form-control input" value="{{addExpense.dateString}}">
+                          <input type="text" class="form-control input" placeholder="Memo">
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="close-category" data-dismiss="modal" ng-click="addExpense.onSubmit()">Close</button>
+                  <button class="add-category-button" data-dismiss="modal" ng-click="addExpense.onSubmit()">Add Expense</button>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
