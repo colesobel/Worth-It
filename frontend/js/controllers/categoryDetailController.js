@@ -149,5 +149,17 @@ angular.module('myApp.categoryDetailController', [])
   }
 
 
+  cd.dayFilterFun = function (expense) {
+  if (!cd.dayFilter) {
+    return true
+  } else {
+    if (expense.day.toLowerCase().includes(cd.dayFilter.toLowerCase())) {
+      return true
+    }
+  }
+  return false
+}
+
+
 
 }])

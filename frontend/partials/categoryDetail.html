@@ -111,6 +111,7 @@
     </div>
     <div class="" ng-if="cd.selectedTab==='purchaseHistory'">
         <div ng-switch="cd.futureRequest">
+            <input ng-switch-default class="form-control filter-input" placeholder="Filter by Day" ng-model="cd.dayFilter">
             <table ng-switch-default class="table table-striped">
                 <thead>
                     <th>
@@ -120,7 +121,10 @@
                         Amount
                     </th>
                     <th>
-                        Date
+                        Day
+                    </th>
+                    <th>
+                        Full Date
                     </th>
                     <th>
                         Edit
@@ -130,7 +134,7 @@
                     </th>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in cd.purchaseHistory">
+                    <tr ng-repeat="item in cd.purchaseHistory | filter: cd.dayFilterFun">
                         <!-- <div ng-switch="item.isEditing"> -->
                                 <td>
                                     {{item.memo}}
@@ -140,6 +144,9 @@
                                 </td> -->
                                 <td>
                                     {{item.expense_amount | dollar}}
+                                </td>
+                                <td>
+                                    {{item.day}}
                                 </td>
                                 <td>
                                     {{item.full_date}}

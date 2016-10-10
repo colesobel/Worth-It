@@ -24,14 +24,14 @@ angular.module('myApp.barChartDirective', [])
                        2]);
 
       var options = {
-        title: $scope.chartTitle,
+        // title: $scope.chartTitle,
         // titleTextStyle: { color: 'black',
         //   fontName: "Helvetica Neue",
         //   fontSize: '20px',
         //   bold: false,
         //   italic: false },
         height: 700,
-        chartArea: {left: '10%', width:'80%',height:'75%'},
+        chartArea: {top: 0, left: '10%', width:'80%',height:'75%'},
         vAxis: {
           gridlines: {
             count: 0
