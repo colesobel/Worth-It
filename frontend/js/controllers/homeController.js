@@ -110,6 +110,8 @@ angular.module('myApp.homeController', ['myApp.services'])
     'Sunday': 0
   }
 
+  home.daysOfWeek = Object.keys(dayObj)
+
 
   function createSpendCategoryBar() {
     home.finalCategoryBarData = []

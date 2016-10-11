@@ -29,7 +29,7 @@ let categoryDetail = {
   },
 
   updatePurchase: userInfo => {
-    return knex.raw(`update daily_expenses set expense_amount = ${userInfo.expense_amount}, memo = '${userInfo.memo}', day = '${userInfo.day}', month = '${userInfo.month}', year = ${userInfo.year}, full_date = '${userInfo.full_date}'`)
+    return knex.raw(`update daily_expenses set expense_amount = ${userInfo.expense_amount}, memo = '${userInfo.memo}', day = '${userInfo.day}', month = '${userInfo.month}', year = ${userInfo.year}, full_date = '${userInfo.full_date}' where id = ${userInfo.id}`)
   }
 }
 
