@@ -11,7 +11,7 @@ angular.module('myApp.heatmapDirective', [])
       values: '='
     },
     controller: function($scope) {
-      // $scope.values.
+      console.log($scope.expenseCategories);
 
       $(function () {
 
@@ -19,7 +19,7 @@ angular.module('myApp.heatmapDirective', [])
 
         chart: {
             type: 'heatmap',
-            marginTop: 20,
+            marginTop: 40,
             marginBottom: 40
         },
 
@@ -43,6 +43,9 @@ angular.module('myApp.heatmapDirective', [])
               style: {
                 fontSize: '16px'
               }
+            },
+            title: {
+              text: ''
             }
         },
 
