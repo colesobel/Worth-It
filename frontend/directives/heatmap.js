@@ -29,12 +29,21 @@ angular.module('myApp.heatmapDirective', [])
         },
 
         xAxis: {
-            categories: $scope.days
+            categories: $scope.days,
+            labels: {
+              style: {
+                fontSize: '16px'
+              }
+            }
         },
 
         yAxis: {
             categories: $scope.expenseCategories,
-            title: null
+            labels: {
+              style: {
+                fontSize: '16px'
+              }
+            }
         },
 
         colorAxis: {

@@ -147,17 +147,26 @@ angular.module('myApp.homeController', ['myApp.services'])
   function createHeatmap() {
     $http.post('http://localhost:3000/dailyExpenses/getHeatmap', {user_id, month: home.monthName, year: home.year}).then((heatmap) => {
       home.heatmapY = Object.keys(heatmap.data.reduce((obj, elem) => {
-        obj[elem.expense_category] = true
+        let cat = elem.expense_category.split('')
+        let upperCase = cat.splice(0, 1).join('').toUpperCase()
+        cat.unshift(upperCase)
+        cat = cat.join('')
+        obj[cat] = true
         return obj
       }, {}))
+      console.log(home.heatmapY);
       let expense_lookup = home.heatmapY.reduce((obj, elem, ind) => {
         obj[elem] = ind
         return obj
       }, {})
 
       home.heatmapData = heatmap.data.map(elem => {
+        let cat = elem.expense_category.split('')
+        let upperCase = cat.splice(0, 1).join('').toUpperCase()
+        cat.unshift(upperCase)
+        cat = cat.join('')
         elem.dayNum = getDate.getDayNumber(elem.day)
-        elem.expenseNum = expense_lookup[elem.expense_category]
+        elem.expenseNum = expense_lookup[cat]
         return [elem.dayNum, elem.expenseNum, Number(elem.spend_total)]
       })
       home.heatmapReady = true
