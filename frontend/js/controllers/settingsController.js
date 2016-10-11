@@ -144,24 +144,24 @@ angular.module('myApp.settingsController', [])
   }
 
   settings.submitFixedExpenses = () => {
-    // let expenseItems = document.getElementsByClassName('fixed-expense-container')
     let expenseObj = {}
-    // for(let i = 0; i < expenseItems.length; i++) {
-    //   expenseObj[i] = {}
-    //   expenseObj[i].expenseCategory = expenseItems[i]['children'][1]['value'].toLowerCase()
-    //   expenseObj[i].amount = expenseItems[i]['children'][2]['value']
-    // }
     expenseObj['1'] = {}
     expenseObj['1'].expenseCategory = settings.fixedExpenseCategory.toLowerCase()
     expenseObj['1'].amount = settings.fixedExpenseAmount
     $http.post('http://localhost:3000/accountSettings/addFixedExpenses', {user_id, fixed_expenses: expenseObj}).then(data => {
       getFixedExpenses()
       settings.fixedExpenseInputs = [1]
+      settings.fixedExpenseCategory = ''
+      settings.fixedExpenseAmount = ''
     })
   }
 
   settings.addIncome = () => {
-    $http.post('http://localhost:3000/accountSettings/addExtraIncome', {user_id, amount: settings.extraIncomeAmount, memo: settings.incomeMemo, month: settings.incomeMonth, year: settings.incomeYear}).then(() => getExtraIncome())
+    $http.post('http://localhost:3000/accountSettings/addExtraIncome', {user_id, amount: settings.extraIncomeAmount, memo: settings.incomeMemo, month: settings.incomeMonth, year: settings.incomeYear}).then(() => {
+      settings.extraIncomeAmount = ''
+      settings.incomeMemo = ''
+      getExtraIncome()
+    })
   }
 
   settings.months = ['January','February','March','Arpil','May','June','July','August','September','October','November','December']

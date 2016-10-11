@@ -9,7 +9,6 @@ router.post('/getCategoryStats', function(req, res, next) {
 
 
 router.post('/getPurchaseHistory', function(req, res, next) {
-  console.log(req.body);
   CategoryDetail.purchaseHistory(req.body.user_id, req.body.currentMonth, req.body.category).then(history => res.json(history.rows))
 });
 
@@ -20,7 +19,6 @@ router.get('/purchaseHistory/:id', function(req, res, next) {
 
 
 router.post('/updatePurchase', function(req, res, next) {
-  console.log(req.body);
   CategoryDetail.updatePurchase(req.body).then(() => res.sendStatus(200))
 });
 

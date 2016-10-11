@@ -85,7 +85,7 @@
               <input type="number" class="form-control input" placeholder="Amount" ng-model="settings.fixedExpenseAmount">
           </div>
           <div class="modal-footer">
-            <button type="button" class="close-category" ng-click="settings.wipeCatValue('newCat')" data-dismiss="modal">Close</button>
+            <button type="button" class="close-category" ng-click="settings.fixedExpenseCategory = ''; settings.fixedExpenseAmount = ''" data-dismiss="modal">Close</button>
             <button class="add-category-button" ng-click="settings.submitFixedExpenses()" data-dismiss="modal">Add Fixed Expense</button>
           </div>
         </div>
@@ -100,25 +100,6 @@
       </div>
     </div>
 
-
-
-
-
-
-
-
-      <!-- <button class="btn btn-success add-expense" ng-click="settings.addFixedExpense()">Add Fixed Expense</button> -->
-
-      <!-- <form class="form-group" ng-submit="settings.submitFixedExpnses()">
-        <div class="fixed-expense-container" ng-repeat="num in settings.fixedExpenseInputs">
-          <h3>Fixed Expense {{$index+ 1}}</h3>
-          <select class="form-control input">
-            <option ng-repeat="cat in settings.expenseCategories">{{cat.expense_category | capitalize}}</option>
-          </select>
-          <input type="number" class="form-control input" placeholder="Amount">
-        </div>
-        <button class="btn btn-success submit-expenses" type="submit">Submit Fixed Expenses</button>
-      </form> -->
  </div>
 
 
@@ -210,7 +191,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="close-category" data-dismiss="modal">Close</button>
+              <button type="button" class="close-category" data-dismiss="modal" ng-click="settings.extraIncomeAmount = ''; settings.incomeMemo = ''">Close</button>
               <button class="add-category-button" ng-click="settings.addIncome()" data-dismiss="modal">Add Income / Loss</button>
             </div>
           </div>

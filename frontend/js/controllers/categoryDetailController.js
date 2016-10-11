@@ -121,7 +121,6 @@ angular.module('myApp.categoryDetailController', [])
         his.isEditing = false
         return his
       })
-      console.log(cd.purchaseHistory);
     })
   }
   getPurchaseHistory()
@@ -132,8 +131,6 @@ angular.module('myApp.categoryDetailController', [])
   }
 
   cd.editPurchase = (id) => {
-    console.log('editing purchase');
-    console.log(id);
     cd.purchaseHistory.find(elem => elem.id === id).isEditing = true
   }
 
@@ -150,8 +147,6 @@ angular.module('myApp.categoryDetailController', [])
     purchaseObj.month = getDate.getMonthName(new Date(purchaseObj.full_date).getMonth())
     purchaseObj.year = new Date(purchaseObj.full_date).getFullYear()
     purchaseObj.unix_timestamp = new Date(purchaseObj.full_date).getTime()
-    console.log(purchaseObj);
-
     $http.post('http://localhost:3000/categoryDetail/updatePurchase', purchaseObj).then(() => {
       getPurchaseHistory()
     })
