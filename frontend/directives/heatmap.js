@@ -4,7 +4,7 @@ angular.module('myApp.heatmapDirective', [])
 .directive('heatmap',[function() {
   return {
     restrict: 'E',
-    template: '<h1>Heatmap</h1><div id="heatmap"></div>',
+    template: '<div id="heatmap"></div>',
     scope: {
       days: '=',
       expenseCategories: '=',
@@ -19,13 +19,13 @@ angular.module('myApp.heatmapDirective', [])
 
         chart: {
             type: 'heatmap',
-            marginTop: 40,
+            marginTop: 20,
             marginBottom: 40
         },
 
 
         title: {
-            text: 'Incremental Spending by Expense Category / Day ($)'
+            text: ''
         },
 
         xAxis: {
@@ -40,7 +40,8 @@ angular.module('myApp.heatmapDirective', [])
         colorAxis: {
             min: 0,
             minColor: '#FFFFFF',
-            maxColor: Highcharts.getOptions().colors[0]
+            // maxColor: Highcharts.getOptions().colors[0]
+            maxColor: '#FF0000'
         },
 
         legend: {

@@ -84,6 +84,8 @@
       <hr class="line-break">
       <h1 ng-if="home.dayAvgBarReady" class="center">Incremental Spending by Day</h1>
       <bar-chart ng-if="home.dayAvgBarReady" data="home.finalDayAvgArray" node-index="2" chart-title="'Incremental Spending by Day'"></bar-chart>
+      <hr class="line-break">
+      <h1 class="center" ng-if="home.heatmapReady">Incremental Spending by Day ($)</h1>
       <heatmap ng-if="home.heatmapReady" days="home.daysOfWeek" expense-categories="home.heatmapY" values="home.heatmapData"></heatmap>
   </div>
 
