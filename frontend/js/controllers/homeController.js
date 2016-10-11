@@ -29,12 +29,10 @@ angular.module('myApp.homeController', ['myApp.services'])
 
   getGaugeStats = () => {
     $http.post('http://localhost:3000/dailyExpenses/getGaugeStats', {user_id, currentMonth: home.monthName, year: home.year}).then(gaugeStats => {
-      console.log(gaugeStats.data[0]);
       if (gaugeStats.data[0].monthly_income === null) {
         home.noIncomeData = true
         return
       }
-      console.log(gaugeStats.data);
       home.gaugeStats = gaugeStats.data.map(cat => {
         cat.allocated_for_budget = (Number(cat.desired_spend_percentage) / 100) * Number(cat.monthly_income)
         cat.daily_fixed_expense = cat.fixed_expense_amount / home.daysInMonth
@@ -92,8 +90,6 @@ angular.module('myApp.homeController', ['myApp.services'])
       avgs.data.forEach(day => {
         dayObj[day.day] = Number(day.sum)
       })
-      console.log(avgs.data);
-      console.log(dayObj);
       home.finalDayAvgArray = []
       for (day in dayObj) {
         home.finalDayAvgArray.push([day, Number(dayObj[day]), '#14ED14'])

@@ -31,7 +31,9 @@ angular.module('myApp.addExpenseController', [])
       expenseObj[i] = {}
       expenseObj[i].expenseCategory = expenseItems[i]['children'][1]['value'].toLowerCase()
       let amount = expenseItems[i]['children'][2]['value']
+      if (amount == 0) amount = 1
       expenseObj[i].amount = Number(amount).toFixed()
+      console.log(amount);
       let date = expenseItems[i]['children'][3]['value']
       expenseObj[i].fullDate = date
       expenseObj[i].unixTimestamp = new Date(date).getTime()

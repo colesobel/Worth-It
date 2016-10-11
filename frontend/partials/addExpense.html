@@ -40,14 +40,14 @@
                           <select class="form-control input">
                               <option class="expense-dropdown" ng-repeat="cat in addExpense.expenseCategories">{{cat.expense_category | capitalize}}</option>
                           </select>
-                          <input type="number" class="form-control input" placeholder="Amount">
+                          <input type="number" class="form-control input" placeholder="Amount" min="1">
                           <input type="date" class="form-control input" value="{{addExpense.dateString}}">
                           <input type="text" class="form-control input" placeholder="Memo">
                       </div>
                   </form>
               </div>
               <div class="modal-footer">
-                  <button type="button" class="close-category" data-dismiss="modal" ng-click="addExpense.onSubmit()">Close</button>
+                  <button type="button" class="close-category" data-dismiss="modal">Close</button>
                   <button class="add-category-button" data-dismiss="modal" ng-click="addExpense.onSubmit()">Add Expense</button>
               </div>
           </div>

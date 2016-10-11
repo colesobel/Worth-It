@@ -38,29 +38,9 @@ angular.module('myApp.categoryDetailController', [])
     cd.futureRequest = false
   }
 
-  // function getCategoryStats() {
-  //   $http.post('http://localhost:3000/categoryDetail/getCategoryStats', {user_id, currentMonth: cd.currentMonth, category: cd.categoryName}).then((data) => {
-  //     data.data = data.data[0]
-  //     data.data.allocated_for_budget = (Number(data.data.desired_spend_percentage) / 100) * Number(data.data.monthly_income)
-  //     data.data.daily_fixed_expense = data.data.fixed_expense_amount / cd.daysInMonth
-  //     data.data.current_fixed_expense_amortized = data.data.daily_fixed_expense * cd.dayOfMonth
-  //     data.data.spend_total = Number(data.data.spend_total) + data.data.current_fixed_expense_amortized
-  //     data.data.budget_left = data.data.allocated_for_budget - Number(data.data.spend_total)
-  //     data.data.spent_percentage = (Number(data.data.spend_total) / data.data.allocated_for_budget * 100).toFixed(2)
-  //     data.data.budget_left_percentage = (data.data.budget_left / data.data.allocated_for_budget * 100).toFixed(2)
-  //     data.data.percentage_spent = Number((data.data.spend_total / data.data.allocated_for_budget * 100).toFixed())
-  //     data.data.daily_spending = data.data.spend_total / cd.dayOfMonth
-  //     data.data.desired_daily_spending = data.data.allocated_for_budget / cd.daysInMonth
-  //     data.data.surplus_deficit = data.data.daily_spending - data.data.desired_daily_spending
-  //     console.log(data.data);
-  //     cd.statDetail = data.data
-  //     console.log(cd.statDetail.surplus_deficit >= 0);
-  //   })
-  // }
-  // getCategoryStats()
-
   getGaugeStats = () => {
     $http.post('http://localhost:3000/dailyExpenses/getGaugeStats', {user_id, currentMonth: cd.currentMonth, year: cd.year}).then(gaugeStats => {
+      console.log(gaugeStats.data);
       cd.gaugeStats = gaugeStats.data.map(cat => {
         cat.allocated_for_budget = (Number(cat.desired_spend_percentage) / 100) * Number(cat.monthly_income)
         cat.daily_fixed_expense = cat.fixed_expense_amount / cd.daysInMonth
@@ -107,13 +87,11 @@ angular.module('myApp.categoryDetailController', [])
       cd.savingsData.desired_monthly_percentage = cd.savings.desired_spend_percentage
       cd.savingsData.desired_month_spend_percentage = 100 - cd.savingsData.desired_monthly_percentage
       cd.savingsData.additional_savings_to_meet_target = cd.savings.allocated_for_budget - cd.savingsData.current_saving
-      // if (cd.savingsData.additional_savings_to_meet_target < 0) cd.savingsData.additional_savings_to_meet_target = 0
+      if (cd.savingsData.additional_savings_to_meet_target < 0) cd.savingsData.additional_savings_to_meet_target = 0
       cd.savingsData.current_monthly_spending = cd.savingsData.current_daily_spending * cd.dayOfMonth
       cd.savingsData.current_monthly_income = cd.savingsData.daily_income * cd.dayOfMonth
       cd.savingsData.desired_monthly_spending = cd.savingsData.desired_daily_spending * cd.daysInMonth
-      // console.log(cd.gaugeStats);
-      // console.log(cd.savingsData);
-      cd.featuredCategory = cd.gaugeStats.find(cat => cat.expense_category == cd.categoryName)
+      cd.featuredCategory = cd.gaugeStats.find(cat => cat.expense_category == cd.categoryName) || cd.savings
       console.log('FEATURED CATEGORY');
       console.log(cd.featuredCategory);
       cd.savingsDataReady = true
