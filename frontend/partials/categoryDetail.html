@@ -157,7 +157,7 @@
                     </tr>
                     <tr>
                         <td>
-                            Monthly Income
+                            Current Monthly Income
                         </td>
                         <td>
                             {{cd.savingsData.current_monthly_income | dollar}}
@@ -168,7 +168,7 @@
                     </tr>
                     <tr>
                         <td>
-                            Monthly Spending
+                            Current Monthly Spending
                         </td>
                         <td>
                             {{cd.savingsData.current_monthly_spending | dollar}}
@@ -179,7 +179,7 @@
                     </tr>
                     <tr>
                         <td>
-                            Monthly Savings
+                            Current Monthly Savings
                         </td>
                         <td>
                             {{cd.savingsData.current_saving | dollar}} &nbsp | &nbsp {{cd.savingsData.monthly_saving_percentage_of_budget | percentage}} (Progress to Target)
@@ -194,6 +194,28 @@
                         </td>
                         <td>
                             {{cd.savingsData.additional_savings_to_meet_target | dollar}} &nbsp | &nbsp {{cd.savingsData.savings_to_go_percentage | percentage}}
+                        </td>
+                        <td>
+                            N/A
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Current Fixed Expense Spending
+                        </td>
+                        <td>
+                            {{cd.savingsData.total_current_fixed_expense | dollar}} &nbsp | &nbsp {{cd.savingsData.total_current_fixed_expense_percentage | percentage}}
+                        </td>
+                        <td>
+                            N/A
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Current Incremental Spending
+                        </td>
+                        <td>
+                            {{cd.savingsData.total_current_incremental_expense | dollar}} &nbsp | &nbsp {{cd.savingsData.total_current_incremental_expense_percentage | percentage}}
                         </td>
                         <td>
                             N/A

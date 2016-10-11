@@ -91,9 +91,14 @@ angular.module('myApp.categoryDetailController', [])
       cd.savingsData.current_monthly_spending = cd.savingsData.current_daily_spending * cd.dayOfMonth
       cd.savingsData.current_monthly_income = cd.savingsData.daily_income * cd.dayOfMonth
       cd.savingsData.desired_monthly_spending = cd.savingsData.desired_daily_spending * cd.daysInMonth
+      cd.savingsData.total_current_fixed_expense = cd.gaugeStats.reduce((total, elem) => {
+        return total += elem.daily_fixed_expense
+      }, 0) * cd.dayOfMonth
+      cd.savingsData.total_current_incremental_expense = cd.savingsData.current_monthly_spending - cd.savingsData.total_current_fixed_expense
+      cd.savingsData.total_current_fixed_expense_percentage = Number(((cd.savingsData.total_current_fixed_expense / cd.savingsData.current_monthly_spending) * 100).toFixed())
+      cd.savingsData.total_current_incremental_expense_percentage = Number(((cd.savingsData.total_current_incremental_expense / cd.savingsData.current_monthly_spending) * 100).toFixed())
+
       cd.featuredCategory = cd.gaugeStats.find(cat => cat.expense_category == cd.categoryName) || cd.savings
-      console.log('FEATURED CATEGORY');
-      console.log(cd.featuredCategory);
       cd.savingsDataReady = true
     })
   }
