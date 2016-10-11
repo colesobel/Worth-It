@@ -144,4 +144,26 @@ angular.module('myApp.homeController', ['myApp.services'])
     home.dailySpendingBarReady = true
   }
 
+  function createHeatmap() {
+    $http.post('http://localhost:3000/dailyExpenses/getHeatmap', {user_id, month: home.monthName, year: home.year}).then((heatmap) => {
+      home.heatmapY = Object.keys(heatmap.data.reduce((obj, elem) => {
+        obj[elem.expense_category] = true
+        return obj
+      }, {}))
+      let expense_lookup = home.heatmapY.reduce((obj, elem, ind) => {
+        obj[elem] = ind
+        return obj
+      }, {})
+
+      home.heatmapData = heatmap.data.map(elem => {
+        elem.dayNum = getDate.getDayNumber(elem.day)
+        elem.expenseNum = expense_lookup[elem.expense_category]
+        return [elem.dayNum, elem.expenseNum, Number(elem.spend_total)]
+      })
+      home.heatmapReady = true
+      console.log(home.heatmapData);
+    })
+  }
+  createHeatmap()
+
 }])

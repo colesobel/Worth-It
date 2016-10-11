@@ -17,5 +17,12 @@ router.post('/getDailyAverages', function(req, res, next) {
 });
 
 
+router.post('/getHeatmap', function(req, res, next) {
+    dailyExpenses.getHeatmap(req.body).then(heatmap => res.json(heatmap.rows))
+});
+
+
+
+
 
 module.exports = router;
