@@ -259,53 +259,36 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in cd.purchaseHistory | filter: cd.dayFilterFun">
-                                    <td ng-if="item.isEditing == false">
-                                        {{item.memo}}
-                                    </td>
-                                    <td ng-if="item.isEditing == true">
-                                        <input type="text" id="{{$index + 'memo'}}" value="{{item.memo}}">
-                                    </td>
-                                    <td ng-if="item.isEditing == false">
-                                        {{item.expense_amount | dollar}}
-                                    </td>
-                                    <td ng-if="item.isEditing == true">
-                                        <input type="number" id="{{$index + 'amount'}}" value="{{item.expense_amount}}">
-                                    </td>
-                                    <td>
-                                        {{item.day}}
-                                    </td>
-                                    <td ng-if="item.isEditing == false">
-                                        {{item.full_date}}
-                                    </td>
-                                    <td ng-if="item.isEditing == true">
-                                        <input type="date" id="{{$index + 'date'}}" value="{{item.full_date}}">
-                                    </td>
-                                    <td ng-if="item.isEditing == false">
-                                        <button class="warning-button" type="button" name="button" ng-click="cd.editPurchase(item.id)">Edit</button>
-                                    </td>
-                                    <td ng-if="item.isEditing == true">
-                                        <button class="warning-button" type="button" name="button" ng-click="cd.submitEdit(item.id, $index)">Submit</button>
-                                    </td>
-                                    <td>
-                                        <button class="close-category" type="button" name="button" ng-click="cd.deletePurchase(item.id)">Delete</button>
-                                    </td>
-
-
-                                    <!-- <td>
-                                        <input type="text" name="name" value="{{item.memo}}">
-                                    </td>
-                                    <td>
-                                        <input type="number" name="name" value="{{item.expense_amount}}">
-                                    </td>
-                                    <td>
-                                        <input type="date" name="name" value="{{item.full_date}}">
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-warning" type="button" name="button" ng-click="cd.editPurchase(item.idEditing = true)">Submit</button>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger btn-small" type="button" name="button" ng-click="cd.deletePurchase(item.id)">Delete</button>
-                                    </td> -->
+                            <td ng-if="item.isEditing == false">
+                                {{item.memo}}
+                            </td>
+                            <td ng-if="item.isEditing == true">
+                                <input type="text" id="{{$index + 'memo'}}" value="{{item.memo}}">
+                            </td>
+                            <td ng-if="item.isEditing == false">
+                                {{item.expense_amount | dollar}}
+                            </td>
+                            <td ng-if="item.isEditing == true">
+                                <input type="number" id="{{$index + 'amount'}}" value="{{item.expense_amount}}">
+                            </td>
+                            <td>
+                                {{item.day}}
+                            </td>
+                            <td ng-if="item.isEditing == false">
+                                {{item.full_date}}
+                            </td>
+                            <td ng-if="item.isEditing == true">
+                                <input type="date" id="{{$index + 'date'}}" value="{{item.full_date}}">
+                            </td>
+                            <td ng-if="item.isEditing == false">
+                                <button class="warning-button" type="button" name="button" ng-click="cd.editPurchase(item.id)">Edit</button>
+                            </td>
+                            <td ng-if="item.isEditing == true">
+                                <button class="warning-button" type="button" name="button" ng-click="cd.submitEdit(item.id, $index)">Submit</button>
+                            </td>
+                            <td>
+                                <button class="close-category" type="button" name="button" ng-click="cd.deletePurchase(item.id)">Delete</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
