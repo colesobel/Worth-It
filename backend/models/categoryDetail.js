@@ -26,6 +26,10 @@ let categoryDetail = {
 
   deletePurchase: id => {
     return knex.raw(`delete from daily_expenses where id = ${id}`)
+  },
+
+  updatePurchase: userInfo => {
+    return knex.raw(`update daily_expenses set expense_amount = ${userInfo.expense_amount}, memo = '${userInfo.memo}', day = '${userInfo.day}', month = '${userInfo.month}', year = ${userInfo.year}, full_date = '${userInfo.full_date}'`)
   }
 }
 

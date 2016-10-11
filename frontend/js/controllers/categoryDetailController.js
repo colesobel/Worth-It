@@ -134,9 +134,27 @@ angular.module('myApp.categoryDetailController', [])
   cd.editPurchase = (id) => {
     console.log('editing purchase');
     console.log(id);
+    cd.purchaseHistory.find(elem => elem.id === id).isEditing = true
   }
 
-  cd.submitEdit = (id) => {
+  cd.submitEdit = (id, index) => {
+    let purchaseObj = {}
+    purchaseObj.id = id
+    purchaseObj.user_id = user_id
+    purchaseObj.expense_amount = document.getElementById(index + 'amount').value
+    if (purchaseObj.expense_amount == 0) purchaseObj.expense_amount = 1
+    purchaseObj.expense_category = cd.categoryName
+    purchaseObj.memo = document.getElementById(index + 'memo').value
+    purchaseObj.full_date = document.getElementById(index + 'date').value
+    purchaseObj.day = getDate.getDayName(new Date(purchaseObj.full_date).getDay())
+    purchaseObj.month = getDate.getMonthName(new Date(purchaseObj.full_date).getMonth())
+    purchaseObj.year = new Date(purchaseObj.full_date).getFullYear()
+    purchaseObj.unix_timestamp = new Date(purchaseObj.full_date).getTime()
+    console.log(purchaseObj);
+
+    $http.post('http://localhost:3000/categoryDetail/updatePurchase', purchaseObj).then(() => {
+      getPurchaseHistory()
+    })
 
   }
 

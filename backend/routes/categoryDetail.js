@@ -19,5 +19,13 @@ router.get('/purchaseHistory/:id', function(req, res, next) {
 });
 
 
+router.post('/updatePurchase', function(req, res, next) {
+  console.log(req.body);
+  CategoryDetail.updatePurchase(req.body).then(() => res.sendStatus(200))
+});
+
+
+
+
 
 module.exports = router;
