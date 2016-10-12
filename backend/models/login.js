@@ -1,3 +1,4 @@
+'use strict'
 let knex = require('../db/knex')
 let bcrypt = require('bcrypt')
 let loginService = require('./loginService')

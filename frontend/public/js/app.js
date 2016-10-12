@@ -33,5 +33,5 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
       controller: 'categoryDetailController',
       controllerAs: 'cd'
     })
-    // $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
 }])

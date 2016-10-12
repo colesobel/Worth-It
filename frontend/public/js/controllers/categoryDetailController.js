@@ -39,7 +39,7 @@ angular.module('myApp.categoryDetailController', [])
   }
 
   getGaugeStats = () => {
-    $http.post('http://localhost:3000/dailyExpenses/getGaugeStats', {user_id, currentMonth: cd.currentMonth, year: cd.year}).then(gaugeStats => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/dailyExpenses/getGaugeStats', {user_id, currentMonth: cd.currentMonth, year: cd.year}).then(gaugeStats => {
       console.log(gaugeStats.data);
       cd.gaugeStats = gaugeStats.data.map(cat => {
         cat.allocated_for_budget = (Number(cat.desired_spend_percentage) / 100) * Number(cat.monthly_income)
@@ -116,7 +116,7 @@ angular.module('myApp.categoryDetailController', [])
   }
 
   function getPurchaseHistory() {
-    $http.post('http://localhost:3000/categoryDetail/getPurchaseHistory', {user_id, currentMonth: cd.currentMonth, category: cd.categoryName}).then(purchaseHistory => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/categoryDetail/getPurchaseHistory', {user_id, currentMonth: cd.currentMonth, category: cd.categoryName}).then(purchaseHistory => {
       cd.purchaseHistory = purchaseHistory.data.map(his => {
         his.isEditing = false
         return his
@@ -127,7 +127,7 @@ angular.module('myApp.categoryDetailController', [])
 
 
   cd.deletePurchase = (id) => {
-    $http.get(`http://localhost:3000/categoryDetail/purchaseHistory/${id}`).then(() => getPurchaseHistory())
+    $http.get(`https://whispering-shelf-88050.herokuapp.com/categoryDetail/purchaseHistory/${id}`).then(() => getPurchaseHistory())
   }
 
   cd.editPurchase = (id) => {
@@ -147,7 +147,7 @@ angular.module('myApp.categoryDetailController', [])
     purchaseObj.month = getDate.getMonthName(new Date(purchaseObj.full_date).getMonth())
     purchaseObj.year = new Date(purchaseObj.full_date).getFullYear()
     purchaseObj.unix_timestamp = new Date(purchaseObj.full_date).getTime()
-    $http.post('http://localhost:3000/categoryDetail/updatePurchase', purchaseObj).then(() => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/categoryDetail/updatePurchase', purchaseObj).then(() => {
       getPurchaseHistory()
     })
 

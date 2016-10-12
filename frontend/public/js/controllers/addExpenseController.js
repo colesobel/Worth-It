@@ -15,7 +15,7 @@ angular.module('myApp.addExpenseController', [])
   }
 
   getExpenseCategories = () => {
-    $http.post('http://localhost:3000/accountSettings/getExpenseCategories', {user_id}).then(categories => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/accountSettings/getExpenseCategories', {user_id}).then(categories => {
       addExpense.expenseCategories = categories.data.filter(cat => {
         return cat.expense_category != 'savings'
       })
@@ -24,7 +24,8 @@ angular.module('myApp.addExpenseController', [])
 
   getExpenseCategories()
 
-  addExpense.onSubmit = () =>{
+  addExpense.onSubmit = function() {
+
     let expenseItems = document.getElementsByClassName('expense-container')
     let expenseObj = {}
     for(let i = 0; i < expenseItems.length; i++) {
@@ -33,7 +34,6 @@ angular.module('myApp.addExpenseController', [])
       let amount = expenseItems[i]['children'][2]['value']
       if (amount == 0) amount = 1
       expenseObj[i].amount = Number(amount).toFixed()
-      console.log(amount);
       let date = expenseItems[i]['children'][3]['value']
       expenseObj[i].fullDate = date
       expenseObj[i].unixTimestamp = new Date(date).getTime()
@@ -42,11 +42,12 @@ angular.module('myApp.addExpenseController', [])
       expenseObj[i].year = new Date(date).getFullYear()
       expenseObj[i].memo = expenseItems[i]['children'][4]['value']
     }
-    $http.post('http://localhost:3000/dailyExpenses/addExpense', {user_id, expenseObj}).then(data => {
-      addExpense.expenses = [1]
-      setTimeout(() => {
-        $state.go('home')
-      }, 250)
+    expenseObjString = JSON.stringify(expenseObj)
+    $http.post('https://whispering-shelf-88050.herokuapp.com/dailyExpenses/addExpense2', {user_id, expenseObj: expenseObjString}).then(function() {
+        addExpense.expenses = [1]
+        setTimeout(() => {
+          $state.go('home')
+        }, 250)
     })
   }
 

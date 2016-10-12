@@ -1,8 +1,10 @@
+'use strict'
 var express = require('express');
 var router = express.Router();
 let dailyExpenses = require('../models/dailyExpenses')
 
-router.post('/addExpense', function(req, res, next) {
+router.post('/addExpense2', function(req, res, next) {
+    req.body.expenseObj = JSON.parse(req.body.expenseObj)
     dailyExpenses.addExpense(req.body).then(() => res.json('add expense hit'))
 });
 

@@ -8,7 +8,7 @@ angular.module('myApp.homeController', ['myApp.services'])
   getUserInfo()
 
   function getUserInfo() {
-    $http.post('http://localhost:3000/login/getUserInfo', {user_id}).then(name => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/login/getUserInfo', {user_id}).then(name => {
       home.fullName = name.data.first_name + ' ' + name.data.last_name
     })
 
@@ -28,7 +28,8 @@ angular.module('myApp.homeController', ['myApp.services'])
 
 
   getGaugeStats = () => {
-    $http.post('http://localhost:3000/dailyExpenses/getGaugeStats', {user_id, currentMonth: home.monthName, year: home.year}).then(gaugeStats => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/dailyExpenses/getGaugeStats', {user_id, currentMonth: home.monthName, year: home.year}).then(gaugeStats => {
+      console.log(gaugeStats);
       if (gaugeStats.data[0].monthly_income === null) {
         home.noIncomeData = true
         return
@@ -86,7 +87,7 @@ angular.module('myApp.homeController', ['myApp.services'])
 
 
   getDailyAverages = () => {
-    $http.post('http://localhost:3000/dailyExpenses/getDailyAverages', {user_id, currentMonth: home.monthName}).then(avgs => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/dailyExpenses/getDailyAverages', {user_id, currentMonth: home.monthName}).then(avgs => {
       avgs.data.forEach(day => {
         dayObj[day.day] = Number(day.sum)
       })
@@ -145,7 +146,7 @@ angular.module('myApp.homeController', ['myApp.services'])
   }
 
   function createHeatmap() {
-    $http.post('http://localhost:3000/dailyExpenses/getHeatmap', {user_id, month: home.monthName, year: home.year}).then((heatmap) => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/dailyExpenses/getHeatmap', {user_id, month: home.monthName, year: home.year}).then((heatmap) => {
       home.heatmapY = Object.keys(heatmap.data.reduce((obj, elem) => {
         let cat = elem.expense_category.split('')
         let upperCase = cat.splice(0, 1).join('').toUpperCase()

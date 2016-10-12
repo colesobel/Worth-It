@@ -33,7 +33,7 @@ angular.module('myApp.settingsController', [])
     settings.percentageTotal = total
   }
   getExpenseCategories = () => {
-    $http.post('http://localhost:3000/accountSettings/getExpenseCategories', {user_id}).then(categories => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/accountSettings/getExpenseCategories', {user_id}).then(categories => {
       settings.expenseCategories = categories.data.map(cat => {
         return {
           catId: cat.id,
@@ -51,7 +51,7 @@ angular.module('myApp.settingsController', [])
   settings.submitTempExpenses = (i, id) => {
   settings.expenseCategories.forEach(cat => {
     if (cat['catId'] == id) {
-      cat['expense_category'] = document.getElementById(i + 'expCat')['value']
+      cat['expense_category'] = document.getElementById(i + 'expCat')['value'].toLowerCase()
       cat['percentage'] = document.getElementById(i + 'percentage')['value']
     }
   })
@@ -87,7 +87,8 @@ angular.module('myApp.settingsController', [])
     let total = 0
     settings.expenseCategories.forEach(cat => total += Number(cat['percentage']))
     if (total === 100) {
-      $http.post('http://localhost:3000/accountSettings/updateExpenseCategories', {user_id, expenseCategories: settings.expenseCategories}).then(data => {
+      console.log(settings.expenseCategories);
+      $http.post('https://whispering-shelf-88050.herokuapp.com/accountSettings/updateExpenseCategories', {user_id, expenseCategories: settings.expenseCategories}).then(data => {
         console.log(data.data)
         settings.badMath = false
         settings.expensesSavedMessage = true
@@ -97,13 +98,12 @@ angular.module('myApp.settingsController', [])
         }, 2000)
       })
     } else {
-      console.log('you suck at math')
       settings.badMath = true
     }
   }
 
   getMonthlyIncome = () => {
-    $http.post('http://localhost:3000/accountSettings/getIncome', {user_id}).then(income => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/accountSettings/getIncome', {user_id}).then(income => {
       console.log(income.data);
       if (income.data) {
         settings.userIncome = income.data
@@ -118,7 +118,7 @@ angular.module('myApp.settingsController', [])
 
   settings.editIncome = (updatedIncome) => {
     let income = document.getElementById('updatedIncome')['value']
-    $http.post('http://localhost:3000/accountSettings/updateIncome', {user_id, income}).then(income => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/accountSettings/updateIncome', {user_id, income}).then(income => {
       settings.userIncome = income.data
       settings.editingIncome = false
     })
@@ -126,17 +126,24 @@ angular.module('myApp.settingsController', [])
 
   settings.submitIncome = (income) => {
     income = document.getElementById(income).value
-    $http.post('http://localhost:3000/accountSettings/enterIncome', {user_id, income}).then(data => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/accountSettings/enterIncome', {user_id, income}).then(data => {
       getMonthlyIncome()
     })
   }
 
   getFixedExpenses = () => {
-    $http.post('http://localhost:3000/accountSettings/getFixedExpenses', {user_id}).then(data => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/accountSettings/getFixedExpenses', {user_id}).then(data => {
+      console.log(data.data);
       settings.fixedExpenses = data.data
     })
   }
   getFixedExpenses()
+
+  settings.deleteFixedExpense = function(id) {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/accountSettings/deleteFixedExpense', {id}).then(() => {
+      getFixedExpenses()
+    })
+  }
 
   settings.addFixedExpense = () => {
     let num = settings.fixedExpenseInputs[settings.fixedExpenseInputs.length - 1] + 1
@@ -148,7 +155,7 @@ angular.module('myApp.settingsController', [])
     expenseObj['1'] = {}
     expenseObj['1'].expenseCategory = settings.fixedExpenseCategory.toLowerCase()
     expenseObj['1'].amount = settings.fixedExpenseAmount
-    $http.post('http://localhost:3000/accountSettings/addFixedExpenses', {user_id, fixed_expenses: expenseObj}).then(data => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/accountSettings/addFixedExpenses', {user_id, fixed_expenses: expenseObj}).then(data => {
       getFixedExpenses()
       settings.fixedExpenseInputs = [1]
       settings.fixedExpenseCategory = ''
@@ -157,7 +164,7 @@ angular.module('myApp.settingsController', [])
   }
 
   settings.addIncome = () => {
-    $http.post('http://localhost:3000/accountSettings/addExtraIncome', {user_id, amount: settings.extraIncomeAmount, memo: settings.incomeMemo, month: settings.incomeMonth, year: settings.incomeYear}).then(() => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/accountSettings/addExtraIncome', {user_id, amount: settings.extraIncomeAmount, memo: settings.incomeMemo, month: settings.incomeMonth, year: settings.incomeYear}).then(() => {
       settings.extraIncomeAmount = ''
       settings.incomeMemo = ''
       getExtraIncome()
@@ -167,7 +174,7 @@ angular.module('myApp.settingsController', [])
   settings.months = ['January','February','March','Arpil','May','June','July','August','September','October','November','December']
 
   function getExtraIncome() {
-    $http.post('http://localhost:3000/accountSettings/getExtraIncome', {user_id, month: settings.incomeMonth, year: settings.incomeYear}).then(data => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/accountSettings/getExtraIncome', {user_id, month: settings.incomeMonth, year: settings.incomeYear}).then(data => {
       settings.extraIncome = data.data.map(income => {
         income.isEditing = false
         return income
@@ -180,11 +187,11 @@ angular.module('myApp.settingsController', [])
   settings.updateExtraIncome = function (id, index) {
     let memo = document.getElementById(index + 'ei-memo').value
     let amount = document.getElementById(index + 'ei-amount').value
-    $http.post('http://localhost:3000/accountSettings/updateExtraIncome', {id, memo, amount}).then(() => getExtraIncome())
+    $http.post('https://whispering-shelf-88050.herokuapp.com/accountSettings/updateExtraIncome', {id, memo, amount}).then(() => getExtraIncome())
   }
 
   settings.deleteExtraIncome = function (id) {
-    $http.post('http://localhost:3000/accountSettings/deleteExtraIncome', {id}).then(() => getExtraIncome())
+    $http.post('https://whispering-shelf-88050.herokuapp.com/accountSettings/deleteExtraIncome', {id}).then(() => getExtraIncome())
   }
 
 

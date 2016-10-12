@@ -36,7 +36,7 @@
             <h4 class="modal-title">Add an Expense Category</h4>
           </div>
           <div class="modal-body">
-            <input class="form-control expense-input" type="text" id="newCat" placeholder="Add an Expense Category">
+                  <input class="form-control expense-input" type="text" id="newCat" placeholder="Add an Expense Category">
           </div>
           <div class="modal-footer">
             <button type="button" class="close-category" ng-click="settings.wipeCatValue('newCat')" data-dismiss="modal">Close</button>
@@ -66,7 +66,7 @@
 
   <div ng-if="settings.selectedTab === 'fixedExpenses'">
     <p class="display-1 sub-title">Fixed Expenses</p>
-    <button type="button" class="add-category-button" data-toggle="modal" data-target="#fixedExpense">Add an Expense Category</button>
+    <button type="button" class="add-category-button" data-toggle="modal" data-target="#fixedExpense">Add a Monthly Fixed Expense</button>
 
 
     <div class="modal fade" id="fixedExpense" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -96,7 +96,7 @@
     <div class="list-group expense-parent">
       <div class="list-group-item expense-list-item" ng-repeat="exp in settings.fixedExpenses">
         <p class="exp-cat-header capitalize">{{exp.expense_category}} | {{exp.expense_amount | dollar}}</p>
-        <button class="close-category" ng-click="settings.deleteFixedCategory(cat.id)">Delete</button>
+        <button class="close-category" ng-click="settings.deleteFixedExpense(exp.id)">Delete</button>
       </div>
     </div>
 

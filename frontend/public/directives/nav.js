@@ -10,7 +10,7 @@ angular.module('myApp.navDirective', [])
     },
     controller: function($scope, $http) {
       console.log($scope.userId);
-      $http.post('http://localhost:3000/login/getUserInfo', {user_id: $scope.userId}).then(name => {
+      $http.post('https://whispering-shelf-88050.herokuapp.com/login/getUserInfo', {user_id: $scope.userId}).then(name => {
         $scope.name = name.data.first_name + ' ' + name.data.last_name
       })
     }

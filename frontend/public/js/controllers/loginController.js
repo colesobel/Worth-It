@@ -8,7 +8,7 @@ angular.module('myApp.loginController', [])
 
   login.loginInfo = {}
   login.login = (loginForm) => {
-    $http.post('http://localhost:3000/login/login', login.loginInfo).then(user => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/login/login', login.loginInfo).then(user => {
       if (user.data) {
         localStorage.setItem('user_id', user.data)
         $state.go('home')
@@ -25,9 +25,8 @@ angular.module('myApp.loginController', [])
       console.log('passwords must match');
       return
     }
-    $http.post('http://localhost:3000/login/signup', login.signupInfo).then(data => {
+    $http.post('https://whispering-shelf-88050.herokuapp.com/login/signup', login.signupInfo).then(data => {
       if (data.data) {
-        console.log(data.data);
         localStorage.setItem('user_id', data.data)
         $state.go('settings')
       } else {
@@ -35,6 +34,17 @@ angular.module('myApp.loginController', [])
       }
     })
   }
+
+	login.guestLogin = function() {
+		$http.post('https://whispering-shelf-88050.herokuapp.com/login/login', {username: 'john@doe.com', password: 'johndoe'}).then(user => {
+			if (user.data) {
+				localStorage.setItem('user_id', user.data)
+				$state.go('home')
+			} else {
+				login.blockLogin = true
+			}
+		})
+	}
 
 
 }])

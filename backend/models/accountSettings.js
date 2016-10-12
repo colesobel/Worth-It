@@ -1,3 +1,4 @@
+'use strict'
 let knex = require('../db/knex')
 let AccountSettingsService = require('./accountSettingsService')
 
@@ -31,7 +32,11 @@ let accountSettings = {
     },
 
     getFixedExpenses: (user_id) => {
-        return knex.raw(`select expense_category, expense_amount from fixed_expenses where user_id = ${user_id}`)
+        return knex.raw(`select id, expense_category, expense_amount from fixed_expenses where user_id = ${user_id}`)
+    },
+
+    deleteFixedExpense: id => {
+      return knex.raw(`delete from fixed_expenses where id = ${id}`)
     },
 
     enterIncome: (incomeInfo) => {

@@ -1,3 +1,4 @@
+'use strict'
 let knex = require('../db/knex')
 let DailyExpensesService = require('./dailyExpensesService')
 
@@ -5,6 +6,7 @@ let dailyExpenses = {
     addExpense: userInfo => {
         return new Promise((resolve, reject) => {
             let uploadArray = DailyExpensesService.createUploadExpensesArray(userInfo)
+            console.log("hope this logs");
             Promise.all(uploadArray).then(() => resolve()).catch(e => console.log(e))
         })
     },
@@ -12,7 +14,6 @@ let dailyExpenses = {
     getGaugeStats: (user_id, monthName, year) => {
         return new Promise((resolve, reject) => {
             DailyExpensesService.gaugeQuery(user_id, monthName, year).then(gaugeStats => {
-                console.log(gaugeStats)
                 resolve(gaugeStats)
             })
         })

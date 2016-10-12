@@ -1,3 +1,4 @@
+'use strict'
 var express = require('express');
 var router = express.Router();
 let AccountSettings = require('../models/accountSettings')
@@ -68,7 +69,9 @@ router.post('/updateExtraIncome', function(req, res, next) {
 })
 
 
-
+router.post('/deleteFixedExpense', function(req, res, next) {
+  AccountSettings.deleteFixedExpense(req.body.id).then(() => res.sendStatus(200))
+})
 
 
 

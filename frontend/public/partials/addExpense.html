@@ -3,20 +3,7 @@
 
 <div class="container">
 
-  <p class="display-1 page-header">Add an Expense</p>
-
-  <!-- <form class="form-group" ng-submit="addExpense.onSubmit()">
-    <div class="expense-container" ng-repeat="num in addExpense.expenses">
-      <h3>Expense {{$index + 1}}</h3>
-      <select class="form-control input">
-        <option class="expense-dropdown" ng-repeat="cat in addExpense.expenseCategories">{{cat.expense_category | capitalize}}</option>
-      </select>
-      <input type="number" class="form-control input" placeholder="Amount">
-      <input type="date" class="form-control input" value="{{addExpense.dateString}}">
-      <input type="text" class="form-control input" placeholder="Memo">
-    </div>
-    <button class="btn btn-success submit-expenses" type="submit">Submit Expenses</button>
-  </form> -->
+  <p class="page-header settings-header display-one">Add an Expense</p>
 
 
   <button type="button" class="add-category-button" data-toggle="modal" data-target="#add-expense">Add an Expense</button>
@@ -30,7 +17,7 @@
                   <button type="button" class="close" data-dismiss="modal" ng-click="addExpense.closeModal()" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
-                  <h4 class="modal-title" >Add an Expense</h4>
+                  <h4 class="modal-title" >Add an Expense no form</h4>
               </div>
               <div class="modal-body">
                   <button class="submit-expenses-button" ng-click="addExpense.addAnExpense()">Add Another Expense</button>
@@ -48,7 +35,7 @@
               </div>
               <div class="modal-footer">
                   <button type="button" class="close-category" data-dismiss="modal">Close</button>
-                  <button class="add-category-button" data-dismiss="modal" ng-click="addExpense.onSubmit()">Add Expense</button>
+                  <button type="button" class="add-category-button" data-dismiss="modal" ng-click="addExpense.onSubmit()">Add Expense</button>
               </div>
           </div>
       </div>

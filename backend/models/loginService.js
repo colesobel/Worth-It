@@ -1,3 +1,4 @@
+'use strict'
 let knex = require('../db/knex')
 let bcrypt = require('bcrypt')
 
@@ -19,7 +20,7 @@ let loginService = {
 
     encryptPassword: password => {
         return new Promise((resolve, reject) => {
-            bcrypt.hash(password, 10, function(err, hash) {  
+            bcrypt.hash(password, 10, function(err, hash) {
                 resolve(hash)
             })
         })
