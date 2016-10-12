@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ui.router', 'myApp.loginController', 'myApp.homeController', 'myApp.services', 'myApp.gaugeDirective', 'myApp.filters', 'myApp.addExpenseController', 'myApp.settingsController', 'myApp.categoryDetailController', 'myApp.barChartDirective', 'myApp.navDirective', 'myApp.heatmapDirective'])
+var app = angular.module('myApp', ['ui.router', 'myApp.loginController', 'myApp.homeController', 'myApp.services', 'myApp.gaugeDirective', 'myApp.filters', 'myApp.addExpenseController', 'myApp.settingsController', 'myApp.categoryDetailController', 'myApp.barChartDirective', 'myApp.navDirective', 'myApp.heatmapDirective', 'myApp.spendHistoryController'])
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise('home')
@@ -32,6 +32,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
       templateUrl: '/partials/categoryDetail.html',
       controller: 'categoryDetailController',
       controllerAs: 'cd'
+    })
+    .state('spendHistory', {
+      url: '/spendHistory/',
+      templateUrl: '/partials/spendHistory.html',
+      controller: 'spendHistoryController',
+      controllerAs: 'sh'
     })
     $locationProvider.html5Mode(true);
 }])

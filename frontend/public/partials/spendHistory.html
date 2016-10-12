@@ -1,0 +1,30 @@
+<navbar user-id="sh.userId"></navbar>
+<div class="container">
+    <p class="page-header settings-header display-one">Your Complete Spending History</p>
+    <div class="filter-form-container">
+        <input class="form-control quarter-width" type="text" placeholder="Search Memo" ng-model="sh.memoFilter">
+        <input class="form-control quarter-width" type="text" placeholder="Search Day" ng-model="sh.dayFilter">
+        <input class="form-control quarter-width" type="text" placeholder="Search Month" ng-model="sh.monthFilter">
+        <input class="form-control quarter-width" type="number" placeholder="Search Year" ng-model="sh.yearFilter">
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <th>Memo</th>
+            <th>Amount</th>
+            <th>Day</th>
+            <th>Month</th>
+            <th>Year</th>
+            <th>Full Date</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="exp in sh.history  | filter: sh.dayFilterFun | filter: sh.memoFilterFun | filter: sh.monthFilterFun | filter: sh.yearFilterFun">
+                <td>{{exp.memo}}</td>
+                <td>{{exp.expense_amount | dollar}}</td>
+                <td>{{exp.day}}</td>
+                <td>{{exp.month}}</td>
+                <td>{{exp.year}}</td>
+                <td>{{exp.full_date}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

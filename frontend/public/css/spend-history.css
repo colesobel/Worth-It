@@ -1,0 +1,9 @@
+.quarter-width {
+  width: 22%;
+}
+
+.filter-form-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

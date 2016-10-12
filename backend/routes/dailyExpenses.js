@@ -24,6 +24,14 @@ router.post('/getHeatmap', function(req, res, next) {
 });
 
 
+router.get('/getAll/:id', function(req, res, next) {
+    dailyExpenses.getAll(req.params.id).then(history => res.json(history.rows))
+});
+
+
+
+
+
 
 
 

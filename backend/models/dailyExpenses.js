@@ -28,6 +28,10 @@ let dailyExpenses = {
         from daily_expenses
         where user_id = ${userInfo.user_id} and month = '${userInfo.month}' and year = ${userInfo.year}
         group by user_id, expense_category, day`)
+    },
+
+    getAll: user_id => {
+      return knex.raw(`select * from daily_expenses where user_id = ${user_id} order by unix_timestamp desc, id desc`)
     }
 }
 
